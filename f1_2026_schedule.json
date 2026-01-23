@@ -1,0 +1,240 @@
+{
+  "season": 2026,
+  "timezone": "UTC",
+  "status": "official-calendar",
+  "notes": "Sprint weekends are marked; session times (UTC) are TBD.",
+  "races": [
+    {
+      "round": 1,
+      "grand_prix": "Australian Grand Prix",
+      "circuit_id": "albert_park",
+      "date_start": "2026-03-06",
+      "date_end": "2026-03-08",
+      "sprint_weekend": false,
+      "sessions": {
+        "practice_1": null,
+        "practice_2": null,
+        "practice_3": null,
+        "qualifying": null,
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": null
+      }
+    },
+    {
+      "round": 2,
+      "grand_prix": "Chinese Grand Prix",
+      "circuit_id": "shanghai",
+      "date_start": "2026-03-13",
+      "date_end": "2026-03-15",
+      "sprint_weekend": true,
+      "sessions": {
+        "practice_1": null,
+        "practice_2": null,
+        "practice_3": null,
+        "qualifying": null,
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": null
+      }
+    },
+    {
+      "round": 3,
+      "grand_prix": "Japanese Grand Prix",
+      "circuit_id": "suzuka",
+      "date_start": "2026-03-27",
+      "date_end": "2026-03-29",
+      "sprint_weekend": false,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 4,
+      "grand_prix": "Bahrain Grand Prix",
+      "circuit_id": "bahrain",
+      "date_start": "2026-04-10",
+      "date_end": "2026-04-12",
+      "sprint_weekend": false,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 5,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "circuit_id": "jeddah",
+      "date_start": "2026-04-17",
+      "date_end": "2026-04-19",
+      "sprint_weekend": false,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 6,
+      "grand_prix": "Miami Grand Prix",
+      "circuit_id": "miami",
+      "date_start": "2026-05-01",
+      "date_end": "2026-05-03",
+      "sprint_weekend": true,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 7,
+      "grand_prix": "Canadian Grand Prix",
+      "circuit_id": "montreal",
+      "date_start": "2026-05-22",
+      "date_end": "2026-05-24",
+      "sprint_weekend": true,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 8,
+      "grand_prix": "Monaco Grand Prix",
+      "circuit_id": "monaco",
+      "date_start": "2026-06-05",
+      "date_end": "2026-06-07",
+      "sprint_weekend": false,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 9,
+      "grand_prix": "Spanish Grand Prix",
+      "circuit_id": "barcelona",
+      "date_start": "2026-06-12",
+      "date_end": "2026-06-14",
+      "sprint_weekend": false,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 10,
+      "grand_prix": "Austrian Grand Prix",
+      "circuit_id": "red_bull_ring",
+      "date_start": "2026-06-26",
+      "date_end": "2026-06-28",
+      "sprint_weekend": false,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 11,
+      "grand_prix": "British Grand Prix",
+      "circuit_id": "silverstone",
+      "date_start": "2026-07-03",
+      "date_end": "2026-07-05",
+      "sprint_weekend": true,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 12,
+      "grand_prix": "Belgian Grand Prix",
+      "circuit_id": "spa",
+      "date_start": "2026-07-17",
+      "date_end": "2026-07-19",
+      "sprint_weekend": false,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 13,
+      "grand_prix": "Hungarian Grand Prix",
+      "circuit_id": "hungaroring",
+      "date_start": "2026-07-24",
+      "date_end": "2026-07-26",
+      "sprint_weekend": false,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 14,
+      "grand_prix": "Dutch Grand Prix",
+      "circuit_id": "zandvoort",
+      "date_start": "2026-08-21",
+      "date_end": "2026-08-23",
+      "sprint_weekend": true,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 15,
+      "grand_prix": "Italian Grand Prix",
+      "circuit_id": "monza",
+      "date_start": "2026-09-04",
+      "date_end": "2026-09-06",
+      "sprint_weekend": false,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 16,
+      "grand_prix": "Spanish Grand Prix (Madrid)",
+      "circuit_id": "madrid",
+      "date_start": "2026-09-11",
+      "date_end": "2026-09-13",
+      "sprint_weekend": false,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 17,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "circuit_id": "baku",
+      "date_start": "2026-09-24",
+      "date_end": "2026-09-26",
+      "sprint_weekend": false,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 18,
+      "grand_prix": "Singapore Grand Prix",
+      "circuit_id": "singapore",
+      "date_start": "2026-10-09",
+      "date_end": "2026-10-11",
+      "sprint_weekend": true,
+      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+    },
+    {
+      "round": 19,
+      "grand_prix": "United States Grand Prix",
+      "circuit_id": "cota",
+      "date_start": "2026-10-23",
+      "date_end": "2026-10-25",
+      "sprint_weekend": false,
+      "sessions": null
+    },
+    {
+      "round": 20,
+      "grand_prix": "Mexico City Grand Prix",
+      "circuit_id": "mexico",
+      "date_start": "2026-10-30",
+      "date_end": "2026-11-01",
+      "sprint_weekend": false,
+      "sessions": null
+    },
+    {
+      "round": 21,
+      "grand_prix": "Brazilian Grand Prix",
+      "circuit_id": "interlagos",
+      "date_start": "2026-11-06",
+      "date_end": "2026-11-08",
+      "sprint_weekend": false,
+      "sessions": null
+    },
+    {
+      "round": 22,
+      "grand_prix": "Las Vegas Grand Prix",
+      "circuit_id": "las_vegas",
+      "date_start": "2026-11-19",
+      "date_end": "2026-11-21",
+      "sprint_weekend": false,
+      "sessions": null
+    },
+    {
+      "round": 23,
+      "grand_prix": "Qatar Grand Prix",
+      "circuit_id": "losail",
+      "date_start": "2026-11-27",
+      "date_end": "2026-11-29",
+      "sprint_weekend": false,
+      "sessions": null
+    },
+    {
+      "round": 24,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "circuit_id": "yas_marina",
+      "date_start": "2026-12-04",
+      "date_end": "2026-12-06",
+      "sprint_weekend": false,
+      "sessions": null
+    }
+  ]
+}

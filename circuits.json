@@ -1,0 +1,245 @@
+{
+  "version": 1,
+  "circuits": [
+    {
+      "id": "bahrain",
+      "name": "Bahrain International Circuit",
+      "city": "Sakhir",
+      "country": "Bahrain",
+      "length_km": 5.412,
+      "turns": 15,
+      "direction": "clockwise",
+      "map_svg": "maps/bahrain.jpg"
+    },
+    {
+      "id": "jeddah",
+      "name": "Jeddah Corniche Circuit",
+      "city": "Jeddah",
+      "country": "Saudi Arabia",
+      "length_km": 6.174,
+      "turns": 27,
+      "direction": "clockwise",
+      "map_svg": "maps/saudi.jpg"
+    },
+    {
+      "id": "albert_park",
+      "name": "Albert Park Circuit",
+      "city": "Melbourne",
+      "country": "Australia",
+      "length_km": 5.278,
+      "turns": 14,
+      "direction": "clockwise",
+      "map_svg": "maps/albert.jpg"
+    },
+    {
+      "id": "shanghai",
+      "name": "Shanghai International Circuit",
+      "city": "Shanghai",
+      "country": "China",
+      "length_km": 5.451,
+      "turns": 16,
+      "direction": "clockwise",
+      "map_svg": "maps/china.jpg"
+    },
+    {
+      "id": "miami",
+      "name": "Miami International Autodrome",
+      "city": "Miami",
+      "country": "USA",
+      "length_km": 5.412,
+      "turns": 19,
+      "direction": "clockwise",
+      "map_svg": "maps/miami.jpg"
+    },
+    {
+      "id": "imola",
+      "name": "Autodromo Enzo e Dino Ferrari",
+      "city": "Imola",
+      "country": "Italy",
+      "length_km": 4.909,
+      "turns": 19,
+      "direction": "clockwise",
+      "map_svg": "maps/italy.jpg"
+    },
+    {
+      "id": "monaco",
+      "name": "Circuit de Monaco",
+      "city": "Monaco",
+      "country": "Monaco",
+      "length_km": 3.337,
+      "turns": 19,
+      "direction": "clockwise",
+      "map_svg": "maps/monaco.jpg"
+    },
+    {
+      "id": "barcelona",
+      "name": "Circuit de Barcelona-Catalunya",
+      "city": "Barcelona",
+      "country": "Spain",
+      "length_km": 4.657,
+      "turns": 16,
+      "direction": "clockwise",
+      "map_svg": "maps/spain.jpg"
+    },
+    {
+      "id": "montreal",
+      "name": "Circuit Gilles Villeneuve",
+      "city": "Montreal",
+      "country": "Canada",
+      "length_km": 4.361,
+      "turns": 14,
+      "direction": "clockwise",
+      "map_svg": "maps/canada.jpg"
+    },
+    {
+      "id": "red_bull_ring",
+      "name": "Red Bull Ring",
+      "city": "Spielberg",
+      "country": "Austria",
+      "length_km": 4.318,
+      "turns": 10,
+      "direction": "clockwise",
+      "map_svg": "maps/austrian.jpg"
+    },
+    {
+      "id": "silverstone",
+      "name": "Silverstone Circuit",
+      "city": "Silverstone",
+      "country": "UK",
+      "length_km": 5.891,
+      "turns": 18,
+      "direction": "clockwise",
+      "map_svg": "maps/britain.jpg"
+    },
+    {
+      "id": "hungaroring",
+      "name": "Hungaroring",
+      "city": "Budapest",
+      "country": "Hungary",
+      "length_km": 4.381,
+      "turns": 14,
+      "direction": "clockwise",
+      "map_svg": "maps/hungary.jpg"
+    },
+    {
+      "id": "spa",
+      "name": "Circuit de Spa-Francorchamps",
+      "city": "Stavelot",
+      "country": "Belgium",
+      "length_km": 7.004,
+      "turns": 19,
+      "direction": "clockwise",
+      "map_svg": "maps/belgium.jpg"
+    },
+    {
+      "id": "zandvoort",
+      "name": "Circuit Zandvoort",
+      "city": "Zandvoort",
+      "country": "Netherlands",
+      "length_km": 4.259,
+      "turns": 14,
+      "direction": "clockwise",
+      "map_svg": "maps/netherlands.jpg"
+    },
+    {
+      "id": "monza",
+      "name": "Autodromo Nazionale Monza",
+      "city": "Monza",
+      "country": "Italy",
+      "length_km": 5.793,
+      "turns": 11,
+      "direction": "clockwise",
+      "map_svg": "maps/italy.jpg"
+    },
+    {
+      "id": "baku",
+      "name": "Baku City Circuit",
+      "city": "Baku",
+      "country": "Azerbaijan",
+      "length_km": 6.003,
+      "turns": 20,
+      "direction": "clockwise",
+      "map_svg": "maps/azerbaijan.jpg"
+    },
+    {
+      "id": "singapore",
+      "name": "Marina Bay Street Circuit",
+      "city": "Singapore",
+      "country": "Singapore",
+      "length_km": 5.063,
+      "turns": 19,
+      "direction": "clockwise",
+      "map_svg": "maps/singapore.jpg"
+    },
+    {
+      "id": "suzuka",
+      "name": "Suzuka Circuit",
+      "city": "Suzuka",
+      "country": "Japan",
+      "length_km": 5.807,
+      "turns": 18,
+      "direction": "clockwise",
+      "map_svg": "maps/suzuka.jpg"
+    },
+    {
+      "id": "cota",
+      "name": "Circuit of the Americas",
+      "city": "Austin",
+      "country": "USA",
+      "length_km": 5.513,
+      "turns": 20,
+      "direction": "clockwise",
+      "map_svg": "maps/austin.svg"
+    },
+    {
+      "id": "mexico",
+      "name": "Autodromo Hermanos Rodriguez",
+      "city": "Mexico City",
+      "country": "Mexico",
+      "length_km": 4.304,
+      "turns": 17,
+      "direction": "clockwise",
+      "map_svg": "maps/mexico.jpg"
+    },
+    {
+      "id": "interlagos",
+      "name": "Interlagos",
+      "city": "Sao Paulo",
+      "country": "Brazil",
+      "length_km": 4.309,
+      "turns": 15,
+      "direction": "clockwise",
+      "map_svg": "maps/brazil.jpg"
+    },
+    {
+      "id": "las_vegas",
+      "name": "Las Vegas Strip Circuit",
+      "city": "Las Vegas",
+      "country": "USA",
+      "length_km": 6.201,
+      "turns": 17,
+      "direction": "clockwise",
+      "map_svg": "maps/lasvegas.jpg"
+    },
+    {
+      "id": "losail",
+      "name": "Lusail International Circuit",
+      "city": "Lusail",
+      "country": "Qatar",
+      "length_km": 5.419,
+      "turns": 16,
+      "direction": "clockwise",
+      "map_svg": "maps/losail.jpg"
+    },
+    {
+      "id": "yas_marina",
+      "name": "Yas Marina Circuit",
+      "city": "Abu Dhabi",
+      "country": "UAE",
+      "length_km": 5.281,
+      "turns": 16,
+      "direction": "clockwise",
+      "map_svg": "maps/yasmarina.jpg"
+    }
+  ]
+}
