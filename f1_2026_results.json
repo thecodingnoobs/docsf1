@@ -1,14 +1,14 @@
 {
   "season": 2026,
   "last_updated": "2026-03-15",
-  "notes": "race_results and sprint_results are null for upcoming or cancelled races. fastest_lap only applies to the main race (not sprint). points reflect points scored in that specific session only.",
+  "notes": "race_results and sprint_results are null for upcoming or cancelled races. fastest_lap is tracked for display only — no bonus point awarded (abolished from 2025 season). points reflect points scored in that specific session only.",
   "races": [
     {
       "round": 1,
       "grand_prix": "Australian Grand Prix",
       "sprint_results": null,
       "race_results": [
-        { "position": 1,  "driver_id": "russell",    "driver_code": "RUS", "driver_name": "George Russell",    "team_id": "mercedes",     "team_name": "Mercedes",      "time": "1:28:51.562",  "fastest_lap": true,  "points": 26, "status": "Finished" },
+        { "position": 1,  "driver_id": "russell",    "driver_code": "RUS", "driver_name": "George Russell",    "team_id": "mercedes",     "team_name": "Mercedes",      "time": "1:28:51.562",  "fastest_lap": true,  "points": 25, "status": "Finished" },
         { "position": 2,  "driver_id": "antonelli",  "driver_code": "ANT", "driver_name": "Kimi Antonelli",    "team_id": "mercedes",     "team_name": "Mercedes",      "time": "+7.321s",      "fastest_lap": false, "points": 18, "status": "Finished" },
         { "position": 3,  "driver_id": "leclerc",    "driver_code": "LEC", "driver_name": "Charles Leclerc",   "team_id": "ferrari",      "team_name": "Ferrari",       "time": "+12.904s",     "fastest_lap": false, "points": 15, "status": "Finished" },
         { "position": 4,  "driver_id": "hamilton",   "driver_code": "HAM", "driver_name": "Lewis Hamilton",    "team_id": "ferrari",      "team_name": "Ferrari",       "time": "+18.441s",     "fastest_lap": false, "points": 12, "status": "Finished" },
@@ -47,7 +47,7 @@
       ],
       "race_results": [
         { "position": 1,  "driver_id": "antonelli",  "driver_code": "ANT", "driver_name": "Kimi Antonelli",    "team_id": "mercedes",     "team_name": "Mercedes",      "time": "1:32:17.881", "fastest_lap": false, "points": 25, "status": "Finished" },
-        { "position": 2,  "driver_id": "russell",    "driver_code": "RUS", "driver_name": "George Russell",    "team_id": "mercedes",     "team_name": "Mercedes",      "time": "+5.441s",     "fastest_lap": true,  "points": 19, "status": "Finished" },
+        { "position": 2,  "driver_id": "russell",    "driver_code": "RUS", "driver_name": "George Russell",    "team_id": "mercedes",     "team_name": "Mercedes",      "time": "+5.441s",     "fastest_lap": true,  "points": 18, "status": "Finished" },
         { "position": 3,  "driver_id": "hamilton",   "driver_code": "HAM", "driver_name": "Lewis Hamilton",    "team_id": "ferrari",      "team_name": "Ferrari",       "time": "+9.880s",     "fastest_lap": false, "points": 15, "status": "Finished" },
         { "position": 4,  "driver_id": "leclerc",    "driver_code": "LEC", "driver_name": "Charles Leclerc",   "team_id": "ferrari",      "team_name": "Ferrari",       "time": "+14.223s",    "fastest_lap": false, "points": 12, "status": "Finished" },
         { "position": 5,  "driver_id": "bearman",    "driver_code": "BEA", "driver_name": "Oliver Bearman",    "team_id": "haas",         "team_name": "Haas F1 Team",  "time": "+22.104s",    "fastest_lap": false, "points": 10, "status": "Finished" },
