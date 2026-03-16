@@ -87,6 +87,27 @@ def get_laps_data(session_key):
     return counts, best_driver
 
 
+def get_final_gaps(session_key):
+    """
+    Final gap_to_leader per driver from the intervals endpoint.
+    Returns {driver_number: gap_string} e.g. {"" for leader, "+5.515s", "+1 LAP"}.
+    """
+    data = fetch("intervals", session_key=session_key)
+    final = {}
+    for entry in data:
+        final[entry["driver_number"]] = entry["gap_to_leader"]
+
+    result = {}
+    for dn, gap in final.items():
+        if gap is None or gap == 0 or gap == 0.0:
+            result[dn] = ""                              # race winner
+        elif isinstance(gap, str):
+            result[dn] = gap                             # "+1 LAP", "+2 LAPS" etc
+        else:
+            result[dn] = f"+{gap:.3f}s"                 # "+5.515s"
+    return result
+
+
 def get_drivers(session_key):
     """Driver info keyed by driver_number."""
     data = fetch("drivers", session_key=session_key)
@@ -114,9 +135,10 @@ def find_session_key(race_date_str, session_name, year=2026):
 
 def build_results(session_key, points_scale):
     """Build a full results list for a session from OpenF1 data."""
-    positions             = get_final_positions(session_key)
-    drivers               = get_drivers(session_key)
+    positions               = get_final_positions(session_key)
+    drivers                 = get_drivers(session_key)
     lap_counts, fastest_num = get_laps_data(session_key)
+    gaps                    = get_final_gaps(session_key)
 
     if not positions:
         return None
@@ -140,9 +162,8 @@ def build_results(session_key, points_scale):
         elif laps_done < classified_threshold:
             status, time_str = "DNF", "DNF"
         else:
-            status    = "Finished"
-            laps_down = max_laps - laps_done
-            time_str  = f"+{laps_down} lap{'s' if laps_down > 1 else ''}" if laps_down > 0 else ""
+            status   = "Finished"
+            time_str = gaps.get(driver_number, "")
 
         pos_index = position - 1
         points = points_scale[pos_index] if (status == "Finished" and pos_index < len(points_scale)) else 0

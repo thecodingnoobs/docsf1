@@ -27,7 +27,7 @@
           "driver_name": "Kimi Antonelli",
           "team_id": "mercedes",
           "team_name": "Mercedes",
-          "time": "",
+          "time": "+2.974s",
           "fastest_lap": false,
           "points": 18,
           "status": "Finished"
@@ -39,7 +39,7 @@
           "driver_name": "Charles Leclerc",
           "team_id": "ferrari",
           "team_name": "Ferrari",
-          "time": "",
+          "time": "+15.519s",
           "fastest_lap": false,
           "points": 15,
           "status": "Finished"
@@ -51,7 +51,7 @@
           "driver_name": "Lewis Hamilton",
           "team_id": "ferrari",
           "team_name": "Ferrari",
-          "time": "",
+          "time": "+16.144s",
           "fastest_lap": false,
           "points": 12,
           "status": "Finished"
@@ -63,7 +63,7 @@
           "driver_name": "Lando Norris",
           "team_id": "mclaren",
           "team_name": "McLaren",
-          "time": "",
+          "time": "+51.741s",
           "fastest_lap": false,
           "points": 10,
           "status": "Finished"
@@ -75,7 +75,7 @@
           "driver_name": "Max Verstappen",
           "team_id": "red_bull",
           "team_name": "Red Bull Racing",
-          "time": "",
+          "time": "+54.617s",
           "fastest_lap": true,
           "points": 8,
           "status": "Finished"
@@ -87,7 +87,7 @@
           "driver_name": "Oliver Bearman",
           "team_id": "haas",
           "team_name": "Haas F1 Team",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 6,
           "status": "Finished"
@@ -99,7 +99,7 @@
           "driver_name": "Arvid Lindblad",
           "team_id": "racing_bulls",
           "team_name": "Racing Bulls",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 4,
           "status": "Finished"
@@ -111,7 +111,7 @@
           "driver_name": "Gabriel Bortoleto",
           "team_id": "audi",
           "team_name": "Audi",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 2,
           "status": "Finished"
@@ -123,7 +123,7 @@
           "driver_name": "Pierre Gasly",
           "team_id": "alpine",
           "team_name": "Alpine",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 1,
           "status": "Finished"
@@ -135,7 +135,7 @@
           "driver_name": "Esteban Ocon",
           "team_id": "haas",
           "team_name": "Haas F1 Team",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -147,7 +147,7 @@
           "driver_name": "Alexander Albon",
           "team_id": "williams",
           "team_name": "Williams",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -159,7 +159,7 @@
           "driver_name": "Liam Lawson",
           "team_id": "racing_bulls",
           "team_name": "Racing Bulls",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -171,7 +171,7 @@
           "driver_name": "Franco Colapinto",
           "team_id": "alpine",
           "team_name": "Alpine",
-          "time": "+2 laps",
+          "time": "+2 LAPS",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -183,7 +183,7 @@
           "driver_name": "Carlos Sainz",
           "team_id": "williams",
           "team_name": "Williams",
-          "time": "+2 laps",
+          "time": "+2 LAPS",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -195,7 +195,7 @@
           "driver_name": "Sergio Perez",
           "team_id": "cadillac",
           "team_name": "Cadillac",
-          "time": "+3 laps",
+          "time": "+3 LAPS",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -297,7 +297,7 @@
           "driver_name": "Charles Leclerc",
           "team_id": "ferrari",
           "team_name": "Ferrari",
-          "time": "",
+          "time": "+0.674s",
           "fastest_lap": false,
           "points": 7,
           "status": "Finished"
@@ -309,7 +309,7 @@
           "driver_name": "Lewis Hamilton",
           "team_id": "ferrari",
           "team_name": "Ferrari",
-          "time": "",
+          "time": "+2.554s",
           "fastest_lap": false,
           "points": 6,
           "status": "Finished"
@@ -321,7 +321,7 @@
           "driver_name": "Lando Norris",
           "team_id": "mclaren",
           "team_name": "McLaren",
-          "time": "",
+          "time": "+4.433s",
           "fastest_lap": false,
           "points": 5,
           "status": "Finished"
@@ -333,7 +333,7 @@
           "driver_name": "Kimi Antonelli",
           "team_id": "mercedes",
           "team_name": "Mercedes",
-          "time": "",
+          "time": "+5.688s",
           "fastest_lap": false,
           "points": 4,
           "status": "Finished"
@@ -345,7 +345,7 @@
           "driver_name": "Oscar Piastri",
           "team_id": "mclaren",
           "team_name": "McLaren",
-          "time": "",
+          "time": "+6.809s",
           "fastest_lap": false,
           "points": 3,
           "status": "Finished"
@@ -357,7 +357,7 @@
           "driver_name": "Liam Lawson",
           "team_id": "racing_bulls",
           "team_name": "Racing Bulls",
-          "time": "",
+          "time": "+10.900s",
           "fastest_lap": false,
           "points": 2,
           "status": "Finished"
@@ -369,7 +369,7 @@
           "driver_name": "Oliver Bearman",
           "team_id": "haas",
           "team_name": "Haas F1 Team",
-          "time": "",
+          "time": "+11.271s",
           "fastest_lap": false,
           "points": 1,
           "status": "Finished"
@@ -381,7 +381,7 @@
           "driver_name": "Max Verstappen",
           "team_id": "red_bull",
           "team_name": "Red Bull Racing",
-          "time": "",
+          "time": "+11.619s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -393,7 +393,7 @@
           "driver_name": "Esteban Ocon",
           "team_id": "haas",
           "team_name": "Haas F1 Team",
-          "time": "",
+          "time": "+13.887s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -405,7 +405,7 @@
           "driver_name": "Pierre Gasly",
           "team_id": "alpine",
           "team_name": "Alpine",
-          "time": "",
+          "time": "+14.780s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -417,7 +417,7 @@
           "driver_name": "Carlos Sainz",
           "team_id": "williams",
           "team_name": "Williams",
-          "time": "",
+          "time": "+15.753s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -429,7 +429,7 @@
           "driver_name": "Gabriel Bortoleto",
           "team_id": "audi",
           "team_name": "Audi",
-          "time": "",
+          "time": "+15.858s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -441,7 +441,7 @@
           "driver_name": "Franco Colapinto",
           "team_id": "alpine",
           "team_name": "Alpine",
-          "time": "",
+          "time": "+16.393s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -453,7 +453,7 @@
           "driver_name": "Isack Hadjar",
           "team_id": "red_bull",
           "team_name": "Red Bull Racing",
-          "time": "",
+          "time": "+16.430s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -465,7 +465,7 @@
           "driver_name": "Alexander Albon",
           "team_id": "williams",
           "team_name": "Williams",
-          "time": "",
+          "time": "+20.014s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -477,7 +477,7 @@
           "driver_name": "Fernando Alonso",
           "team_id": "aston_martin",
           "team_name": "Aston Martin",
-          "time": "",
+          "time": "+21.599s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -489,7 +489,7 @@
           "driver_name": "Lance Stroll",
           "team_id": "aston_martin",
           "team_name": "Aston Martin",
-          "time": "",
+          "time": "+21.971s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -501,7 +501,7 @@
           "driver_name": "Sergio Perez",
           "team_id": "cadillac",
           "team_name": "Cadillac",
-          "time": "",
+          "time": "+28.241s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -513,7 +513,7 @@
           "driver_name": "Nico Hulkenberg",
           "team_id": "audi",
           "team_name": "Audi",
-          "time": "",
+          "time": "+38.206s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -525,7 +525,7 @@
           "driver_name": "Valtteri Bottas",
           "team_id": "cadillac",
           "team_name": "Cadillac",
-          "time": "",
+          "time": "+78.061s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -537,7 +537,7 @@
           "driver_name": "Arvid Lindblad",
           "team_id": "racing_bulls",
           "team_name": "Racing Bulls",
-          "time": "",
+          "time": "+54.555s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -563,7 +563,7 @@
           "driver_name": "George Russell",
           "team_id": "mercedes",
           "team_name": "Mercedes",
-          "time": "",
+          "time": "+5.515s",
           "fastest_lap": false,
           "points": 18,
           "status": "Finished"
@@ -575,7 +575,7 @@
           "driver_name": "Lewis Hamilton",
           "team_id": "ferrari",
           "team_name": "Ferrari",
-          "time": "",
+          "time": "+25.267s",
           "fastest_lap": false,
           "points": 15,
           "status": "Finished"
@@ -587,7 +587,7 @@
           "driver_name": "Charles Leclerc",
           "team_id": "ferrari",
           "team_name": "Ferrari",
-          "time": "",
+          "time": "+28.894s",
           "fastest_lap": false,
           "points": 12,
           "status": "Finished"
@@ -599,7 +599,7 @@
           "driver_name": "Oliver Bearman",
           "team_id": "haas",
           "team_name": "Haas F1 Team",
-          "time": "",
+          "time": "+57.268s",
           "fastest_lap": false,
           "points": 10,
           "status": "Finished"
@@ -611,7 +611,7 @@
           "driver_name": "Pierre Gasly",
           "team_id": "alpine",
           "team_name": "Alpine",
-          "time": "",
+          "time": "+59.647s",
           "fastest_lap": false,
           "points": 8,
           "status": "Finished"
@@ -623,7 +623,7 @@
           "driver_name": "Liam Lawson",
           "team_id": "racing_bulls",
           "team_name": "Racing Bulls",
-          "time": "",
+          "time": "+80.588s",
           "fastest_lap": false,
           "points": 6,
           "status": "Finished"
@@ -635,7 +635,7 @@
           "driver_name": "Isack Hadjar",
           "team_id": "red_bull",
           "team_name": "Red Bull Racing",
-          "time": "",
+          "time": "+87.247s",
           "fastest_lap": false,
           "points": 4,
           "status": "Finished"
@@ -647,7 +647,7 @@
           "driver_name": "Carlos Sainz",
           "team_id": "williams",
           "team_name": "Williams",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 2,
           "status": "Finished"
@@ -659,7 +659,7 @@
           "driver_name": "Franco Colapinto",
           "team_id": "alpine",
           "team_name": "Alpine",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 1,
           "status": "Finished"
@@ -671,7 +671,7 @@
           "driver_name": "Nico Hulkenberg",
           "team_id": "audi",
           "team_name": "Audi",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -683,7 +683,7 @@
           "driver_name": "Arvid Lindblad",
           "team_id": "racing_bulls",
           "team_name": "Racing Bulls",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -695,7 +695,7 @@
           "driver_name": "Valtteri Bottas",
           "team_id": "cadillac",
           "team_name": "Cadillac",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -707,7 +707,7 @@
           "driver_name": "Esteban Ocon",
           "team_id": "haas",
           "team_name": "Haas F1 Team",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
@@ -719,7 +719,7 @@
           "driver_name": "Sergio Perez",
           "team_id": "cadillac",
           "team_name": "Cadillac",
-          "time": "+1 lap",
+          "time": "+1 LAP",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
