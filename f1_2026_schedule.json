@@ -2,7 +2,7 @@
   "season": 2026,
   "timezone": "UTC",
   "status": "official-calendar",
-  "notes": "Sprint weekends are marked; session times (UTC) are TBD.",
+  "notes": "Session times in UTC. Cancelled races marked with cancelled=true. Sprint weekends have practice_2 and practice_3 as null.",
   "races": [
     {
       "round": 1,
@@ -11,14 +11,15 @@
       "date_start": "2026-03-06",
       "date_end": "2026-03-08",
       "sprint_weekend": false,
+      "cancelled": false,
       "sessions": {
-        "practice_1": null,
-        "practice_2": null,
-        "practice_3": null,
-        "qualifying": null,
+        "practice_1": "2026-03-06T01:30:00Z",
+        "practice_2": "2026-03-06T05:00:00Z",
+        "practice_3": "2026-03-07T01:30:00Z",
+        "qualifying": "2026-03-07T05:00:00Z",
         "sprint_qualifying": null,
         "sprint_race": null,
-        "race": null
+        "race": "2026-03-08T04:00:00Z"
       }
     },
     {
@@ -28,6 +29,43 @@
       "date_start": "2026-03-13",
       "date_end": "2026-03-15",
       "sprint_weekend": true,
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-03-13T03:30:00Z",
+        "practice_2": null,
+        "practice_3": null,
+        "qualifying": "2026-03-14T07:00:00Z",
+        "sprint_qualifying": "2026-03-13T07:30:00Z",
+        "sprint_race": "2026-03-14T03:00:00Z",
+        "race": "2026-03-15T07:00:00Z"
+      }
+    },
+    {
+      "round": 3,
+      "grand_prix": "Japanese Grand Prix",
+      "circuit_id": "suzuka",
+      "date_start": "2026-03-27",
+      "date_end": "2026-03-29",
+      "sprint_weekend": false,
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-03-27T02:30:00Z",
+        "practice_2": "2026-03-27T06:00:00Z",
+        "practice_3": "2026-03-28T02:30:00Z",
+        "qualifying": "2026-03-28T06:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-03-29T06:00:00Z"
+      }
+    },
+    {
+      "round": 4,
+      "grand_prix": "Bahrain Grand Prix",
+      "circuit_id": "bahrain",
+      "date_start": "2026-04-10",
+      "date_end": "2026-04-12",
+      "sprint_weekend": false,
+      "cancelled": true,
       "sessions": {
         "practice_1": null,
         "practice_2": null,
@@ -39,31 +77,22 @@
       }
     },
     {
-      "round": 3,
-      "grand_prix": "Japanese Grand Prix",
-      "circuit_id": "suzuka",
-      "date_start": "2026-03-27",
-      "date_end": "2026-03-29",
-      "sprint_weekend": false,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
-    },
-    {
-      "round": 4,
-      "grand_prix": "Bahrain Grand Prix",
-      "circuit_id": "bahrain",
-      "date_start": "2026-04-10",
-      "date_end": "2026-04-12",
-      "sprint_weekend": false,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
-    },
-    {
       "round": 5,
       "grand_prix": "Saudi Arabian Grand Prix",
       "circuit_id": "jeddah",
       "date_start": "2026-04-17",
       "date_end": "2026-04-19",
       "sprint_weekend": false,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": true,
+      "sessions": {
+        "practice_1": null,
+        "practice_2": null,
+        "practice_3": null,
+        "qualifying": null,
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": null
+      }
     },
     {
       "round": 6,
@@ -72,7 +101,16 @@
       "date_start": "2026-05-01",
       "date_end": "2026-05-03",
       "sprint_weekend": true,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-05-01T16:30:00Z",
+        "practice_2": null,
+        "practice_3": null,
+        "qualifying": "2026-05-02T20:00:00Z",
+        "sprint_qualifying": "2026-05-01T20:30:00Z",
+        "sprint_race": "2026-05-02T16:00:00Z",
+        "race": "2026-05-03T20:00:00Z"
+      }
     },
     {
       "round": 7,
@@ -81,7 +119,16 @@
       "date_start": "2026-05-22",
       "date_end": "2026-05-24",
       "sprint_weekend": true,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-05-22T16:30:00Z",
+        "practice_2": null,
+        "practice_3": null,
+        "qualifying": "2026-05-23T20:00:00Z",
+        "sprint_qualifying": "2026-05-22T20:30:00Z",
+        "sprint_race": "2026-05-23T16:00:00Z",
+        "race": "2026-05-24T20:00:00Z"
+      }
     },
     {
       "round": 8,
@@ -90,16 +137,34 @@
       "date_start": "2026-06-05",
       "date_end": "2026-06-07",
       "sprint_weekend": false,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-06-05T11:30:00Z",
+        "practice_2": "2026-06-05T15:00:00Z",
+        "practice_3": "2026-06-06T10:30:00Z",
+        "qualifying": "2026-06-06T14:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-06-07T13:00:00Z"
+      }
     },
     {
       "round": 9,
-      "grand_prix": "Spanish Grand Prix",
+      "grand_prix": "Barcelona-Catalunya Grand Prix",
       "circuit_id": "barcelona",
       "date_start": "2026-06-12",
       "date_end": "2026-06-14",
       "sprint_weekend": false,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-06-12T11:30:00Z",
+        "practice_2": "2026-06-12T15:00:00Z",
+        "practice_3": "2026-06-13T10:30:00Z",
+        "qualifying": "2026-06-13T14:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-06-14T13:00:00Z"
+      }
     },
     {
       "round": 10,
@@ -108,7 +173,16 @@
       "date_start": "2026-06-26",
       "date_end": "2026-06-28",
       "sprint_weekend": false,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-06-26T11:30:00Z",
+        "practice_2": "2026-06-26T15:00:00Z",
+        "practice_3": "2026-06-27T10:30:00Z",
+        "qualifying": "2026-06-27T14:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-06-28T13:00:00Z"
+      }
     },
     {
       "round": 11,
@@ -117,7 +191,16 @@
       "date_start": "2026-07-03",
       "date_end": "2026-07-05",
       "sprint_weekend": true,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-07-03T11:30:00Z",
+        "practice_2": null,
+        "practice_3": null,
+        "qualifying": "2026-07-04T15:00:00Z",
+        "sprint_qualifying": "2026-07-03T15:30:00Z",
+        "sprint_race": "2026-07-04T11:00:00Z",
+        "race": "2026-07-05T14:00:00Z"
+      }
     },
     {
       "round": 12,
@@ -126,7 +209,16 @@
       "date_start": "2026-07-17",
       "date_end": "2026-07-19",
       "sprint_weekend": false,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-07-17T11:30:00Z",
+        "practice_2": "2026-07-17T15:00:00Z",
+        "practice_3": "2026-07-18T10:30:00Z",
+        "qualifying": "2026-07-18T14:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-07-19T13:00:00Z"
+      }
     },
     {
       "round": 13,
@@ -135,7 +227,16 @@
       "date_start": "2026-07-24",
       "date_end": "2026-07-26",
       "sprint_weekend": false,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-07-24T11:30:00Z",
+        "practice_2": "2026-07-24T15:00:00Z",
+        "practice_3": "2026-07-25T10:30:00Z",
+        "qualifying": "2026-07-25T14:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-07-26T13:00:00Z"
+      }
     },
     {
       "round": 14,
@@ -144,7 +245,16 @@
       "date_start": "2026-08-21",
       "date_end": "2026-08-23",
       "sprint_weekend": true,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-08-21T10:30:00Z",
+        "practice_2": null,
+        "practice_3": null,
+        "qualifying": "2026-08-22T14:00:00Z",
+        "sprint_qualifying": "2026-08-21T14:30:00Z",
+        "sprint_race": "2026-08-22T10:00:00Z",
+        "race": "2026-08-23T13:00:00Z"
+      }
     },
     {
       "round": 15,
@@ -153,16 +263,34 @@
       "date_start": "2026-09-04",
       "date_end": "2026-09-06",
       "sprint_weekend": false,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-09-04T10:30:00Z",
+        "practice_2": "2026-09-04T14:00:00Z",
+        "practice_3": "2026-09-05T10:30:00Z",
+        "qualifying": "2026-09-05T14:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-09-06T13:00:00Z"
+      }
     },
     {
       "round": 16,
-      "grand_prix": "Spanish Grand Prix (Madrid)",
+      "grand_prix": "Spanish Grand Prix",
       "circuit_id": "madrid",
       "date_start": "2026-09-11",
       "date_end": "2026-09-13",
       "sprint_weekend": false,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-09-11T11:30:00Z",
+        "practice_2": "2026-09-11T15:00:00Z",
+        "practice_3": "2026-09-12T10:30:00Z",
+        "qualifying": "2026-09-12T14:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-09-13T13:00:00Z"
+      }
     },
     {
       "round": 17,
@@ -171,7 +299,16 @@
       "date_start": "2026-09-24",
       "date_end": "2026-09-26",
       "sprint_weekend": false,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-09-24T09:30:00Z",
+        "practice_2": "2026-09-24T13:00:00Z",
+        "practice_3": "2026-09-25T09:30:00Z",
+        "qualifying": "2026-09-25T13:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-09-26T11:00:00Z"
+      }
     },
     {
       "round": 18,
@@ -180,7 +317,16 @@
       "date_start": "2026-10-09",
       "date_end": "2026-10-11",
       "sprint_weekend": true,
-      "sessions": { "practice_1": null, "practice_2": null, "practice_3": null, "qualifying": null, "sprint_qualifying": null, "sprint_race": null, "race": null }
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-10-09T09:30:00Z",
+        "practice_2": null,
+        "practice_3": null,
+        "qualifying": "2026-10-10T13:00:00Z",
+        "sprint_qualifying": "2026-10-09T13:30:00Z",
+        "sprint_race": "2026-10-10T09:00:00Z",
+        "race": "2026-10-11T12:00:00Z"
+      }
     },
     {
       "round": 19,
@@ -189,7 +335,16 @@
       "date_start": "2026-10-23",
       "date_end": "2026-10-25",
       "sprint_weekend": false,
-      "sessions": null
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-10-23T18:30:00Z",
+        "practice_2": "2026-10-23T22:00:00Z",
+        "practice_3": "2026-10-24T17:30:00Z",
+        "qualifying": "2026-10-24T21:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-10-25T19:00:00Z"
+      }
     },
     {
       "round": 20,
@@ -198,25 +353,52 @@
       "date_start": "2026-10-30",
       "date_end": "2026-11-01",
       "sprint_weekend": false,
-      "sessions": null
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-10-30T17:00:00Z",
+        "practice_2": "2026-10-30T20:30:00Z",
+        "practice_3": "2026-10-31T16:00:00Z",
+        "qualifying": "2026-10-31T20:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-11-01T20:00:00Z"
+      }
     },
     {
       "round": 21,
-      "grand_prix": "Brazilian Grand Prix",
+      "grand_prix": "São Paulo Grand Prix",
       "circuit_id": "interlagos",
       "date_start": "2026-11-06",
       "date_end": "2026-11-08",
       "sprint_weekend": false,
-      "sessions": null
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-11-06T14:30:00Z",
+        "practice_2": "2026-11-06T18:00:00Z",
+        "practice_3": "2026-11-07T13:30:00Z",
+        "qualifying": "2026-11-07T17:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-11-08T17:00:00Z"
+      }
     },
     {
       "round": 22,
       "grand_prix": "Las Vegas Grand Prix",
       "circuit_id": "las_vegas",
-      "date_start": "2026-11-19",
-      "date_end": "2026-11-21",
+      "date_start": "2026-11-20",
+      "date_end": "2026-11-22",
       "sprint_weekend": false,
-      "sessions": null
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-11-20T04:30:00Z",
+        "practice_2": "2026-11-20T08:00:00Z",
+        "practice_3": "2026-11-21T04:00:00Z",
+        "qualifying": "2026-11-21T08:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-11-22T06:00:00Z"
+      }
     },
     {
       "round": 23,
@@ -225,7 +407,16 @@
       "date_start": "2026-11-27",
       "date_end": "2026-11-29",
       "sprint_weekend": false,
-      "sessions": null
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-11-27T13:30:00Z",
+        "practice_2": "2026-11-27T17:00:00Z",
+        "practice_3": "2026-11-28T12:30:00Z",
+        "qualifying": "2026-11-28T16:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-11-29T15:00:00Z"
+      }
     },
     {
       "round": 24,
@@ -234,7 +425,16 @@
       "date_start": "2026-12-04",
       "date_end": "2026-12-06",
       "sprint_weekend": false,
-      "sessions": null
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-12-04T09:30:00Z",
+        "practice_2": "2026-12-04T13:00:00Z",
+        "practice_3": "2026-12-05T09:30:00Z",
+        "qualifying": "2026-12-05T13:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-12-06T13:00:00Z"
+      }
     }
   ]
 }
