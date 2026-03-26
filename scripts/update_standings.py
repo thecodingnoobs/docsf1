@@ -1,56 +1,49 @@
 #!/usr/bin/env python3
 """
-Recomputes career_wins in f1_2026_standings.json after each race.
+Updates career_wins and season_wins in f1_2026_standings.json from race results.
 
-career_wins = pre-season baseline (fetched from Jolpica) + 2026 season wins
-             (counted from f1_2026_results.json)
+career_wins = PRE_2026_WINS[driver] + wins counted from f1_2026_results.json
 
-Run after fetch_results.py in CI, or manually:
-  python scripts/update_standings.py
+The pre-2026 baseline is fixed for the season — no external API calls needed.
+Update PRE_2026_WINS once at the start of each new season.
 """
 
 import json
-import time
-import urllib.request
 from pathlib import Path
 
 ROOT           = Path(__file__).parent.parent
 STANDINGS_FILE = ROOT / "f1_2026_standings.json"
 RESULTS_FILE   = ROOT / "f1_2026_results.json"
 
-# Jolpica driver ID overrides (where our id differs from theirs)
-JOLPICA_ID_MAP = {
-    "verstappen": "max_verstappen",
+# Career wins before the 2026 season (verified from Jolpica, paginated).
+# Fixed for the entire 2026 season — only update at the start of 2027.
+PRE_2026_WINS = {
+    "russell":    5,
+    "antonelli":  0,
+    "leclerc":    8,
+    "hamilton":   105,
+    "bearman":    0,
+    "norris":     11,
+    "gasly":      1,
+    "verstappen": 71,
+    "lawson":     0,
+    "lindblad":   0,
+    "hadjar":     0,
+    "piastri":    9,
+    "sainz":      4,
+    "bortoleto":  0,
+    "colapinto":  0,
+    "ocon":       1,
+    "hulkenberg": 0,
+    "albon":      0,
+    "bottas":     10,
+    "perez":      6,
+    "alonso":     32,
+    "stroll":     0,
 }
 
 
-def fetch(url: str) -> dict:
-    req = urllib.request.Request(url, headers={"User-Agent": "LightsOutApp/1.0"})
-    with urllib.request.urlopen(req, timeout=20) as r:
-        return json.loads(r.read())
-
-
-def fetch_pre_season_wins(driver_id: str) -> int:
-    """Total race wins for this driver through end of 2025, from Jolpica."""
-    jolpica_id = JOLPICA_ID_MAP.get(driver_id, driver_id)
-    base = f"https://api.jolpi.ca/ergast/f1/drivers/{jolpica_id}/results/1.json"
-
-    data   = fetch(f"{base}?limit=100&offset=0")
-    total  = int(data["MRData"]["total"])
-    races  = data["MRData"]["RaceTable"]["Races"]
-
-    offset = 100
-    while offset < total:
-        data   = fetch(f"{base}?limit=100&offset={offset}")
-        races += data["MRData"]["RaceTable"]["Races"]
-        offset += 100
-        time.sleep(0.2)
-
-    return sum(1 for r in races if int(r["season"]) <= 2025)
-
-
 def count_season_wins(results_data: dict) -> dict:
-    """Count P1 race finishes per driver from f1_2026_results.json."""
     wins: dict[str, int] = {}
     for race in results_data["races"]:
         for result_set in (race.get("race_results"), race.get("sprint_results")):
@@ -71,20 +64,13 @@ def main():
     changed = False
 
     for drv in standings["driver_standings"]:
-        driver_id = drv["driver_id"]
-        sw        = season_wins.get(driver_id, 0)
-        drv["season_wins"] = sw  # keep this in sync too
+        did       = drv["driver_id"]
+        sw        = season_wins.get(did, 0)
+        new_total = PRE_2026_WINS.get(did, 0) + sw
 
-        try:
-            pre_season = fetch_pre_season_wins(driver_id)
-            time.sleep(0.3)
-        except Exception as e:
-            print(f"  WARNING: could not fetch Jolpica data for {driver_id}: {e}")
-            continue
-
-        new_total = pre_season + sw
-        if drv.get("career_wins") != new_total:
-            print(f"  {driver_id}: {drv.get('career_wins')} → {new_total}")
+        if drv.get("season_wins") != sw or drv.get("career_wins") != new_total:
+            print(f"  {did}: season_wins={sw}, career_wins={new_total}")
+            drv["season_wins"] = sw
             drv["career_wins"] = new_total
             changed = True
 
@@ -95,7 +81,7 @@ def main():
         )
         print(f"Updated {STANDINGS_FILE}")
     else:
-        print("No career_wins changes needed.")
+        print("No changes needed.")
 
 
 if __name__ == "__main__":
