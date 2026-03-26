@@ -21,7 +21,10 @@
       "h2h_teammate_id": "antonelli",
       "h2h_teammate_code": "ANT",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 154,
+      "career_podiums": 27,
+      "career_top10s": 89
     },
     {
       "position": 2,
@@ -40,7 +43,10 @@
       "h2h_teammate_id": "russell",
       "h2h_teammate_code": "RUS",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 26,
+      "career_podiums": 5,
+      "career_top10s": 17
     },
     {
       "position": 3,
@@ -59,7 +65,10 @@
       "h2h_teammate_id": "hamilton",
       "h2h_teammate_code": "HAM",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 175,
+      "career_podiums": 52,
+      "career_top10s": 135
     },
     {
       "position": 4,
@@ -78,7 +87,10 @@
       "h2h_teammate_id": "leclerc",
       "h2h_teammate_code": "LEC",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 382,
+      "career_podiums": 204,
+      "career_top10s": 334
     },
     {
       "position": 5,
@@ -97,7 +109,10 @@
       "h2h_teammate_id": "ocon",
       "h2h_teammate_code": "OCO",
       "h2h_driver_ahead": 2,
-      "h2h_teammate_ahead": 0
+      "h2h_teammate_ahead": 0,
+      "career_races": 29,
+      "career_podiums": 0,
+      "career_top10s": 14
     },
     {
       "position": 6,
@@ -116,7 +131,10 @@
       "h2h_teammate_id": "piastri",
       "h2h_teammate_code": "PIA",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 154,
+      "career_podiums": 44,
+      "career_top10s": 123
     },
     {
       "position": 7,
@@ -135,7 +153,10 @@
       "h2h_teammate_id": "colapinto",
       "h2h_teammate_code": "COL",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 180,
+      "career_podiums": 5,
+      "career_top10s": 77
     },
     {
       "position": 8,
@@ -154,7 +175,10 @@
       "h2h_teammate_id": "hadjar",
       "h2h_teammate_code": "HAD",
       "h2h_driver_ahead": 2,
-      "h2h_teammate_ahead": 0
+      "h2h_teammate_ahead": 0,
+      "career_races": 235,
+      "career_podiums": 127,
+      "career_top10s": 197
     },
     {
       "position": 9,
@@ -173,7 +197,10 @@
       "h2h_teammate_id": "lindblad",
       "h2h_teammate_code": "LIN",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 37,
+      "career_podiums": 0,
+      "career_top10s": 12
     },
     {
       "position": 10,
@@ -192,7 +219,10 @@
       "h2h_teammate_id": "lawson",
       "h2h_teammate_code": "LAW",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 2,
+      "career_podiums": 0,
+      "career_top10s": 1
     },
     {
       "position": 11,
@@ -211,7 +241,10 @@
       "h2h_teammate_id": "verstappen",
       "h2h_teammate_code": "VER",
       "h2h_driver_ahead": 0,
-      "h2h_teammate_ahead": 2
+      "h2h_teammate_ahead": 2,
+      "career_races": 26,
+      "career_podiums": 1,
+      "career_top10s": 11
     },
     {
       "position": 12,
@@ -230,7 +263,10 @@
       "h2h_teammate_id": "norris",
       "h2h_teammate_code": "NOR",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 72,
+      "career_podiums": 26,
+      "career_top10s": 57
     },
     {
       "position": 13,
@@ -249,7 +285,10 @@
       "h2h_teammate_id": "albon",
       "h2h_teammate_code": "ALB",
       "h2h_driver_ahead": 2,
-      "h2h_teammate_ahead": 0
+      "h2h_teammate_ahead": 0,
+      "career_races": 234,
+      "career_podiums": 29,
+      "career_top10s": 150
     },
     {
       "position": 14,
@@ -268,7 +307,10 @@
       "h2h_teammate_id": "hulkenberg",
       "h2h_teammate_code": "HUL",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 26,
+      "career_podiums": 0,
+      "career_top10s": 6
     },
     {
       "position": 15,
@@ -287,7 +329,10 @@
       "h2h_teammate_id": "gasly",
       "h2h_teammate_code": "GAS",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 29,
+      "career_podiums": 0,
+      "career_top10s": 3
     },
     {
       "position": 16,
@@ -306,7 +351,10 @@
       "h2h_teammate_id": "bearman",
       "h2h_teammate_code": "BEA",
       "h2h_driver_ahead": 0,
-      "h2h_teammate_ahead": 2
+      "h2h_teammate_ahead": 2,
+      "career_races": 182,
+      "career_podiums": 4,
+      "career_top10s": 95
     },
     {
       "position": 17,
@@ -325,7 +373,10 @@
       "h2h_teammate_id": "bortoleto",
       "h2h_teammate_code": "BOR",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 256,
+      "career_podiums": 1,
+      "career_top10s": 117
     },
     {
       "position": 18,
@@ -344,7 +395,10 @@
       "h2h_teammate_id": "sainz",
       "h2h_teammate_code": "SAI",
       "h2h_driver_ahead": 0,
-      "h2h_teammate_ahead": 2
+      "h2h_teammate_ahead": 2,
+      "career_races": 131,
+      "career_podiums": 2,
+      "career_top10s": 50
     },
     {
       "position": 19,
@@ -363,7 +417,10 @@
       "h2h_teammate_id": "perez",
       "h2h_teammate_code": "PER",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 249,
+      "career_podiums": 67,
+      "career_top10s": 145
     },
     {
       "position": 20,
@@ -382,7 +439,10 @@
       "h2h_teammate_id": "bottas",
       "h2h_teammate_code": "BOT",
       "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1
+      "h2h_teammate_ahead": 1,
+      "career_races": 285,
+      "career_podiums": 39,
+      "career_top10s": 186
     },
     {
       "position": 21,
@@ -401,7 +461,10 @@
       "h2h_teammate_id": "stroll",
       "h2h_teammate_code": "STR",
       "h2h_driver_ahead": 2,
-      "h2h_teammate_ahead": 0
+      "h2h_teammate_ahead": 0,
+      "career_races": 430,
+      "career_podiums": 106,
+      "career_top10s": 281
     },
     {
       "position": 22,
@@ -420,7 +483,10 @@
       "h2h_teammate_id": "alonso",
       "h2h_teammate_code": "ALO",
       "h2h_driver_ahead": 0,
-      "h2h_teammate_ahead": 2
+      "h2h_teammate_ahead": 2,
+      "career_races": 193,
+      "career_podiums": 3,
+      "career_top10s": 66
     }
   ],
   "constructor_standings": [
