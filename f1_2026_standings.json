@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-03-15",
+  "last_updated": "2026-03-26",
   "after_round": 2,
   "after_race": "Chinese Grand Prix",
   "driver_standings": [
@@ -13,7 +13,15 @@
       "team_name": "Mercedes",
       "nationality": "British",
       "points": 51,
-      "wins": 1
+      "wins": 1,
+      "debut_year": 2019,
+      "career_wins": 6,
+      "career_championships": 0,
+      "career_seasons": 8,
+      "h2h_teammate_id": "antonelli",
+      "h2h_teammate_code": "ANT",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 2,
@@ -24,7 +32,15 @@
       "team_name": "Mercedes",
       "nationality": "Italian",
       "points": 47,
-      "wins": 1
+      "wins": 1,
+      "debut_year": 2025,
+      "career_wins": 1,
+      "career_championships": 0,
+      "career_seasons": 2,
+      "h2h_teammate_id": "russell",
+      "h2h_teammate_code": "RUS",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 3,
@@ -35,7 +51,15 @@
       "team_name": "Ferrari",
       "nationality": "Monégasque",
       "points": 34,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2018,
+      "career_wins": 8,
+      "career_championships": 0,
+      "career_seasons": 9,
+      "h2h_teammate_id": "hamilton",
+      "h2h_teammate_code": "HAM",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 4,
@@ -46,7 +70,15 @@
       "team_name": "Ferrari",
       "nationality": "British",
       "points": 33,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2007,
+      "career_wins": 103,
+      "career_championships": 7,
+      "career_seasons": 20,
+      "h2h_teammate_id": "leclerc",
+      "h2h_teammate_code": "LEC",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 5,
@@ -57,7 +89,15 @@
       "team_name": "Haas F1 Team",
       "nationality": "British",
       "points": 17,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2025,
+      "career_wins": 0,
+      "career_championships": 0,
+      "career_seasons": 2,
+      "h2h_teammate_id": "ocon",
+      "h2h_teammate_code": "OCO",
+      "h2h_driver_ahead": 2,
+      "h2h_teammate_ahead": 0
     },
     {
       "position": 6,
@@ -68,7 +108,15 @@
       "team_name": "McLaren",
       "nationality": "British",
       "points": 15,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2019,
+      "career_wins": 7,
+      "career_championships": 0,
+      "career_seasons": 8,
+      "h2h_teammate_id": "piastri",
+      "h2h_teammate_code": "PIA",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 7,
@@ -79,7 +127,15 @@
       "team_name": "Alpine",
       "nationality": "French",
       "points": 9,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2017,
+      "career_wins": 1,
+      "career_championships": 0,
+      "career_seasons": 10,
+      "h2h_teammate_id": "colapinto",
+      "h2h_teammate_code": "COL",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 8,
@@ -90,7 +146,15 @@
       "team_name": "Red Bull",
       "nationality": "Dutch",
       "points": 8,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2015,
+      "career_wins": 63,
+      "career_championships": 4,
+      "career_seasons": 12,
+      "h2h_teammate_id": "hadjar",
+      "h2h_teammate_code": "HAD",
+      "h2h_driver_ahead": 2,
+      "h2h_teammate_ahead": 0
     },
     {
       "position": 9,
@@ -101,7 +165,15 @@
       "team_name": "Racing Bulls",
       "nationality": "New Zealander",
       "points": 8,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2023,
+      "career_wins": 0,
+      "career_championships": 0,
+      "career_seasons": 4,
+      "h2h_teammate_id": "lindblad",
+      "h2h_teammate_code": "LIN",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 10,
@@ -112,7 +184,15 @@
       "team_name": "Racing Bulls",
       "nationality": "British",
       "points": 4,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2026,
+      "career_wins": 0,
+      "career_championships": 0,
+      "career_seasons": 1,
+      "h2h_teammate_id": "lawson",
+      "h2h_teammate_code": "LAW",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 11,
@@ -123,7 +203,15 @@
       "team_name": "Red Bull",
       "nationality": "French",
       "points": 4,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2025,
+      "career_wins": 0,
+      "career_championships": 0,
+      "career_seasons": 2,
+      "h2h_teammate_id": "verstappen",
+      "h2h_teammate_code": "VER",
+      "h2h_driver_ahead": 0,
+      "h2h_teammate_ahead": 2
     },
     {
       "position": 12,
@@ -134,7 +222,15 @@
       "team_name": "McLaren",
       "nationality": "Australian",
       "points": 3,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2023,
+      "career_wins": 5,
+      "career_championships": 0,
+      "career_seasons": 4,
+      "h2h_teammate_id": "norris",
+      "h2h_teammate_code": "NOR",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 13,
@@ -145,7 +241,15 @@
       "team_name": "Williams",
       "nationality": "Spanish",
       "points": 2,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2015,
+      "career_wins": 4,
+      "career_championships": 0,
+      "career_seasons": 12,
+      "h2h_teammate_id": "albon",
+      "h2h_teammate_code": "ALB",
+      "h2h_driver_ahead": 2,
+      "h2h_teammate_ahead": 0
     },
     {
       "position": 14,
@@ -156,7 +260,15 @@
       "team_name": "Audi",
       "nationality": "Brazilian",
       "points": 2,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2025,
+      "career_wins": 0,
+      "career_championships": 0,
+      "career_seasons": 2,
+      "h2h_teammate_id": "hulkenberg",
+      "h2h_teammate_code": "HUL",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 15,
@@ -167,7 +279,15 @@
       "team_name": "Alpine",
       "nationality": "Argentine",
       "points": 1,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2024,
+      "career_wins": 0,
+      "career_championships": 0,
+      "career_seasons": 3,
+      "h2h_teammate_id": "gasly",
+      "h2h_teammate_code": "GAS",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 16,
@@ -178,7 +298,15 @@
       "team_name": "Haas F1 Team",
       "nationality": "French",
       "points": 0,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2016,
+      "career_wins": 1,
+      "career_championships": 0,
+      "career_seasons": 11,
+      "h2h_teammate_id": "bearman",
+      "h2h_teammate_code": "BEA",
+      "h2h_driver_ahead": 0,
+      "h2h_teammate_ahead": 2
     },
     {
       "position": 17,
@@ -189,7 +317,15 @@
       "team_name": "Audi",
       "nationality": "German",
       "points": 0,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2010,
+      "career_wins": 0,
+      "career_championships": 0,
+      "career_seasons": 14,
+      "h2h_teammate_id": "bortoleto",
+      "h2h_teammate_code": "BOR",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 18,
@@ -200,7 +336,15 @@
       "team_name": "Williams",
       "nationality": "Thai",
       "points": 0,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2019,
+      "career_wins": 0,
+      "career_championships": 0,
+      "career_seasons": 7,
+      "h2h_teammate_id": "sainz",
+      "h2h_teammate_code": "SAI",
+      "h2h_driver_ahead": 0,
+      "h2h_teammate_ahead": 2
     },
     {
       "position": 19,
@@ -211,7 +355,15 @@
       "team_name": "Cadillac",
       "nationality": "Finnish",
       "points": 0,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2013,
+      "career_wins": 10,
+      "career_championships": 0,
+      "career_seasons": 14,
+      "h2h_teammate_id": "perez",
+      "h2h_teammate_code": "PER",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 20,
@@ -222,7 +374,15 @@
       "team_name": "Cadillac",
       "nationality": "Mexican",
       "points": 0,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2011,
+      "career_wins": 6,
+      "career_championships": 0,
+      "career_seasons": 16,
+      "h2h_teammate_id": "bottas",
+      "h2h_teammate_code": "BOT",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1
     },
     {
       "position": 21,
@@ -233,7 +393,15 @@
       "team_name": "Aston Martin",
       "nationality": "Spanish",
       "points": 0,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2001,
+      "career_wins": 32,
+      "career_championships": 2,
+      "career_seasons": 22,
+      "h2h_teammate_id": "stroll",
+      "h2h_teammate_code": "STR",
+      "h2h_driver_ahead": 2,
+      "h2h_teammate_ahead": 0
     },
     {
       "position": 22,
@@ -244,7 +412,15 @@
       "team_name": "Aston Martin",
       "nationality": "Canadian",
       "points": 0,
-      "wins": 0
+      "wins": 0,
+      "debut_year": 2017,
+      "career_wins": 0,
+      "career_championships": 0,
+      "career_seasons": 10,
+      "h2h_teammate_id": "alonso",
+      "h2h_teammate_code": "ALO",
+      "h2h_driver_ahead": 0,
+      "h2h_teammate_ahead": 2
     }
   ],
   "constructor_standings": [
