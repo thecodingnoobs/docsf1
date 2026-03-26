@@ -33,12 +33,15 @@ jobs:
       - name: Fetch results from OpenF1
         run: python scripts/fetch_results.py
 
+      - name: Update career wins in standings
+        run: python scripts/update_standings.py
+
       - name: Commit and push if updated
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add f1_2026_results.json
+          git add f1_2026_results.json f1_2026_standings.json
           git diff --staged --quiet && echo "No changes." || (
-            git commit -m "Auto-update race results $(date -u '+%Y-%m-%d') [skip ci]"
+            git commit -m "Auto-update results + career wins $(date -u '+%Y-%m-%d') [skip ci]"
             git push
           )
