@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Updates career stats and season stats in f1_2026_standings.json after each race.
+Updates season stats, career stats, and constructor standings in f1_2026_standings.json after each race.
 
 All career_* fields = pre-2026 baseline + what's been accumulated in 2026 results.
 The pre-2026 baseline is fixed for the season — update once at the start of 2027.
@@ -42,28 +42,25 @@ PRE_2026 = {
 
 
 def compute_season_stats(results_data: dict) -> dict:
-    """Count wins/races/podiums/top10s per driver from 2026 results."""
+    """Count races/podiums/top10s per driver from 2026 results. Race starts from main race only."""
     stats: dict[str, dict] = {}
 
     for race in results_data["races"]:
-        race_results = race.get("race_results") or []
+        race_results   = race.get("race_results")   or []
         sprint_results = race.get("sprint_results") or []
 
-        # Count race starts from the main race only
         for entry in race_results:
             did = entry["driver_id"]
             if did not in stats:
-                stats[did] = {"wins": 0, "races": 0, "podiums": 0, "top10": 0}
+                stats[did] = {"races": 0, "podiums": 0, "top10": 0}
             stats[did]["races"] += 1
 
         for entry in race_results + sprint_results:
             did = entry["driver_id"]
             if did not in stats:
-                stats[did] = {"wins": 0, "races": 0, "podiums": 0, "top10": 0}
+                stats[did] = {"races": 0, "podiums": 0, "top10": 0}
             pos = entry.get("position", 99)
             if entry.get("status") == "Finished":
-                if pos == 1:
-                    stats[did]["wins"] += 1
                 if pos <= 3:
                     stats[did]["podiums"] += 1
                 if pos <= 10:
@@ -72,21 +69,78 @@ def compute_season_stats(results_data: dict) -> dict:
     return stats
 
 
+def compute_season_points(results_data: dict) -> dict[str, int]:
+    """Sum points per driver from all race + sprint results."""
+    points: dict[str, int] = {}
+    for race in results_data["races"]:
+        for entry in (race.get("race_results") or []) + (race.get("sprint_results") or []):
+            did = entry["driver_id"]
+            points[did] = points.get(did, 0) + entry.get("points", 0)
+    return points
+
+
+def compute_race_wins(results_data: dict) -> dict[str, int]:
+    """Count race wins only (not sprint wins) per driver."""
+    wins: dict[str, int] = {}
+    for race in results_data["races"]:
+        for entry in (race.get("race_results") or []):
+            if entry.get("position") == 1 and entry.get("status") == "Finished":
+                did = entry["driver_id"]
+                wins[did] = wins.get(did, 0) + 1
+    return wins
+
+
+def compute_constructor_stats(results_data: dict) -> tuple[dict, dict]:
+    """
+    Returns (team_points, team_wins).
+    Points include race + sprint. Wins are race only.
+    """
+    team_points: dict[str, int] = {}
+    team_wins:   dict[str, int] = {}
+
+    for race in results_data["races"]:
+        for entry in (race.get("race_results") or []) + (race.get("sprint_results") or []):
+            tid = entry["team_id"]
+            team_points[tid] = team_points.get(tid, 0) + entry.get("points", 0)
+
+        for entry in (race.get("race_results") or []):
+            if entry.get("position") == 1 and entry.get("status") == "Finished":
+                tid = entry["team_id"]
+                team_wins[tid] = team_wins.get(tid, 0) + 1
+
+    return team_points, team_wins
+
+
 def main():
     standings = json.loads(STANDINGS_FILE.read_text(encoding="utf-8"))
     results   = json.loads(RESULTS_FILE.read_text(encoding="utf-8"))
 
-    season = compute_season_stats(results)
-    changed = False
+    season        = compute_season_stats(results)
+    season_points = compute_season_points(results)
+    race_wins     = compute_race_wins(results)
+    changed       = False
 
+    # --- after_round / after_race ---
+    completed = [r for r in results["races"] if r.get("race_results") is not None]
+    if completed:
+        last = max(completed, key=lambda r: r["round"])
+        if standings.get("after_round") != last["round"]:
+            standings["after_round"] = last["round"]
+            changed = True
+        if standings.get("after_race") != last["grand_prix"]:
+            standings["after_race"] = last["grand_prix"]
+            changed = True
+
+    # --- Driver standings ---
     for drv in standings["driver_standings"]:
-        did  = drv["driver_id"]
-        pre  = PRE_2026.get(did, {"wins": 0, "races": 0, "podiums": 0, "top10": 0})
-        s    = season.get(did, {"wins": 0, "races": 0, "podiums": 0, "top10": 0})
+        did = drv["driver_id"]
+        pre = PRE_2026.get(did, {"wins": 0, "races": 0, "podiums": 0, "top10": 0})
+        s   = season.get(did, {"races": 0, "podiums": 0, "top10": 0})
 
         updates = {
-            "season_wins":    s["wins"],
-            "career_wins":    pre["wins"]    + s["wins"],
+            "points":         season_points.get(did, 0),
+            "wins":           race_wins.get(did, 0),
+            "career_wins":    pre["wins"]    + race_wins.get(did, 0),
             "career_races":   pre["races"]   + s["races"],
             "career_podiums": pre["podiums"] + s["podiums"],
             "career_top10s":  pre["top10"]   + s["top10"],
@@ -95,6 +149,37 @@ def main():
             if drv.get(key) != val:
                 drv[key] = val
                 changed = True
+
+        # Remove legacy season_wins field if present
+        if "season_wins" in drv:
+            del drv["season_wins"]
+            changed = True
+
+    # Re-sort drivers by points desc, update positions
+    standings["driver_standings"].sort(key=lambda d: d["points"], reverse=True)
+    for i, drv in enumerate(standings["driver_standings"], start=1):
+        if drv.get("position") != i:
+            drv["position"] = i
+            changed = True
+
+    # --- Constructor standings ---
+    team_points, team_wins = compute_constructor_stats(results)
+    for con in standings["constructor_standings"]:
+        tid = con["team_id"]
+        new_pts  = team_points.get(tid, 0)
+        new_wins = team_wins.get(tid, 0)
+        if con.get("points") != new_pts:
+            con["points"] = new_pts
+            changed = True
+        if con.get("wins") != new_wins:
+            con["wins"] = new_wins
+            changed = True
+
+    standings["constructor_standings"].sort(key=lambda c: c["points"], reverse=True)
+    for i, con in enumerate(standings["constructor_standings"], start=1):
+        if con.get("position") != i:
+            con["position"] = i
+            changed = True
 
     if changed:
         STANDINGS_FILE.write_text(
