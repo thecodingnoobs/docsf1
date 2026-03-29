@@ -90,6 +90,47 @@ def compute_race_wins(results_data: dict) -> dict[str, int]:
     return wins
 
 
+def compute_h2h(results_data: dict, standings: dict) -> dict[str, int]:
+    """
+    Count how many races each driver finished ahead of their teammate (race only, not sprint).
+    Returns {driver_id: races_finished_ahead}.
+    """
+    teammate_map = {
+        d["driver_id"]: d["h2h_teammate_id"]
+        for d in standings["driver_standings"]
+        if d.get("h2h_teammate_id")
+    }
+
+    ahead_count: dict[str, int] = {d["driver_id"]: 0 for d in standings["driver_standings"]}
+    seen_pairs: set = set()
+
+    for race in results_data["races"]:
+        race_results = race.get("race_results") or []
+        if not race_results:
+            continue
+
+        pos_map = {entry["driver_id"]: entry["position"] for entry in race_results}
+        seen_pairs.clear()
+
+        for driver_id, teammate_id in teammate_map.items():
+            pair = frozenset([driver_id, teammate_id])
+            if pair in seen_pairs:
+                continue
+            seen_pairs.add(pair)
+
+            driver_pos   = pos_map.get(driver_id)
+            teammate_pos = pos_map.get(teammate_id)
+            if driver_pos is None or teammate_pos is None:
+                continue
+
+            if driver_pos < teammate_pos:
+                ahead_count[driver_id] = ahead_count.get(driver_id, 0) + 1
+            elif teammate_pos < driver_pos:
+                ahead_count[teammate_id] = ahead_count.get(teammate_id, 0) + 1
+
+    return ahead_count
+
+
 def compute_constructor_stats(results_data: dict) -> tuple[dict, dict]:
     """
     Returns (team_points, team_wins).
@@ -118,6 +159,7 @@ def main():
     season        = compute_season_stats(results)
     season_points = compute_season_points(results)
     race_wins     = compute_race_wins(results)
+    h2h_counts    = compute_h2h(results, standings)
     changed       = False
 
     # --- after_round / after_race ---
@@ -149,6 +191,17 @@ def main():
             if drv.get(key) != val:
                 drv[key] = val
                 changed = True
+
+        # H2H vs teammate
+        teammate_id         = drv.get("h2h_teammate_id", "")
+        new_driver_ahead    = h2h_counts.get(did, 0)
+        new_teammate_ahead  = h2h_counts.get(teammate_id, 0)
+        if drv.get("h2h_driver_ahead") != new_driver_ahead:
+            drv["h2h_driver_ahead"] = new_driver_ahead
+            changed = True
+        if drv.get("h2h_teammate_ahead") != new_teammate_ahead:
+            drv["h2h_teammate_ahead"] = new_teammate_ahead
+            changed = True
 
         # Remove legacy season_wins field if present
         if "season_wins" in drv:
