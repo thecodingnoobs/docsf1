@@ -1,42 +1,19 @@
 {
   "season": 2026,
   "last_updated": "2026-03-26",
-  "after_round": 2,
-  "after_race": "Chinese Grand Prix",
+  "after_round": 3,
+  "after_race": "Japanese Grand Prix",
   "driver_standings": [
     {
       "position": 1,
-      "driver_id": "russell",
-      "driver_code": "RUS",
-      "driver_name": "George Russell",
-      "team_id": "mercedes",
-      "team_name": "Mercedes",
-      "nationality": "British",
-      "points": 51,
-      "wins": 1,
-      "debut_year": 2019,
-      "career_wins": 7,
-      "career_championships": 0,
-      "career_seasons": 8,
-      "h2h_teammate_id": "antonelli",
-      "h2h_teammate_code": "ANT",
-      "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1,
-      "career_races": 155,
-      "career_podiums": 27,
-      "career_top10s": 90,
-      "season_wins": 2
-    },
-    {
-      "position": 2,
       "driver_id": "antonelli",
       "driver_code": "ANT",
       "driver_name": "Kimi Antonelli",
       "team_id": "mercedes",
       "team_name": "Mercedes",
       "nationality": "Italian",
-      "points": 47,
-      "wins": 1,
+      "points": 72,
+      "wins": 2,
       "debut_year": 2025,
       "career_wins": 2,
       "career_championships": 0,
@@ -47,8 +24,29 @@
       "h2h_teammate_ahead": 1,
       "career_races": 27,
       "career_podiums": 6,
-      "career_top10s": 18,
-      "season_wins": 2
+      "career_top10s": 18
+    },
+    {
+      "position": 2,
+      "driver_id": "russell",
+      "driver_code": "RUS",
+      "driver_name": "George Russell",
+      "team_id": "mercedes",
+      "team_name": "Mercedes",
+      "nationality": "British",
+      "points": 63,
+      "wins": 1,
+      "debut_year": 2019,
+      "career_wins": 6,
+      "career_championships": 0,
+      "career_seasons": 8,
+      "h2h_teammate_id": "antonelli",
+      "h2h_teammate_code": "ANT",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1,
+      "career_races": 155,
+      "career_podiums": 27,
+      "career_top10s": 90
     },
     {
       "position": 3,
@@ -58,7 +56,7 @@
       "team_id": "ferrari",
       "team_name": "Ferrari",
       "nationality": "Monégasque",
-      "points": 34,
+      "points": 49,
       "wins": 0,
       "debut_year": 2018,
       "career_wins": 8,
@@ -70,8 +68,7 @@
       "h2h_teammate_ahead": 1,
       "career_races": 176,
       "career_podiums": 53,
-      "career_top10s": 136,
-      "season_wins": 0
+      "career_top10s": 136
     },
     {
       "position": 4,
@@ -81,7 +78,7 @@
       "team_id": "ferrari",
       "team_name": "Ferrari",
       "nationality": "British",
-      "points": 33,
+      "points": 41,
       "wins": 0,
       "debut_year": 2007,
       "career_wins": 105,
@@ -93,11 +90,54 @@
       "h2h_teammate_ahead": 1,
       "career_races": 383,
       "career_podiums": 204,
-      "career_top10s": 335,
-      "season_wins": 0
+      "career_top10s": 335
     },
     {
       "position": 5,
+      "driver_id": "norris",
+      "driver_code": "NOR",
+      "driver_name": "Lando Norris",
+      "team_id": "mclaren",
+      "team_name": "McLaren",
+      "nationality": "British",
+      "points": 25,
+      "wins": 0,
+      "debut_year": 2019,
+      "career_wins": 11,
+      "career_championships": 0,
+      "career_seasons": 8,
+      "h2h_teammate_id": "piastri",
+      "h2h_teammate_code": "PIA",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1,
+      "career_races": 155,
+      "career_podiums": 44,
+      "career_top10s": 124
+    },
+    {
+      "position": 6,
+      "driver_id": "piastri",
+      "driver_code": "PIA",
+      "driver_name": "Oscar Piastri",
+      "team_id": "mclaren",
+      "team_name": "McLaren",
+      "nationality": "Australian",
+      "points": 21,
+      "wins": 0,
+      "debut_year": 2023,
+      "career_wins": 9,
+      "career_championships": 0,
+      "career_seasons": 4,
+      "h2h_teammate_id": "norris",
+      "h2h_teammate_code": "NOR",
+      "h2h_driver_ahead": 1,
+      "h2h_teammate_ahead": 1,
+      "career_races": 73,
+      "career_podiums": 27,
+      "career_top10s": 58
+    },
+    {
+      "position": 7,
       "driver_id": "bearman",
       "driver_code": "BEA",
       "driver_name": "Oliver Bearman",
@@ -116,41 +156,17 @@
       "h2h_teammate_ahead": 0,
       "career_races": 30,
       "career_podiums": 0,
-      "career_top10s": 14,
-      "season_wins": 0
+      "career_top10s": 14
     },
     {
-      "position": 6,
-      "driver_id": "norris",
-      "driver_code": "NOR",
-      "driver_name": "Lando Norris",
-      "team_id": "mclaren",
-      "team_name": "McLaren",
-      "nationality": "British",
-      "points": 15,
-      "wins": 0,
-      "debut_year": 2019,
-      "career_wins": 11,
-      "career_championships": 0,
-      "career_seasons": 8,
-      "h2h_teammate_id": "piastri",
-      "h2h_teammate_code": "PIA",
-      "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1,
-      "career_races": 155,
-      "career_podiums": 44,
-      "career_top10s": 124,
-      "season_wins": 0
-    },
-    {
-      "position": 7,
+      "position": 8,
       "driver_id": "gasly",
       "driver_code": "GAS",
       "driver_name": "Pierre Gasly",
       "team_id": "alpine",
       "team_name": "Alpine",
       "nationality": "French",
-      "points": 9,
+      "points": 15,
       "wins": 0,
       "debut_year": 2017,
       "career_wins": 1,
@@ -162,18 +178,17 @@
       "h2h_teammate_ahead": 1,
       "career_races": 181,
       "career_podiums": 5,
-      "career_top10s": 78,
-      "season_wins": 0
+      "career_top10s": 78
     },
     {
-      "position": 8,
+      "position": 9,
       "driver_id": "verstappen",
       "driver_code": "VER",
       "driver_name": "Max Verstappen",
       "team_id": "red_bull",
       "team_name": "Red Bull",
       "nationality": "Dutch",
-      "points": 8,
+      "points": 12,
       "wins": 0,
       "debut_year": 2015,
       "career_wins": 71,
@@ -185,18 +200,17 @@
       "h2h_teammate_ahead": 0,
       "career_races": 236,
       "career_podiums": 127,
-      "career_top10s": 198,
-      "season_wins": 0
+      "career_top10s": 198
     },
     {
-      "position": 9,
+      "position": 10,
       "driver_id": "lawson",
       "driver_code": "LAW",
       "driver_name": "Liam Lawson",
       "team_id": "racing_bulls",
       "team_name": "Racing Bulls",
       "nationality": "New Zealander",
-      "points": 8,
+      "points": 10,
       "wins": 0,
       "debut_year": 2023,
       "career_wins": 0,
@@ -208,11 +222,10 @@
       "h2h_teammate_ahead": 1,
       "career_races": 38,
       "career_podiums": 0,
-      "career_top10s": 13,
-      "season_wins": 0
+      "career_top10s": 13
     },
     {
-      "position": 10,
+      "position": 11,
       "driver_id": "lindblad",
       "driver_code": "LIN",
       "driver_name": "Arvid Lindblad",
@@ -231,11 +244,10 @@
       "h2h_teammate_ahead": 1,
       "career_races": 3,
       "career_podiums": 0,
-      "career_top10s": 1,
-      "season_wins": 0
+      "career_top10s": 1
     },
     {
-      "position": 11,
+      "position": 12,
       "driver_id": "hadjar",
       "driver_code": "HAD",
       "driver_name": "Isack Hadjar",
@@ -254,31 +266,7 @@
       "h2h_teammate_ahead": 2,
       "career_races": 27,
       "career_podiums": 1,
-      "career_top10s": 11,
-      "season_wins": 0
-    },
-    {
-      "position": 12,
-      "driver_id": "piastri",
-      "driver_code": "PIA",
-      "driver_name": "Oscar Piastri",
-      "team_id": "mclaren",
-      "team_name": "McLaren",
-      "nationality": "Australian",
-      "points": 3,
-      "wins": 0,
-      "debut_year": 2023,
-      "career_wins": 9,
-      "career_championships": 0,
-      "career_seasons": 4,
-      "h2h_teammate_id": "norris",
-      "h2h_teammate_code": "NOR",
-      "h2h_driver_ahead": 1,
-      "h2h_teammate_ahead": 1,
-      "career_races": 73,
-      "career_podiums": 27,
-      "career_top10s": 58,
-      "season_wins": 0
+      "career_top10s": 11
     },
     {
       "position": 13,
@@ -300,8 +288,7 @@
       "h2h_teammate_ahead": 0,
       "career_races": 235,
       "career_podiums": 29,
-      "career_top10s": 150,
-      "season_wins": 0
+      "career_top10s": 150
     },
     {
       "position": 14,
@@ -323,8 +310,7 @@
       "h2h_teammate_ahead": 1,
       "career_races": 27,
       "career_podiums": 0,
-      "career_top10s": 6,
-      "season_wins": 0
+      "career_top10s": 6
     },
     {
       "position": 15,
@@ -346,8 +332,7 @@
       "h2h_teammate_ahead": 1,
       "career_races": 30,
       "career_podiums": 0,
-      "career_top10s": 3,
-      "season_wins": 0
+      "career_top10s": 3
     },
     {
       "position": 16,
@@ -357,7 +342,7 @@
       "team_id": "haas",
       "team_name": "Haas F1 Team",
       "nationality": "French",
-      "points": 0,
+      "points": 1,
       "wins": 0,
       "debut_year": 2016,
       "career_wins": 1,
@@ -369,8 +354,7 @@
       "h2h_teammate_ahead": 2,
       "career_races": 183,
       "career_podiums": 4,
-      "career_top10s": 96,
-      "season_wins": 0
+      "career_top10s": 96
     },
     {
       "position": 17,
@@ -392,8 +376,7 @@
       "h2h_teammate_ahead": 1,
       "career_races": 257,
       "career_podiums": 1,
-      "career_top10s": 117,
-      "season_wins": 0
+      "career_top10s": 117
     },
     {
       "position": 18,
@@ -415,8 +398,7 @@
       "h2h_teammate_ahead": 2,
       "career_races": 132,
       "career_podiums": 2,
-      "career_top10s": 50,
-      "season_wins": 0
+      "career_top10s": 50
     },
     {
       "position": 19,
@@ -438,8 +420,7 @@
       "h2h_teammate_ahead": 1,
       "career_races": 250,
       "career_podiums": 67,
-      "career_top10s": 145,
-      "season_wins": 0
+      "career_top10s": 145
     },
     {
       "position": 20,
@@ -461,8 +442,7 @@
       "h2h_teammate_ahead": 1,
       "career_races": 286,
       "career_podiums": 39,
-      "career_top10s": 186,
-      "season_wins": 0
+      "career_top10s": 186
     },
     {
       "position": 21,
@@ -484,8 +464,7 @@
       "h2h_teammate_ahead": 0,
       "career_races": 431,
       "career_podiums": 106,
-      "career_top10s": 281,
-      "season_wins": 0
+      "career_top10s": 281
     },
     {
       "position": 22,
@@ -507,8 +486,7 @@
       "h2h_teammate_ahead": 2,
       "career_races": 194,
       "career_podiums": 3,
-      "career_top10s": 66,
-      "season_wins": 0
+      "career_top10s": 66
     }
   ],
   "constructor_standings": [
@@ -516,49 +494,49 @@
       "position": 1,
       "team_id": "mercedes",
       "team_name": "Mercedes",
-      "points": 98,
-      "wins": 2
+      "points": 135,
+      "wins": 3
     },
     {
       "position": 2,
       "team_id": "ferrari",
       "team_name": "Ferrari",
-      "points": 67,
+      "points": 90,
       "wins": 0
     },
     {
       "position": 3,
       "team_id": "mclaren",
       "team_name": "McLaren",
-      "points": 18,
+      "points": 46,
       "wins": 0
     },
     {
       "position": 4,
       "team_id": "haas",
       "team_name": "Haas F1 Team",
-      "points": 17,
+      "points": 18,
       "wins": 0
     },
     {
       "position": 5,
       "team_id": "red_bull",
       "team_name": "Red Bull",
-      "points": 12,
+      "points": 16,
       "wins": 0
     },
     {
       "position": 6,
-      "team_id": "racing_bulls",
-      "team_name": "Racing Bulls",
-      "points": 12,
+      "team_id": "alpine",
+      "team_name": "Alpine",
+      "points": 16,
       "wins": 0
     },
     {
       "position": 7,
-      "team_id": "alpine",
-      "team_name": "Alpine",
-      "points": 10,
+      "team_id": "racing_bulls",
+      "team_name": "Racing Bulls",
+      "points": 14,
       "wins": 0
     },
     {
