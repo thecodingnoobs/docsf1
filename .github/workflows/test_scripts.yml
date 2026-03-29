@@ -1,0 +1,34 @@
+name: Test & Validate Scripts
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'f1_2026_standings.json'
+      - 'f1_2026_results.json'
+  pull_request:
+    paths:
+      - 'scripts/**'
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run unit tests
+        run: python scripts/test_update_standings.py -v
+
+      - name: Validate standings JSON
+        run: python scripts/validate_standings.py
