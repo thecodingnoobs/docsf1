@@ -131,6 +131,23 @@ def compute_h2h(results_data: dict, standings: dict) -> dict[str, int]:
     return ahead_count
 
 
+def compute_position_counts(results_data: dict) -> dict[str, list[int]]:
+    """
+    Returns {driver_id: [count_p1, count_p2, ..., count_p20]} from race results only.
+    Used as tiebreaker when drivers have equal points (F1 rules: most wins, then most 2nds, etc.).
+    """
+    counts: dict[str, list[int]] = {}
+    for race in results_data["races"]:
+        for entry in (race.get("race_results") or []):
+            did = entry["driver_id"]
+            if did not in counts:
+                counts[did] = [0] * 20
+            pos = entry.get("position")
+            if isinstance(pos, int) and 1 <= pos <= 20:
+                counts[did][pos - 1] += 1
+    return counts
+
+
 def compute_constructor_stats(results_data: dict) -> tuple[dict, dict]:
     """
     Returns (team_points, team_wins).
@@ -160,6 +177,7 @@ def main():
     season_points = compute_season_points(results)
     race_wins     = compute_race_wins(results)
     h2h_counts    = compute_h2h(results, standings)
+    pos_counts    = compute_position_counts(results)
     changed       = False
 
     # --- after_round / after_race ---
@@ -208,8 +226,11 @@ def main():
             del drv["season_wins"]
             changed = True
 
-    # Re-sort drivers by points desc, update positions
-    standings["driver_standings"].sort(key=lambda d: d["points"], reverse=True)
+    # Re-sort drivers by points desc, tiebreaker: most wins, then most 2nds, etc. (F1 rules)
+    standings["driver_standings"].sort(
+        key=lambda d: (d["points"], pos_counts.get(d["driver_id"], [0] * 20)),
+        reverse=True,
+    )
     for i, drv in enumerate(standings["driver_standings"], start=1):
         if drv.get("position") != i:
             drv["position"] = i
@@ -228,7 +249,21 @@ def main():
             con["wins"] = new_wins
             changed = True
 
-    standings["constructor_standings"].sort(key=lambda c: c["points"], reverse=True)
+    # Build per-team position count (sum of both drivers) for tiebreaker
+    driver_team_map = {d["driver_id"]: d.get("team_id", "") for d in standings["driver_standings"]}
+    team_pos_counts: dict[str, list[int]] = {}
+    for did, counts in pos_counts.items():
+        tid = driver_team_map.get(did, "")
+        if not tid:
+            continue
+        if tid not in team_pos_counts:
+            team_pos_counts[tid] = [0] * 20
+        team_pos_counts[tid] = [a + b for a, b in zip(team_pos_counts[tid], counts)]
+
+    standings["constructor_standings"].sort(
+        key=lambda c: (c["points"], team_pos_counts.get(c["team_id"], [0] * 20)),
+        reverse=True,
+    )
     for i, con in enumerate(standings["constructor_standings"], start=1):
         if con.get("position") != i:
             con["position"] = i
