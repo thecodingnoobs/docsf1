@@ -24,7 +24,8 @@
       "h2h_teammate_ahead": 1,
       "career_races": 27,
       "career_podiums": 6,
-      "career_top10s": 18
+      "career_top10s": 18,
+      "headshot": "drivers/antonelli.avif"
     },
     {
       "position": 2,
@@ -46,7 +47,8 @@
       "h2h_teammate_ahead": 2,
       "career_races": 155,
       "career_podiums": 27,
-      "career_top10s": 90
+      "career_top10s": 90,
+      "headshot": "drivers/russell.avif"
     },
     {
       "position": 3,
@@ -55,7 +57,7 @@
       "driver_name": "Charles Leclerc",
       "team_id": "ferrari",
       "team_name": "Ferrari",
-      "nationality": "Monégasque",
+      "nationality": "Mon\u00e9gasque",
       "points": 49,
       "wins": 0,
       "debut_year": 2018,
@@ -68,7 +70,8 @@
       "h2h_teammate_ahead": 1,
       "career_races": 176,
       "career_podiums": 53,
-      "career_top10s": 136
+      "career_top10s": 136,
+      "headshot": "drivers/leclerc.avif"
     },
     {
       "position": 4,
@@ -90,7 +93,8 @@
       "h2h_teammate_ahead": 2,
       "career_races": 383,
       "career_podiums": 204,
-      "career_top10s": 335
+      "career_top10s": 335,
+      "headshot": "drivers/hamilton.avif"
     },
     {
       "position": 5,
@@ -112,7 +116,8 @@
       "h2h_teammate_ahead": 2,
       "career_races": 155,
       "career_podiums": 44,
-      "career_top10s": 124
+      "career_top10s": 124,
+      "headshot": "drivers/norris.avif"
     },
     {
       "position": 6,
@@ -134,7 +139,8 @@
       "h2h_teammate_ahead": 1,
       "career_races": 73,
       "career_podiums": 27,
-      "career_top10s": 58
+      "career_top10s": 58,
+      "headshot": "drivers/piastri.avif"
     },
     {
       "position": 7,
@@ -156,7 +162,8 @@
       "h2h_teammate_ahead": 1,
       "career_races": 30,
       "career_podiums": 0,
-      "career_top10s": 14
+      "career_top10s": 14,
+      "headshot": "drivers/bearman.avif"
     },
     {
       "position": 8,
@@ -178,7 +185,8 @@
       "h2h_teammate_ahead": 0,
       "career_races": 181,
       "career_podiums": 5,
-      "career_top10s": 78
+      "career_top10s": 78,
+      "headshot": "drivers/gasly.avif"
     },
     {
       "position": 9,
@@ -200,7 +208,8 @@
       "h2h_teammate_ahead": 1,
       "career_races": 236,
       "career_podiums": 127,
-      "career_top10s": 198
+      "career_top10s": 198,
+      "headshot": "drivers/verstappen.avif"
     },
     {
       "position": 10,
@@ -222,7 +231,8 @@
       "h2h_teammate_ahead": 1,
       "career_races": 38,
       "career_podiums": 0,
-      "career_top10s": 13
+      "career_top10s": 13,
+      "headshot": "drivers/lawson.avif"
     },
     {
       "position": 11,
@@ -244,7 +254,8 @@
       "h2h_teammate_ahead": 2,
       "career_races": 3,
       "career_podiums": 0,
-      "career_top10s": 1
+      "career_top10s": 1,
+      "headshot": "drivers/lindblad.avif"
     },
     {
       "position": 12,
@@ -266,7 +277,8 @@
       "h2h_teammate_ahead": 2,
       "career_races": 27,
       "career_podiums": 1,
-      "career_top10s": 11
+      "career_top10s": 11,
+      "headshot": "drivers/hadjar.avif"
     },
     {
       "position": 13,
@@ -288,7 +300,8 @@
       "h2h_teammate_ahead": 2,
       "career_races": 27,
       "career_podiums": 0,
-      "career_top10s": 6
+      "career_top10s": 6,
+      "headshot": "drivers/bortoleto.avif"
     },
     {
       "position": 14,
@@ -310,7 +323,8 @@
       "h2h_teammate_ahead": 1,
       "career_races": 235,
       "career_podiums": 29,
-      "career_top10s": 150
+      "career_top10s": 150,
+      "headshot": "drivers/sainz.avif"
     },
     {
       "position": 15,
@@ -332,7 +346,8 @@
       "h2h_teammate_ahead": 2,
       "career_races": 183,
       "career_podiums": 4,
-      "career_top10s": 96
+      "career_top10s": 96,
+      "headshot": "drivers/ocon.avif"
     },
     {
       "position": 16,
@@ -354,13 +369,14 @@
       "h2h_teammate_ahead": 3,
       "career_races": 30,
       "career_podiums": 0,
-      "career_top10s": 3
+      "career_top10s": 3,
+      "headshot": "drivers/colapinto.avif"
     },
     {
       "position": 17,
       "driver_id": "hulkenberg",
       "driver_code": "HUL",
-      "driver_name": "Nico Hülkenberg",
+      "driver_name": "Nico H\u00fclkenberg",
       "team_id": "audi",
       "team_name": "Audi",
       "nationality": "German",
@@ -376,7 +392,8 @@
       "h2h_teammate_ahead": 1,
       "career_races": 257,
       "career_podiums": 1,
-      "career_top10s": 117
+      "career_top10s": 117,
+      "headshot": "drivers/hulkenberg.avif"
     },
     {
       "position": 18,
@@ -398,7 +415,8 @@
       "h2h_teammate_ahead": 2,
       "career_races": 132,
       "career_podiums": 2,
-      "career_top10s": 50
+      "career_top10s": 50,
+      "headshot": "drivers/albon.avif"
     },
     {
       "position": 19,
@@ -420,13 +438,14 @@
       "h2h_teammate_ahead": 2,
       "career_races": 250,
       "career_podiums": 67,
-      "career_top10s": 145
+      "career_top10s": 145,
+      "headshot": "drivers/bottas.avif"
     },
     {
       "position": 20,
       "driver_id": "perez",
       "driver_code": "PER",
-      "driver_name": "Sergio Pérez",
+      "driver_name": "Sergio P\u00e9rez",
       "team_id": "cadillac",
       "team_name": "Cadillac",
       "nationality": "Mexican",
@@ -442,7 +461,8 @@
       "h2h_teammate_ahead": 1,
       "career_races": 286,
       "career_podiums": 39,
-      "career_top10s": 186
+      "career_top10s": 186,
+      "headshot": "drivers/perez.avif"
     },
     {
       "position": 21,
@@ -464,7 +484,8 @@
       "h2h_teammate_ahead": 1,
       "career_races": 431,
       "career_podiums": 106,
-      "career_top10s": 281
+      "career_top10s": 281,
+      "headshot": "drivers/alonso.avif"
     },
     {
       "position": 22,
@@ -486,7 +507,8 @@
       "h2h_teammate_ahead": 2,
       "career_races": 194,
       "career_podiums": 3,
-      "career_top10s": 66
+      "career_top10s": 66,
+      "headshot": "drivers/stroll.avif"
     }
   ],
   "constructor_standings": [
