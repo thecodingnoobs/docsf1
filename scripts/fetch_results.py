@@ -17,8 +17,9 @@ from pathlib import Path
 
 OPENF1_BASE = "https://api.openf1.org/v1"
 ROOT = Path(__file__).parent.parent
-RESULTS_FILE = ROOT / "f1_2026_results.json"
+RESULTS_FILE  = ROOT / "f1_2026_results.json"
 SCHEDULE_FILE = ROOT / "f1_2026_schedule.json"
+CIRCUITS_FILE = ROOT / "circuits.json"
 
 RACE_POINTS   = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
 SPRINT_POINTS = [8, 7, 6, 5, 4, 3, 2, 1]
@@ -67,10 +68,32 @@ def get_final_positions(session_key):
     return final  # {driver_number: position}
 
 
+def format_lap_time(seconds):
+    """Convert float seconds to 'M:SS.mmm' string, e.g. 91.447 → '1:31.447'."""
+    if seconds is None:
+        return None
+    minutes = int(seconds) // 60
+    remainder = seconds - minutes * 60
+    return f"{minutes}:{remainder:06.3f}"
+
+
+def lap_time_to_seconds(time_str):
+    """Convert '1:31.447' or '91.447' to float seconds. Returns None on failure."""
+    if not time_str:
+        return None
+    try:
+        if ":" in time_str:
+            minutes, rest = time_str.split(":", 1)
+            return int(minutes) * 60 + float(rest)
+        return float(time_str)
+    except (ValueError, IndexError):
+        return None
+
+
 def get_laps_data(session_key):
     """
     Single API call for all lap data.
-    Returns (lap_counts, fastest_lap_driver_number).
+    Returns (lap_counts, fastest_lap_driver_number, best_lap_seconds).
     """
     data = fetch("laps", session_key=session_key)
     counts = {}
@@ -84,7 +107,7 @@ def get_laps_data(session_key):
         if duration and (best_time is None or duration < best_time):
             best_time = duration
             best_driver = dn
-    return counts, best_driver
+    return counts, best_driver, best_time
 
 
 def get_final_gaps(session_key):
@@ -134,19 +157,24 @@ def find_session_key(race_date_str, session_name, year=2026):
 
 
 def build_results(session_key, points_scale):
-    """Build a full results list for a session from OpenF1 data."""
-    positions               = get_final_positions(session_key)
-    drivers                 = get_drivers(session_key)
-    lap_counts, fastest_num = get_laps_data(session_key)
-    gaps                    = get_final_gaps(session_key)
+    """
+    Build a full results list for a session from OpenF1 data.
+    Returns (results, fastest_driver_name, best_lap_seconds).
+    fastest_driver_name and best_lap_seconds are None when unavailable.
+    """
+    positions                          = get_final_positions(session_key)
+    drivers                            = get_drivers(session_key)
+    lap_counts, fastest_num, best_secs = get_laps_data(session_key)
+    gaps                               = get_final_gaps(session_key)
 
     if not positions:
-        return None
+        return None, None, None
 
     max_laps = max(lap_counts.values()) if lap_counts else 0
     sorted_entries = sorted(positions.items(), key=lambda x: x[1])
 
     results = []
+    fastest_driver_name = None
     for driver_number, position in sorted_entries:
         driver    = drivers.get(driver_number, {})
         acronym   = driver.get("name_acronym", "???")
@@ -165,6 +193,12 @@ def build_results(session_key, points_scale):
             status   = "Finished"
             time_str = gaps.get(driver_number, "")
 
+        if driver_number == fastest_num and full_name:
+            # Abbreviated: "L. Hamilton"
+            given = driver.get("first_name", "")
+            family = driver.get("last_name", "")
+            fastest_driver_name = f"{given[0]}. {family}" if given else family
+
         pos_index = position - 1
         points = points_scale[pos_index] if (status == "Finished" and pos_index < len(points_scale)) else 0
 
@@ -181,7 +215,7 @@ def build_results(session_key, points_scale):
             "status":      status,
         })
 
-    return results
+    return results, fastest_driver_name, best_secs
 
 
 def find_pending_rounds(results_data, schedule_data, force_rounds=None):
@@ -229,13 +263,24 @@ def main():
 
     results_data  = json.loads(RESULTS_FILE.read_text(encoding="utf-8"))
     schedule_data = json.loads(SCHEDULE_FILE.read_text(encoding="utf-8"))
+    circuits_data = json.loads(CIRCUITS_FILE.read_text(encoding="utf-8"))
+
+    # Build a quick lookup of circuit objects by id for lap record updates
+    circuits_by_id = {c["id"]: c for c in circuits_data["circuits"]}
+
+    # Build a lookup of circuit_id per round from the schedule
+    circuit_id_by_round = {
+        r["round"]: r.get("circuit_id") for r in schedule_data["races"]
+    }
 
     pending = find_pending_rounds(results_data, schedule_data, force_rounds)
     if not pending:
         print("No pending rounds to update.")
         return
 
-    updated = False
+    results_changed  = False
+    circuits_changed = False
+
     for round_num, grand_prix, race_time_str, sprint_time_str in pending:
         print(f"\nProcessing Round {round_num}: {grand_prix}")
 
@@ -246,10 +291,27 @@ def main():
             continue
 
         print(f"  Race session_key: {race_session_key}")
-        race_results = build_results(race_session_key, RACE_POINTS)
+        race_results, fastest_name, best_secs = build_results(race_session_key, RACE_POINTS)
         if not race_results:
             print(f"  Race data not available yet — skipping.")
             continue
+
+        # --- Update circuit lap record if this race set a new one ---
+        circuit_id = circuit_id_by_round.get(round_num)
+        circuit = circuits_by_id.get(circuit_id) if circuit_id else None
+        if circuit is not None and best_secs is not None and fastest_name:
+            new_time_str = format_lap_time(best_secs)
+            existing = circuit.get("lap_record")
+            existing_secs = lap_time_to_seconds(existing.get("time")) if existing else None
+            if existing_secs is None or best_secs < existing_secs:
+                year = int(race_time_str[:4])
+                circuit["lap_record"] = {
+                    "time":   new_time_str,
+                    "driver": fastest_name,
+                    "year":   year,
+                }
+                circuits_changed = True
+                print(f"  New circuit lap record: {new_time_str} — {fastest_name} ({year})")
 
         # --- Sprint (if applicable) ---
         sprint_results = None
@@ -257,7 +319,7 @@ def main():
             sprint_session_key = find_session_key(sprint_time_str, "Sprint")
             if sprint_session_key:
                 print(f"  Sprint session_key: {sprint_session_key}")
-                sprint_results = build_results(sprint_session_key, SPRINT_POINTS)
+                sprint_results, _, _ = build_results(sprint_session_key, SPRINT_POINTS)
             else:
                 print(f"  No sprint session found.")
 
@@ -271,16 +333,24 @@ def main():
         print(f"  Race: {len(race_results)} entries" + (
             f", Sprint: {len(sprint_results)} entries" if sprint_results else ""
         ))
-        updated = True
+        results_changed = True
 
-    if updated:
+    if results_changed:
         results_data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         RESULTS_FILE.write_text(
             json.dumps(results_data, indent=2, ensure_ascii=False),
             encoding="utf-8",
         )
         print(f"\nWrote {RESULTS_FILE}")
-    else:
+
+    if circuits_changed:
+        CIRCUITS_FILE.write_text(
+            json.dumps(circuits_data, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        print(f"Wrote {CIRCUITS_FILE}")
+
+    if not results_changed and not circuits_changed:
         print("\nNothing to write.")
         sys.exit(0)
 
