@@ -7,7 +7,11 @@ on:
     # Monday 22:00 UTC — catches late Sunday night races (Americas) + data availability buffer
     - cron: '0 22 * * 1'
   workflow_dispatch:
-    # Allow manual trigger from the Actions tab any time
+    inputs:
+      force_rounds:
+        description: 'Comma-separated round numbers to re-pull (e.g. 1,2). Leave blank to update only pending rounds.'
+        required: false
+        default: ''
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -31,7 +35,14 @@ jobs:
         run: pip install requests
 
       - name: Fetch results from OpenF1
-        run: python scripts/fetch_results.py
+        env:
+          FORCE_ROUNDS: ${{ inputs.force_rounds }}
+        run: |
+          if [ -n "$FORCE_ROUNDS" ]; then
+            python scripts/fetch_results.py --force-rounds "$FORCE_ROUNDS"
+          else
+            python scripts/fetch_results.py
+          fi
 
       - name: Update career wins in standings
         run: python scripts/update_standings.py

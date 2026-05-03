@@ -55,6 +55,11 @@ TEAM_ID_MAP = {
 def fetch(endpoint, **params):
     url = f"{OPENF1_BASE}/{endpoint}"
     resp = requests.get(url, params=params, timeout=30)
+    # Treat 404 as "session not yet active / no data available" — returns empty
+    # so build_results sees no positions and returns None cleanly. This lets us
+    # check sprint without crashing on the same round's not-yet-started race.
+    if resp.status_code == 404:
+        return []
     resp.raise_for_status()
     return resp.json()
 
@@ -222,7 +227,10 @@ def find_pending_rounds(results_data, schedule_data, force_rounds=None):
     """
     Rounds to update.
     force_rounds: set of round numbers to re-pull regardless of current data.
-    Otherwise returns rounds where race has passed but results are still null.
+    Otherwise returns rounds where race OR sprint has finished >4h ago and
+    that field is still null. Race and sprint are checked independently so
+    a sprint that finishes a day before the race is ingested as soon as it
+    is available, not after the race.
     """
     now = datetime.now(timezone.utc)
     schedule_by_round = {r["round"]: r for r in schedule_data["races"]}
@@ -234,19 +242,28 @@ def find_pending_rounds(results_data, schedule_data, force_rounds=None):
         if not sched or sched.get("cancelled"):
             continue
 
-        race_time_str = (sched.get("sessions") or {}).get("race")
-        if not race_time_str:
+        sessions = sched.get("sessions") or {}
+        race_time_str = sessions.get("race")
+        sprint_time_str = sessions.get("sprint_race")
+
+        # Without any session times we can't know when to fetch.
+        if not race_time_str and not sprint_time_str:
             continue
 
-        race_time = datetime.fromisoformat(race_time_str.replace("Z", "+00:00"))
+        is_forced = force_rounds and round_num in force_rounds
 
-        sprint_time_str = (sched.get("sessions") or {}).get("sprint_race")
-        if force_rounds and round_num in force_rounds:
+        race_due = False
+        if race_time_str and race.get("race_results") is None:
+            race_time = datetime.fromisoformat(race_time_str.replace("Z", "+00:00"))
+            race_due = now > race_time + timedelta(hours=4)
+
+        sprint_due = False
+        if sprint_time_str and race.get("sprint_results") is None:
+            sprint_time = datetime.fromisoformat(sprint_time_str.replace("Z", "+00:00"))
+            sprint_due = now > sprint_time + timedelta(hours=4)
+
+        if is_forced or race_due or sprint_due:
             pending.append((round_num, race["grand_prix"], race_time_str, sprint_time_str))
-        elif race["race_results"] is None:
-            # Give 4 hours after race start for OpenF1 data to be available
-            if now > race_time + timedelta(hours=4):
-                pending.append((round_num, race["grand_prix"], race_time_str, sprint_time_str))
 
     return pending
 
@@ -283,57 +300,71 @@ def main():
 
     for round_num, grand_prix, race_time_str, sprint_time_str in pending:
         print(f"\nProcessing Round {round_num}: {grand_prix}")
+        is_forced = round_num in force_rounds
+        existing = next(r for r in results_data["races"] if r["round"] == round_num)
 
-        # --- Main race ---
-        race_session_key = find_session_key(race_time_str, "Race")
-        if not race_session_key:
-            print(f"  Could not find Race session — skipping.")
-            continue
+        # --- Main race --------------------------------------------------------
+        # Skip the race fetch when nothing to do (already ingested and not forced).
+        race_results, fastest_name, best_secs = None, None, None
+        if race_time_str and (is_forced or existing.get("race_results") is None):
+            race_session_key = find_session_key(race_time_str, "Race")
+            if not race_session_key:
+                print(f"  Could not find Race session.")
+            else:
+                print(f"  Race session_key: {race_session_key}")
+                race_results, fastest_name, best_secs = build_results(race_session_key, RACE_POINTS)
+                if not race_results:
+                    print(f"  Race data not available yet from OpenF1.")
 
-        print(f"  Race session_key: {race_session_key}")
-        race_results, fastest_name, best_secs = build_results(race_session_key, RACE_POINTS)
-        if not race_results:
-            print(f"  Race data not available yet — skipping.")
-            continue
+        # --- Update circuit lap record if this race set a new one ------------
+        if race_results is not None and best_secs is not None and fastest_name:
+            circuit_id = circuit_id_by_round.get(round_num)
+            circuit = circuits_by_id.get(circuit_id) if circuit_id else None
+            if circuit is not None:
+                new_time_str = format_lap_time(best_secs)
+                existing_lap = circuit.get("lap_record")
+                existing_secs = lap_time_to_seconds(existing_lap.get("time")) if existing_lap else None
+                if existing_secs is None or best_secs < existing_secs:
+                    year = int(race_time_str[:4])
+                    circuit["lap_record"] = {
+                        "time":   new_time_str,
+                        "driver": fastest_name,
+                        "year":   year,
+                    }
+                    circuits_changed = True
+                    print(f"  New circuit lap record: {new_time_str} — {fastest_name} ({year})")
 
-        # --- Update circuit lap record if this race set a new one ---
-        circuit_id = circuit_id_by_round.get(round_num)
-        circuit = circuits_by_id.get(circuit_id) if circuit_id else None
-        if circuit is not None and best_secs is not None and fastest_name:
-            new_time_str = format_lap_time(best_secs)
-            existing = circuit.get("lap_record")
-            existing_secs = lap_time_to_seconds(existing.get("time")) if existing else None
-            if existing_secs is None or best_secs < existing_secs:
-                year = int(race_time_str[:4])
-                circuit["lap_record"] = {
-                    "time":   new_time_str,
-                    "driver": fastest_name,
-                    "year":   year,
-                }
-                circuits_changed = True
-                print(f"  New circuit lap record: {new_time_str} — {fastest_name} ({year})")
-
-        # --- Sprint (if applicable) ---
+        # --- Sprint (if applicable) ------------------------------------------
         sprint_results = None
-        if sprint_time_str:
+        if sprint_time_str and (is_forced or existing.get("sprint_results") is None):
             sprint_session_key = find_session_key(sprint_time_str, "Sprint")
-            if sprint_session_key:
+            if not sprint_session_key:
+                print(f"  No sprint session found.")
+            else:
                 print(f"  Sprint session_key: {sprint_session_key}")
                 sprint_results, _, _ = build_results(sprint_session_key, SPRINT_POINTS)
-            else:
-                print(f"  No sprint session found.")
+                if not sprint_results:
+                    print(f"  Sprint data not available yet from OpenF1.")
 
-        # --- Write into results ---
-        for race in results_data["races"]:
-            if race["round"] == round_num:
-                race["race_results"]   = race_results
-                race["sprint_results"] = sprint_results
-                break
+        # --- Write only fields we successfully fetched ------------------------
+        # Never overwrite an existing list with None (would wipe ingested data
+        # if a later run can't find the OpenF1 session).
+        wrote_anything = False
+        if race_results is not None:
+            existing["race_results"] = race_results
+            wrote_anything = True
+        if sprint_results is not None:
+            existing["sprint_results"] = sprint_results
+            wrote_anything = True
 
-        print(f"  Race: {len(race_results)} entries" + (
-            f", Sprint: {len(sprint_results)} entries" if sprint_results else ""
-        ))
-        results_changed = True
+        if wrote_anything:
+            parts = []
+            if race_results is not None: parts.append(f"Race: {len(race_results)} entries")
+            if sprint_results is not None: parts.append(f"Sprint: {len(sprint_results)} entries")
+            print(f"  Wrote: {', '.join(parts)}")
+            results_changed = True
+        else:
+            print(f"  Nothing new to write for this round.")
 
     if results_changed:
         results_data["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
