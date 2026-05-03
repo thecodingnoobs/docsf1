@@ -2,6 +2,13 @@ name: Update Race Results
 
 on:
   schedule:
+    # Friday 22:00 UTC — catches FP1/FP2 once those are wired into fetch_results.
+    # Until then it's a no-op (find_pending_rounds returns empty), which is fine.
+    - cron: '0 22 * * 5'
+    # Saturday 22:00 UTC — catches sprint quali + sprint race (Sat-only sessions),
+    # plus FP3 / qualifying once those are added. This is the missing leg that
+    # made Miami's Sat sprint sit uningested until Sunday before today's fix.
+    - cron: '0 22 * * 6'
     # Sunday 22:00 UTC — catches races that finish by ~20:00 UTC (European/Asian slots)
     - cron: '0 22 * * 0'
     # Monday 22:00 UTC — catches late Sunday night races (Americas) + data availability buffer
