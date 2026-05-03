@@ -12,7 +12,7 @@
       "team_id": "mercedes",
       "team_name": "Mercedes",
       "nationality": "Italian",
-      "points": 72,
+      "points": 75,
       "wins": 2,
       "debut_year": 2025,
       "career_wins": 2,
@@ -24,7 +24,7 @@
       "h2h_teammate_ahead": 1,
       "career_races": 27,
       "career_podiums": 6,
-      "career_top10s": 18,
+      "career_top10s": 19,
       "headshot": "drivers/antonelli.avif"
     },
     {
@@ -35,7 +35,7 @@
       "team_id": "mercedes",
       "team_name": "Mercedes",
       "nationality": "British",
-      "points": 63,
+      "points": 68,
       "wins": 1,
       "debut_year": 2019,
       "career_wins": 6,
@@ -47,7 +47,7 @@
       "h2h_teammate_ahead": 2,
       "career_races": 155,
       "career_podiums": 27,
-      "career_top10s": 90,
+      "career_top10s": 91,
       "headshot": "drivers/russell.avif"
     },
     {
@@ -57,8 +57,8 @@
       "driver_name": "Charles Leclerc",
       "team_id": "ferrari",
       "team_name": "Ferrari",
-      "nationality": "Mon\u00e9gasque",
-      "points": 49,
+      "nationality": "Monégasque",
+      "points": 55,
       "wins": 0,
       "debut_year": 2018,
       "career_wins": 8,
@@ -69,8 +69,8 @@
       "h2h_driver_ahead": 2,
       "h2h_teammate_ahead": 1,
       "career_races": 176,
-      "career_podiums": 53,
-      "career_top10s": 136,
+      "career_podiums": 54,
+      "career_top10s": 137,
       "headshot": "drivers/leclerc.avif"
     },
     {
@@ -81,7 +81,7 @@
       "team_id": "ferrari",
       "team_name": "Ferrari",
       "nationality": "British",
-      "points": 41,
+      "points": 43,
       "wins": 0,
       "debut_year": 2007,
       "career_wins": 105,
@@ -93,7 +93,7 @@
       "h2h_teammate_ahead": 2,
       "career_races": 383,
       "career_podiums": 204,
-      "career_top10s": 335,
+      "career_top10s": 336,
       "headshot": "drivers/hamilton.avif"
     },
     {
@@ -104,7 +104,7 @@
       "team_id": "mclaren",
       "team_name": "McLaren",
       "nationality": "British",
-      "points": 25,
+      "points": 33,
       "wins": 0,
       "debut_year": 2019,
       "career_wins": 11,
@@ -115,8 +115,8 @@
       "h2h_driver_ahead": 1,
       "h2h_teammate_ahead": 2,
       "career_races": 155,
-      "career_podiums": 44,
-      "career_top10s": 124,
+      "career_podiums": 45,
+      "career_top10s": 125,
       "headshot": "drivers/norris.avif"
     },
     {
@@ -127,7 +127,7 @@
       "team_id": "mclaren",
       "team_name": "McLaren",
       "nationality": "Australian",
-      "points": 21,
+      "points": 28,
       "wins": 0,
       "debut_year": 2023,
       "career_wins": 9,
@@ -138,8 +138,8 @@
       "h2h_driver_ahead": 2,
       "h2h_teammate_ahead": 1,
       "career_races": 73,
-      "career_podiums": 27,
-      "career_top10s": 58,
+      "career_podiums": 28,
+      "career_top10s": 59,
       "headshot": "drivers/piastri.avif"
     },
     {
@@ -173,7 +173,7 @@
       "team_id": "alpine",
       "team_name": "Alpine",
       "nationality": "French",
-      "points": 15,
+      "points": 16,
       "wins": 0,
       "debut_year": 2017,
       "career_wins": 1,
@@ -185,7 +185,7 @@
       "h2h_teammate_ahead": 0,
       "career_races": 181,
       "career_podiums": 5,
-      "career_top10s": 78,
+      "career_top10s": 79,
       "headshot": "drivers/gasly.avif"
     },
     {
@@ -196,7 +196,7 @@
       "team_id": "red_bull",
       "team_name": "Red Bull",
       "nationality": "Dutch",
-      "points": 12,
+      "points": 16,
       "wins": 0,
       "debut_year": 2015,
       "career_wins": 71,
@@ -208,7 +208,7 @@
       "h2h_teammate_ahead": 1,
       "career_races": 236,
       "career_podiums": 127,
-      "career_top10s": 198,
+      "career_top10s": 199,
       "headshot": "drivers/verstappen.avif"
     },
     {
@@ -277,7 +277,7 @@
       "h2h_teammate_ahead": 2,
       "career_races": 27,
       "career_podiums": 1,
-      "career_top10s": 11,
+      "career_top10s": 12,
       "headshot": "drivers/hadjar.avif"
     },
     {
@@ -369,14 +369,14 @@
       "h2h_teammate_ahead": 3,
       "career_races": 30,
       "career_podiums": 0,
-      "career_top10s": 3,
+      "career_top10s": 4,
       "headshot": "drivers/colapinto.avif"
     },
     {
       "position": 17,
       "driver_id": "hulkenberg",
       "driver_code": "HUL",
-      "driver_name": "Nico H\u00fclkenberg",
+      "driver_name": "Nico Hülkenberg",
       "team_id": "audi",
       "team_name": "Audi",
       "nationality": "German",
@@ -445,7 +445,7 @@
       "position": 20,
       "driver_id": "perez",
       "driver_code": "PER",
-      "driver_name": "Sergio P\u00e9rez",
+      "driver_name": "Sergio Pérez",
       "team_id": "cadillac",
       "team_name": "Cadillac",
       "nationality": "Mexican",
@@ -516,42 +516,42 @@
       "position": 1,
       "team_id": "mercedes",
       "team_name": "Mercedes",
-      "points": 135,
+      "points": 143,
       "wins": 3
     },
     {
       "position": 2,
       "team_id": "ferrari",
       "team_name": "Ferrari",
-      "points": 90,
+      "points": 98,
       "wins": 0
     },
     {
       "position": 3,
       "team_id": "mclaren",
       "team_name": "McLaren",
-      "points": 46,
+      "points": 61,
       "wins": 0
     },
     {
       "position": 4,
+      "team_id": "red_bull",
+      "team_name": "Red Bull",
+      "points": 20,
+      "wins": 0
+    },
+    {
+      "position": 5,
       "team_id": "haas",
       "team_name": "Haas F1 Team",
       "points": 18,
       "wins": 0
     },
     {
-      "position": 5,
+      "position": 6,
       "team_id": "alpine",
       "team_name": "Alpine",
-      "points": 16,
-      "wins": 0
-    },
-    {
-      "position": 6,
-      "team_id": "red_bull",
-      "team_name": "Red Bull",
-      "points": 16,
+      "points": 17,
       "wins": 0
     },
     {
