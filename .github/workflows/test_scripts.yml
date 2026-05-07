@@ -7,9 +7,12 @@ on:
       - 'scripts/**'
       - 'f1_2026_standings.json'
       - 'f1_2026_results.json'
+      - '.github/workflows/test_scripts.yml'
   pull_request:
     paths:
       - 'scripts/**'
+      - '.github/workflows/test_scripts.yml'
+  workflow_dispatch:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
