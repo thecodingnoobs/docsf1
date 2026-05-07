@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-05-03",
+  "last_updated": "2026-05-07",
   "notes": "race_results and sprint_results are null for upcoming or cancelled races. fastest_lap is tracked for display only — no bonus point awarded (abolished from 2025 season). points reflect points scored in that specific session only.",
   "races": [
     {
