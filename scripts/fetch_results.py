@@ -24,6 +24,17 @@ CIRCUITS_FILE = ROOT / "circuits.json"
 RACE_POINTS   = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
 SPRINT_POINTS = [8, 7, 6, 5, 4, 3, 2, 1]
 
+# Wait this long after a session's scheduled start before the very first
+# fetch. Long enough for the session to finish and for OpenF1 to settle,
+# short enough that Sunday-evening races are ingested the same day.
+PRE_FETCH_BUFFER = timedelta(hours=4)
+
+# Re-fetch a session whose data is already populated if its scheduled start
+# was within this window. Catches FIA stewards' decisions and OpenF1
+# finalisation lag (penalties, classification fixes) for ~2 days, then
+# treats the round as locked so we don't pointlessly re-pull old archives.
+REFRESH_WINDOW   = timedelta(hours=48)
+
 # OpenF1 name_acronym → our driver_id
 DRIVER_ID_MAP = {
     "RUS": "russell",    "ANT": "antonelli",  "LEC": "leclerc",
@@ -333,16 +344,58 @@ def build_results(session_key, points_scale):
     return results, fastest_driver_name, best_secs
 
 
-def find_pending_rounds(results_data, schedule_data, force_rounds=None):
+def is_session_due(time_str, current_value, now, *, refresh_window=REFRESH_WINDOW):
+    """
+    Decide whether a single session should be (re)fetched right now.
+
+    Two gates apply in order:
+
+    1. PRE_FETCH_BUFFER — the session must have started at least
+       PRE_FETCH_BUFFER ago. This stops us from calling OpenF1 while
+       the session is in progress (partial/in-flight data) or before
+       it's started at all (the previous bug: a Saturday cron picking
+       up Sunday's upcoming race session and persisting whatever
+       OpenF1 returned). The same gate applies to refresh, otherwise
+       a populated round could be overwritten with mid-session data.
+
+    2. refresh_window — when data already exists, only refresh while
+       the scheduled start is still within this window. This is the
+       fix for "first write wins forever": if OpenF1 returned
+       preliminary data on the first fetch (before stewards finalised
+       the classification), a later run will overwrite it. After the
+       window closes the round is treated as archival and skipped, so
+       cron runs don't pointlessly re-pull every old round. Pass
+       refresh_window=None to lift the upper bound (manual runs do
+       this — see --refresh-all).
+    """
+    if not time_str:
+        return False
+    t = datetime.fromisoformat(time_str.replace("Z", "+00:00"))
+    age = now - t
+    if age <= PRE_FETCH_BUFFER:
+        return False
+    if current_value is None:
+        return True
+    if refresh_window is None:
+        return True
+    return age <= refresh_window
+
+
+def find_pending_rounds(results_data, schedule_data, force_rounds=None, now=None,
+                        refresh_window=REFRESH_WINDOW):
     """
     Rounds to update.
     force_rounds: set of round numbers to re-pull regardless of current data.
-    Otherwise returns rounds where race OR sprint has finished >4h ago and
-    that field is still null. Race and sprint are checked independently so
-    a sprint that finishes a day before the race is ingested as soon as it
-    is available, not after the race.
+    refresh_window: upper bound on age for refreshing populated sessions.
+    Pass None to lift the cap (manual runs); cron uses the default 48h.
+    Otherwise returns rounds where any session is due per is_session_due —
+    that includes both first fetches and refreshes within refresh_window.
+    Sessions are checked independently so a sprint that finishes a day
+    before the race is ingested as soon as it is available, not after the
+    race.
     """
-    now = datetime.now(timezone.utc)
+    if now is None:
+        now = datetime.now(timezone.utc)
     schedule_by_round = {r["round"]: r for r in schedule_data["races"]}
 
     pending = []
@@ -364,18 +417,14 @@ def find_pending_rounds(results_data, schedule_data, force_rounds=None):
 
         is_forced = force_rounds and round_num in force_rounds
 
-        def is_due(time_str, current_value):
-            if not time_str or current_value is not None:
-                return False
-            t = datetime.fromisoformat(time_str.replace("Z", "+00:00"))
-            return now > t + timedelta(hours=4)
+        any_due = (
+            is_session_due(race_time_str,         race.get("race_results"),              now, refresh_window=refresh_window) or
+            is_session_due(sprint_time_str,       race.get("sprint_results"),            now, refresh_window=refresh_window) or
+            is_session_due(quali_time_str,        race.get("qualifying_results"),        now, refresh_window=refresh_window) or
+            is_session_due(sprint_quali_time_str, race.get("sprint_qualifying_results"), now, refresh_window=refresh_window)
+        )
 
-        race_due         = is_due(race_time_str,         race.get("race_results"))
-        sprint_due       = is_due(sprint_time_str,       race.get("sprint_results"))
-        quali_due        = is_due(quali_time_str,        race.get("qualifying_results"))
-        sprint_quali_due = is_due(sprint_quali_time_str, race.get("sprint_qualifying_results"))
-
-        if is_forced or race_due or sprint_due or quali_due or sprint_quali_due:
+        if is_forced or any_due:
             pending.append((
                 round_num, race["grand_prix"],
                 race_time_str, sprint_time_str,
@@ -392,8 +441,19 @@ def main():
         help="Comma-separated round numbers to re-pull (e.g. 1,2)",
         default="",
     )
+    parser.add_argument(
+        "--refresh-all",
+        action="store_true",
+        help=(
+            "Lift the REFRESH_WINDOW cap so populated sessions are "
+            "re-fetched regardless of how long ago they happened. "
+            "Used by manual workflow runs ('something went wrong, "
+            "fix it'); cron leaves the 48h cap in place."
+        ),
+    )
     args = parser.parse_args()
     force_rounds = {int(r) for r in args.force_rounds.split(",") if r.strip()}
+    refresh_window = None if args.refresh_all else REFRESH_WINDOW
 
     results_data  = json.loads(RESULTS_FILE.read_text(encoding="utf-8"))
     schedule_data = json.loads(SCHEDULE_FILE.read_text(encoding="utf-8"))
@@ -407,7 +467,11 @@ def main():
         r["round"]: r.get("circuit_id") for r in schedule_data["races"]
     }
 
-    pending = find_pending_rounds(results_data, schedule_data, force_rounds)
+    now = datetime.now(timezone.utc)
+    pending = find_pending_rounds(
+        results_data, schedule_data, force_rounds,
+        now=now, refresh_window=refresh_window,
+    )
     if not pending:
         print("No pending rounds to update.")
         return
@@ -421,9 +485,13 @@ def main():
         existing = next(r for r in results_data["races"] if r["round"] == round_num)
 
         # --- Main race --------------------------------------------------------
-        # Skip the race fetch when nothing to do (already ingested and not forced).
+        # Per-session guards mirror find_pending_rounds: a round can be in the
+        # pending list because *any* of its four sessions is due. Each session
+        # then re-checks its own due-ness, so we don't (a) refetch sessions
+        # that are still in the future or (b) refetch archival sessions just
+        # because a sibling sprint/quali session was recently due.
         race_results, fastest_name, best_secs = None, None, None
-        if race_time_str and (is_forced or existing.get("race_results") is None):
+        if is_forced or is_session_due(race_time_str, existing.get("race_results"), now, refresh_window=refresh_window):
             try:
                 race_session_key = find_session_key(race_time_str, "Race")
                 if not race_session_key:
@@ -456,7 +524,7 @@ def main():
 
         # --- Sprint (if applicable) ------------------------------------------
         sprint_results = None
-        if sprint_time_str and (is_forced or existing.get("sprint_results") is None):
+        if is_forced or is_session_due(sprint_time_str, existing.get("sprint_results"), now, refresh_window=refresh_window):
             try:
                 sprint_session_key = find_session_key(sprint_time_str, "Sprint")
                 if not sprint_session_key:
@@ -471,7 +539,7 @@ def main():
 
         # --- Qualifying (if applicable) --------------------------------------
         quali_results = None
-        if quali_time_str and (is_forced or existing.get("qualifying_results") is None):
+        if is_forced or is_session_due(quali_time_str, existing.get("qualifying_results"), now, refresh_window=refresh_window):
             try:
                 quali_session_key = find_session_key(quali_time_str, "Qualifying")
                 if not quali_session_key:
@@ -486,7 +554,7 @@ def main():
 
         # --- Sprint Qualifying (if applicable) -------------------------------
         sprint_quali_results = None
-        if sprint_quali_time_str and (is_forced or existing.get("sprint_qualifying_results") is None):
+        if is_forced or is_session_due(sprint_quali_time_str, existing.get("sprint_qualifying_results"), now, refresh_window=refresh_window):
             try:
                 sq_session_key = find_session_key(sprint_quali_time_str, "Sprint Qualifying")
                 if not sq_session_key:

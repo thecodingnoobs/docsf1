@@ -28,7 +28,9 @@ jobs:
           python-version: '3.12'
 
       - name: Run unit tests
-        run: python scripts/test_update_standings.py -v
+        run: |
+          python scripts/test_update_standings.py -v
+          python scripts/test_fetch_results.py -v
 
       - name: Validate standings JSON
         run: python scripts/validate_standings.py

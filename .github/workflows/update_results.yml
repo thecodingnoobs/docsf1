@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       force_rounds:
-        description: 'Comma-separated round numbers to re-pull (e.g. 1,2). Leave blank to update only pending rounds.'
+        description: 'Comma-separated round numbers to re-pull (e.g. 1,2). Leave blank to refresh every populated round (REFRESH_WINDOW cap is lifted on manual runs).'
         required: false
         default: ''
 
@@ -44,9 +44,18 @@ jobs:
       - name: Fetch results from OpenF1
         env:
           FORCE_ROUNDS: ${{ inputs.force_rounds }}
+          EVENT_NAME:   ${{ github.event_name }}
         run: |
+          # Manual runs (workflow_dispatch) without specific force_rounds
+          # pass --refresh-all so populated sessions are re-pulled regardless
+          # of REFRESH_WINDOW. The pre-fetch buffer still applies, so
+          # in-progress and future sessions are still skipped. Cron runs
+          # keep the default 48h cap so we don't pointlessly hit OpenF1
+          # for every archived round on every scheduled run.
           if [ -n "$FORCE_ROUNDS" ]; then
             python scripts/fetch_results.py --force-rounds "$FORCE_ROUNDS"
+          elif [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            python scripts/fetch_results.py --refresh-all
           else
             python scripts/fetch_results.py
           fi
