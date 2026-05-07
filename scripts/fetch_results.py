@@ -21,9 +21,6 @@ RESULTS_FILE  = ROOT / "f1_2026_results.json"
 SCHEDULE_FILE = ROOT / "f1_2026_schedule.json"
 CIRCUITS_FILE = ROOT / "circuits.json"
 
-RACE_POINTS   = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
-SPRINT_POINTS = [8, 7, 6, 5, 4, 3, 2, 1]
-
 # Wait this long after a session's scheduled start before the very first
 # fetch. Long enough for the session to finish and for OpenF1 to settle,
 # short enough that Sunday-evening races are ingested the same day.
@@ -86,7 +83,11 @@ def fetch(endpoint, **params):
 
 
 def get_final_positions(session_key):
-    """Last recorded position per driver — their finishing position."""
+    """Last recorded position per driver from /position — the live on-track
+    finishing order. Used by qualifying (where penalties apply to the
+    subsequent race, not to the quali classification itself); the race/
+    sprint builder prefers /session_result, which reflects post-race
+    stewards' decisions."""
     data = fetch("position", session_key=session_key)
     final = {}
     for entry in data:
@@ -134,27 +135,6 @@ def get_laps_data(session_key):
             best_time = duration
             best_driver = dn
     return counts, best_driver, best_time
-
-
-def get_final_gaps(session_key):
-    """
-    Final gap_to_leader per driver from the intervals endpoint.
-    Returns {driver_number: gap_string} e.g. {"" for leader, "+5.515s", "+1 LAP"}.
-    """
-    data = fetch("intervals", session_key=session_key)
-    final = {}
-    for entry in data:
-        final[entry["driver_number"]] = entry["gap_to_leader"]
-
-    result = {}
-    for dn, gap in final.items():
-        if gap is None or gap == 0 or gap == 0.0:
-            result[dn] = ""                              # race winner
-        elif isinstance(gap, str):
-            result[dn] = gap                             # "+1 LAP", "+2 LAPS" etc
-        else:
-            result[dn] = f"+{gap:.3f}s"                 # "+5.515s"
-    return result
 
 
 def get_drivers(session_key):
@@ -282,62 +262,90 @@ def build_qualifying_results(session_key):
     return results
 
 
-def build_results(session_key, points_scale):
+def build_results(session_key):
     """
-    Build a full results list for a session from OpenF1 data.
-    Returns (results, fastest_driver_name, best_lap_seconds).
-    fastest_driver_name and best_lap_seconds are None when unavailable.
-    """
-    positions                          = get_final_positions(session_key)
-    drivers                            = get_drivers(session_key)
-    lap_counts, fastest_num, best_secs = get_laps_data(session_key)
-    gaps                               = get_final_gaps(session_key)
+    Build a full results list for a race or sprint session from OpenF1's
+    /session_result endpoint, joined with /drivers (names, teams) and
+    /laps (fastest-lap detection only).
 
-    if not positions:
+    /session_result is the canonical FIA classification: post-race time
+    penalties are already baked into gap_to_leader and position; points
+    already account for the post-2025 no-fastest-lap-bonus rule. Earlier
+    versions of this function reconstructed the result from /position +
+    /intervals + a 90%-of-winner's-laps DNF heuristic, which produced
+    on-track running order rather than official classification — that
+    silently lost stewards' time penalties (e.g. Miami 2026: VER's 5s
+    penalty and LEC's 20s penalty + 2-place drop never made it in).
+
+    Returns (results, fastest_driver_name, best_lap_seconds). All three
+    are None when /session_result returns empty (session not finished or
+    OpenF1 hasn't published the classification yet).
+    """
+    rows = fetch("session_result", session_key=session_key)
+    if not rows:
         return None, None, None
 
-    max_laps = max(lap_counts.values()) if lap_counts else 0
-    sorted_entries = sorted(positions.items(), key=lambda x: x[1])
+    drivers                   = get_drivers(session_key)
+    _, fastest_num, best_secs = get_laps_data(session_key)
 
-    results = []
+    # Classified rows in finishing order; DNF/DNS/DSQ rows after, ordered
+    # by laps-completed desc — matches the F1 convention of listing
+    # retirees in the order they got further. Synthetic positions are
+    # assigned to retirees so every row in our output has a numeric
+    # position (existing app code assumes this).
+    classified = sorted(
+        [r for r in rows if r.get("position") is not None],
+        key=lambda r: r["position"],
+    )
+    unclassified = sorted(
+        [r for r in rows if r.get("position") is None],
+        key=lambda r: -(r.get("number_of_laps") or 0),
+    )
+    next_pos = (classified[-1]["position"] + 1) if classified else 1
+    for i, r in enumerate(unclassified):
+        r["position"] = next_pos + i
+
     fastest_driver_name = None
-    for driver_number, position in sorted_entries:
-        driver    = drivers.get(driver_number, {})
-        acronym   = driver.get("name_acronym", "???")
-        team_name = driver.get("team_name", "Unknown")
-        full_name = f"{driver.get('first_name', '')} {driver.get('last_name', '')}".strip()
+    results = []
+    for r in classified + unclassified:
+        dn        = r["driver_number"]
+        d         = drivers.get(dn, {})
+        acronym   = d.get("name_acronym", "???")
+        team_name = d.get("team_name", "Unknown")
+        full_name = f"{d.get('first_name', '')} {d.get('last_name', '')}".strip()
 
-        laps_done = lap_counts.get(driver_number, 0)
-        # F1 classification rule: complete ≥ 90% of winner's laps = Finished
-        classified_threshold = max_laps * 0.9
-
-        if laps_done == 0:
+        if r.get("dns"):
             status, time_str = "DNS", "DNS"
-        elif laps_done < classified_threshold:
+        elif r.get("dnf"):
             status, time_str = "DNF", "DNF"
+        elif r.get("dsq"):
+            status, time_str = "DSQ", "DSQ"
         else:
-            status   = "Finished"
-            time_str = gaps.get(driver_number, "")
+            status = "Finished"
+            gap = r.get("gap_to_leader")
+            if gap is None or gap == 0:
+                time_str = ""                       # race winner
+            elif isinstance(gap, str):
+                time_str = gap                      # "+1 LAP", "+2 LAPS"
+            else:
+                time_str = f"+{gap:.3f}s"           # "+5.515s"
 
-        if driver_number == fastest_num and full_name:
+        if dn == fastest_num and full_name:
             # Abbreviated: "L. Hamilton"
-            given = driver.get("first_name", "")
-            family = driver.get("last_name", "")
+            given  = d.get("first_name", "")
+            family = d.get("last_name", "")
             fastest_driver_name = f"{given[0]}. {family}" if given else family
 
-        pos_index = position - 1
-        points = points_scale[pos_index] if (status == "Finished" and pos_index < len(points_scale)) else 0
-
         results.append({
-            "position":    position,
+            "position":    r["position"],
             "driver_id":   DRIVER_ID_MAP.get(acronym, acronym.lower()),
             "driver_code": acronym,
             "driver_name": full_name,
             "team_id":     TEAM_ID_MAP.get(team_name, team_name.lower().replace(" ", "_")),
             "team_name":   team_name,
             "time":        time_str,
-            "fastest_lap": driver_number == fastest_num,
-            "points":      points,
+            "fastest_lap": dn == fastest_num,
+            "points":      int(r.get("points") or 0),
             "status":      status,
         })
 
@@ -498,7 +506,7 @@ def main():
                     print(f"  Could not find Race session.")
                 else:
                     print(f"  Race session_key: {race_session_key}")
-                    race_results, fastest_name, best_secs = build_results(race_session_key, RACE_POINTS)
+                    race_results, fastest_name, best_secs = build_results(race_session_key)
                     if not race_results:
                         print(f"  Race data not available yet from OpenF1.")
             except TransientFetchError as e:
@@ -531,7 +539,7 @@ def main():
                     print(f"  No sprint session found.")
                 else:
                     print(f"  Sprint session_key: {sprint_session_key}")
-                    sprint_results, _, _ = build_results(sprint_session_key, SPRINT_POINTS)
+                    sprint_results, _, _ = build_results(sprint_session_key)
                     if not sprint_results:
                         print(f"  Sprint data not available yet from OpenF1.")
             except TransientFetchError as e:

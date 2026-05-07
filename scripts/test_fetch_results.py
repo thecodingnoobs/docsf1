@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-Tests for fetch_results.py — focused on the scheduling logic that decides
-which sessions get (re)fetched. The OpenF1 fetching itself is a thin
-wrapper over requests and isn't covered here.
+Tests for fetch_results.py — covers (a) the scheduling logic that decides
+which sessions get (re)fetched and (b) build_results, which translates
+OpenF1 endpoint responses into the JSON schema the app consumes. The
+HTTP transport itself is a thin wrapper over requests and isn't covered
+here; build_results tests stub out fetch() so no network calls happen.
 
 Run with: python -m pytest scripts/test_fetch_results.py -v
       or: python scripts/test_fetch_results.py
@@ -12,11 +14,13 @@ import sys
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).parent))
 from fetch_results import (
     PRE_FETCH_BUFFER,
     REFRESH_WINDOW,
+    build_results,
     is_session_due,
     find_pending_rounds,
 )
@@ -249,6 +253,198 @@ class FindPendingRoundsBehaviour(unittest.TestCase):
         schedule["races"][0]["cancelled"] = True
         now = datetime(2026, 5, 6, 12, 0, tzinfo=timezone.utc)
         self.assertEqual(find_pending_rounds(results, schedule, now=now), [])
+
+
+# ---------------------------------------------------------------------------
+# build_results — translates OpenF1 endpoint responses into our JSON schema.
+# Each test stubs the fetch() function with shaped fixtures so no real
+# network calls happen, then asserts the resulting result rows.
+# ---------------------------------------------------------------------------
+
+# Shared minimal driver fixture: 3 drivers across 3 teams, real OpenF1 keys.
+DRIVERS_FIXTURE = [
+    {"driver_number": 12, "name_acronym": "ANT", "first_name": "Andrea Kimi",
+     "last_name": "Antonelli", "team_name": "Mercedes"},
+    {"driver_number": 1,  "name_acronym": "VER", "first_name": "Max",
+     "last_name": "Verstappen", "team_name": "Red Bull Racing"},
+    {"driver_number": 16, "name_acronym": "LEC", "first_name": "Charles",
+     "last_name": "Leclerc", "team_name": "Ferrari"},
+]
+
+
+def _patch_fetch(session_result, drivers=None, laps=None):
+    """Patch fetch() to dispatch by endpoint. Other endpoints raise so a
+    refactor that calls a stale endpoint surfaces immediately in tests."""
+    drivers = drivers if drivers is not None else DRIVERS_FIXTURE
+    laps    = laps    if laps    is not None else []
+
+    def fake_fetch(endpoint, **params):
+        if endpoint == "session_result":
+            return session_result
+        if endpoint == "drivers":
+            return drivers
+        if endpoint == "laps":
+            return laps
+        raise AssertionError(f"build_results should not call /{endpoint}")
+    return patch("fetch_results.fetch", side_effect=fake_fetch)
+
+
+class BuildResultsClassified(unittest.TestCase):
+
+    def test_winner_has_blank_time(self):
+        with _patch_fetch(session_result=[
+            {"position": 1, "driver_number": 12, "number_of_laps": 57,
+             "points": 25.0, "dnf": False, "dns": False, "dsq": False,
+             "duration": 5400.0, "gap_to_leader": 0},
+        ]):
+            results, _, _ = build_results(11280)
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["time"], "")
+        self.assertEqual(results[0]["status"], "Finished")
+        self.assertEqual(results[0]["position"], 1)
+        self.assertEqual(results[0]["points"], 25)
+        self.assertEqual(results[0]["driver_id"], "antonelli")
+        self.assertEqual(results[0]["team_id"], "mercedes")
+
+    def test_float_gap_formatted_to_three_decimals(self):
+        # The whole reason for this refactor: post-penalty gap from
+        # /session_result must reach the JSON intact. e.g. VER's 5s
+        # penalty in Miami 2026 turns +43.949s into +48.949s.
+        with _patch_fetch(session_result=[
+            {"position": 1, "driver_number": 12, "number_of_laps": 57,
+             "points": 25.0, "dnf": False, "dns": False, "dsq": False,
+             "duration": 5400.0, "gap_to_leader": 0},
+            {"position": 2, "driver_number": 1,  "number_of_laps": 57,
+             "points": 18.0, "dnf": False, "dns": False, "dsq": False,
+             "duration": None, "gap_to_leader": 48.949},
+        ]):
+            results, _, _ = build_results(11280)
+        self.assertEqual(results[1]["time"], "+48.949s")
+
+    def test_string_gap_passed_through(self):
+        # Lapped drivers come back as "+1 LAP" / "+2 LAPS" strings.
+        with _patch_fetch(session_result=[
+            {"position": 1, "driver_number": 12, "number_of_laps": 57,
+             "points": 25.0, "dnf": False, "dns": False, "dsq": False,
+             "duration": 5400.0, "gap_to_leader": 0},
+            {"position": 2, "driver_number": 1,  "number_of_laps": 56,
+             "points": 18.0, "dnf": False, "dns": False, "dsq": False,
+             "duration": None, "gap_to_leader": "+1 LAP"},
+        ]):
+            results, _, _ = build_results(11280)
+        self.assertEqual(results[1]["time"], "+1 LAP")
+
+    def test_points_come_from_openf1_not_position_table(self):
+        # Pre-refactor we computed points = points_scale[pos-1]. Now we
+        # trust /session_result.points so penalty-induced points changes
+        # land correctly. Verify by giving the winner non-standard points.
+        with _patch_fetch(session_result=[
+            {"position": 1, "driver_number": 12, "number_of_laps": 57,
+             "points": 22.0, "dnf": False, "dns": False, "dsq": False,
+             "duration": 5400.0, "gap_to_leader": 0},
+        ]):
+            results, _, _ = build_results(11280)
+        self.assertEqual(results[0]["points"], 22)
+
+
+class BuildResultsRetirements(unittest.TestCase):
+
+    def test_dnf_status_and_synthetic_position(self):
+        # OpenF1 returns position=null for retirees. We assign synthetic
+        # positions after the last classified row so the output schema
+        # stays "every row has a numeric position."
+        with _patch_fetch(session_result=[
+            {"position": 1, "driver_number": 12, "number_of_laps": 57,
+             "points": 25.0, "dnf": False, "dns": False, "dsq": False,
+             "duration": 5400.0, "gap_to_leader": 0},
+            {"position": None, "driver_number": 1, "number_of_laps": 8,
+             "points": 0.0, "dnf": True, "dns": False, "dsq": False,
+             "duration": None, "gap_to_leader": None},
+        ]):
+            results, _, _ = build_results(11280)
+        self.assertEqual(results[1]["status"], "DNF")
+        self.assertEqual(results[1]["time"], "DNF")
+        self.assertEqual(results[1]["position"], 2)
+        self.assertEqual(results[1]["points"], 0)
+
+    def test_retirees_ordered_by_laps_completed_desc(self):
+        with _patch_fetch(session_result=[
+            {"position": 1, "driver_number": 12, "number_of_laps": 57,
+             "points": 25.0, "dnf": False, "dns": False, "dsq": False,
+             "duration": 5400.0, "gap_to_leader": 0},
+            # Two DNFs, intentionally listed laps-asc to verify we sort.
+            {"position": None, "driver_number": 16, "number_of_laps": 3,
+             "points": 0.0, "dnf": True, "dns": False, "dsq": False,
+             "duration": None, "gap_to_leader": None},
+            {"position": None, "driver_number": 1,  "number_of_laps": 20,
+             "points": 0.0, "dnf": True, "dns": False, "dsq": False,
+             "duration": None, "gap_to_leader": None},
+        ]):
+            results, _, _ = build_results(11280)
+        self.assertEqual(results[1]["driver_code"], "VER")  # 20 laps
+        self.assertEqual(results[2]["driver_code"], "LEC")  # 3 laps
+
+    def test_dns_status_takes_precedence_over_gap(self):
+        # Defensive: even if OpenF1 emits both a gap and a DNS flag, the
+        # status flag wins because the driver never started.
+        with _patch_fetch(session_result=[
+            {"position": None, "driver_number": 12, "number_of_laps": 0,
+             "points": 0.0, "dnf": False, "dns": True, "dsq": False,
+             "duration": None, "gap_to_leader": 9999.0},
+        ]):
+            results, _, _ = build_results(11280)
+        self.assertEqual(results[0]["status"], "DNS")
+        self.assertEqual(results[0]["time"], "DNS")
+
+    def test_dsq_status(self):
+        # DSQs (rare; e.g. Hamilton 2024 floor wear) are now distinguished
+        # from DNFs in our output instead of being conflated.
+        with _patch_fetch(session_result=[
+            {"position": None, "driver_number": 12, "number_of_laps": 57,
+             "points": 0.0, "dnf": False, "dns": False, "dsq": True,
+             "duration": None, "gap_to_leader": None},
+        ]):
+            results, _, _ = build_results(11280)
+        self.assertEqual(results[0]["status"], "DSQ")
+        self.assertEqual(results[0]["time"], "DSQ")
+
+
+class BuildResultsFastestLap(unittest.TestCase):
+
+    def test_fastest_lap_flagged_on_correct_driver(self):
+        # /laps drives the fastest_lap flag and best_lap_seconds — the
+        # session_result endpoint doesn't expose either.
+        with _patch_fetch(
+            session_result=[
+                {"position": 1, "driver_number": 12, "number_of_laps": 57,
+                 "points": 25.0, "dnf": False, "dns": False, "dsq": False,
+                 "duration": 5400.0, "gap_to_leader": 0},
+                {"position": 2, "driver_number": 1, "number_of_laps": 57,
+                 "points": 18.0, "dnf": False, "dns": False, "dsq": False,
+                 "duration": None, "gap_to_leader": 3.264},
+            ],
+            laps=[
+                {"driver_number": 12, "lap_number": 1, "lap_duration": 92.000},
+                {"driver_number": 1,  "lap_number": 1, "lap_duration": 91.234},
+            ],
+        ):
+            results, fastest_name, best_secs = build_results(11280)
+        self.assertEqual(fastest_name, "M. Verstappen")
+        self.assertAlmostEqual(best_secs, 91.234)
+        self.assertFalse(results[0]["fastest_lap"])
+        self.assertTrue(results[1]["fastest_lap"])
+
+
+class BuildResultsEmpty(unittest.TestCase):
+
+    def test_empty_session_result_returns_none(self):
+        # Session not finished or OpenF1 hasn't published yet — caller
+        # uses None to mean "skip writing, retry next run."
+        with _patch_fetch(session_result=[]):
+            results, fastest_name, best_secs = build_results(11280)
+        self.assertIsNone(results)
+        self.assertIsNone(fastest_name)
+        self.assertIsNone(best_secs)
 
 
 if __name__ == "__main__":
