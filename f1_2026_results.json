@@ -520,7 +520,7 @@
           "team_id": "ferrari",
           "team_name": "Ferrari",
           "time": "+0.674s",
-          "fastest_lap": false,
+          "fastest_lap": true,
           "points": 7,
           "status": "Finished"
         },
@@ -735,10 +735,10 @@
           "driver_name": "Nico Hulkenberg",
           "team_id": "audi",
           "team_name": "Audi",
-          "time": "+38.206s",
+          "time": "DNF",
           "fastest_lap": false,
           "points": 0,
-          "status": "Finished"
+          "status": "DNF"
         },
         {
           "position": 21,
@@ -747,10 +747,10 @@
           "driver_name": "Valtteri Bottas",
           "team_id": "cadillac",
           "team_name": "Cadillac",
-          "time": "+78.061s",
+          "time": "DNF",
           "fastest_lap": false,
           "points": 0,
-          "status": "Finished"
+          "status": "DNF"
         },
         {
           "position": 22,
@@ -759,10 +759,10 @@
           "driver_name": "Arvid Lindblad",
           "team_id": "racing_bulls",
           "team_name": "Racing Bulls",
-          "time": "+54.555s",
+          "time": "DNF",
           "fastest_lap": false,
           "points": 0,
-          "status": "Finished"
+          "status": "DNF"
         }
       ],
       "race_results": [
