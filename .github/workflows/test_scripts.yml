@@ -27,6 +27,12 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install dependencies
+        # fetch_results.py imports `requests` at module level, so importing
+        # it from test_fetch_results.py needs the package installed even
+        # though the unit tests don't make any network calls.
+        run: pip install requests
+
       - name: Run unit tests
         run: |
           python scripts/test_update_standings.py -v
