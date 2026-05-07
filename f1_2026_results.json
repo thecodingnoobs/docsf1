@@ -207,10 +207,10 @@
           "driver_name": "Lance Stroll",
           "team_id": "aston_martin",
           "team_name": "Aston Martin",
-          "time": "DNF",
+          "time": "+15 LAPS",
           "fastest_lap": false,
           "points": 0,
-          "status": "DNF"
+          "status": "Finished"
         },
         {
           "position": 18,
@@ -255,10 +255,10 @@
           "driver_name": "Oscar Piastri",
           "team_id": "mclaren",
           "team_name": "McLaren",
-          "time": "DNF",
+          "time": "DNS",
           "fastest_lap": false,
           "points": 0,
-          "status": "DNF"
+          "status": "DNS"
         },
         {
           "position": 22,
@@ -267,10 +267,10 @@
           "driver_name": "Nico Hulkenberg",
           "team_id": "audi",
           "team_name": "Audi",
-          "time": "DNF",
+          "time": "DNS",
           "fastest_lap": false,
           "points": 0,
-          "status": "DNF"
+          "status": "DNS"
         }
       ],
       "qualifying_results": [
@@ -989,10 +989,10 @@
           "driver_name": "Oscar Piastri",
           "team_id": "mclaren",
           "team_name": "McLaren",
-          "time": "DNF",
+          "time": "DNS",
           "fastest_lap": false,
           "points": 0,
-          "status": "DNF"
+          "status": "DNS"
         },
         {
           "position": 20,
@@ -1013,10 +1013,10 @@
           "driver_name": "Gabriel Bortoleto",
           "team_id": "audi",
           "team_name": "Audi",
-          "time": "DNF",
+          "time": "DNS",
           "fastest_lap": false,
           "points": 0,
-          "status": "DNF"
+          "status": "DNS"
         },
         {
           "position": 22,
@@ -2094,7 +2094,7 @@
           "driver_name": "George Russell",
           "team_id": "mercedes",
           "team_name": "Mercedes",
-          "time": "",
+          "time": "+12.951s",
           "fastest_lap": false,
           "points": 5,
           "status": "Finished"
@@ -2130,7 +2130,7 @@
           "driver_name": "Lewis Hamilton",
           "team_id": "ferrari",
           "team_name": "Ferrari",
-          "time": "",
+          "time": "+21.665s",
           "fastest_lap": false,
           "points": 2,
           "status": "Finished"
@@ -2173,18 +2173,6 @@
         },
         {
           "position": 11,
-          "driver_id": "bortoleto",
-          "driver_code": "BOR",
-          "driver_name": "Gabriel Bortoleto",
-          "team_id": "audi",
-          "team_name": "Audi",
-          "time": "+48.438s",
-          "fastest_lap": false,
-          "points": 0,
-          "status": "Finished"
-        },
-        {
-          "position": 12,
           "driver_id": "ocon",
           "driver_code": "OCO",
           "driver_name": "Esteban Ocon",
@@ -2196,19 +2184,19 @@
           "status": "Finished"
         },
         {
-          "position": 13,
+          "position": 12,
           "driver_id": "bearman",
           "driver_code": "BEA",
           "driver_name": "Oliver Bearman",
           "team_id": "haas",
           "team_name": "Haas F1 Team",
-          "time": "",
+          "time": "+57.365s",
           "fastest_lap": false,
           "points": 0,
           "status": "Finished"
         },
         {
-          "position": 14,
+          "position": 13,
           "driver_id": "sainz",
           "driver_code": "SAI",
           "driver_name": "Carlos Sainz",
@@ -2220,7 +2208,7 @@
           "status": "Finished"
         },
         {
-          "position": 15,
+          "position": 14,
           "driver_id": "lawson",
           "driver_code": "LAW",
           "driver_name": "Liam Lawson",
@@ -2232,7 +2220,7 @@
           "status": "Finished"
         },
         {
-          "position": 16,
+          "position": 15,
           "driver_id": "alonso",
           "driver_code": "ALO",
           "driver_name": "Fernando Alonso",
@@ -2244,7 +2232,7 @@
           "status": "Finished"
         },
         {
-          "position": 17,
+          "position": 16,
           "driver_id": "perez",
           "driver_code": "PER",
           "driver_name": "Sergio Perez",
@@ -2256,7 +2244,7 @@
           "status": "Finished"
         },
         {
-          "position": 18,
+          "position": 17,
           "driver_id": "stroll",
           "driver_code": "STR",
           "driver_name": "Lance Stroll",
@@ -2268,7 +2256,7 @@
           "status": "Finished"
         },
         {
-          "position": 19,
+          "position": 18,
           "driver_id": "albon",
           "driver_code": "ALB",
           "driver_name": "Alexander Albon",
@@ -2280,7 +2268,7 @@
           "status": "Finished"
         },
         {
-          "position": 20,
+          "position": 19,
           "driver_id": "bottas",
           "driver_code": "BOT",
           "driver_name": "Valtteri Bottas",
@@ -2292,19 +2280,19 @@
           "status": "Finished"
         },
         {
-          "position": 21,
+          "position": 20,
           "driver_id": "hulkenberg",
           "driver_code": "HUL",
           "driver_name": "Nico Hulkenberg",
           "team_id": "audi",
           "team_name": "Audi",
-          "time": "DNF",
+          "time": "DNS",
           "fastest_lap": false,
           "points": 0,
-          "status": "DNF"
+          "status": "DNS"
         },
         {
-          "position": 22,
+          "position": 21,
           "driver_id": "lindblad",
           "driver_code": "LIN",
           "driver_name": "Arvid Lindblad",
@@ -2314,6 +2302,18 @@
           "fastest_lap": false,
           "points": 0,
           "status": "DNS"
+        },
+        {
+          "position": 22,
+          "driver_id": "bortoleto",
+          "driver_code": "BOR",
+          "driver_name": "Gabriel Bortoleto",
+          "team_id": "audi",
+          "team_name": "Audi",
+          "time": "DSQ",
+          "fastest_lap": false,
+          "points": 0,
+          "status": "DSQ"
         }
       ],
       "race_results": [
@@ -2372,25 +2372,13 @@
           "driver_name": "Max Verstappen",
           "team_id": "red_bull",
           "team_name": "Red Bull Racing",
-          "time": "+43.949s",
+          "time": "+48.949s",
           "fastest_lap": false,
           "points": 10,
           "status": "Finished"
         },
         {
           "position": 6,
-          "driver_id": "leclerc",
-          "driver_code": "LEC",
-          "driver_name": "Charles Leclerc",
-          "team_id": "ferrari",
-          "team_name": "Ferrari",
-          "time": "+44.245s",
-          "fastest_lap": false,
-          "points": 8,
-          "status": "Finished"
-        },
-        {
-          "position": 7,
           "driver_id": "hamilton",
           "driver_code": "HAM",
           "driver_name": "Lewis Hamilton",
@@ -2398,17 +2386,29 @@
           "team_name": "Ferrari",
           "time": "+53.753s",
           "fastest_lap": false,
-          "points": 6,
+          "points": 8,
           "status": "Finished"
         },
         {
-          "position": 8,
+          "position": 7,
           "driver_id": "colapinto",
           "driver_code": "COL",
           "driver_name": "Franco Colapinto",
           "team_id": "alpine",
           "team_name": "Alpine",
           "time": "+61.871s",
+          "fastest_lap": false,
+          "points": 6,
+          "status": "Finished"
+        },
+        {
+          "position": 8,
+          "driver_id": "leclerc",
+          "driver_code": "LEC",
+          "driver_name": "Charles Leclerc",
+          "team_id": "ferrari",
+          "team_name": "Ferrari",
+          "time": "+64.245s",
           "fastest_lap": false,
           "points": 4,
           "status": "Finished"
