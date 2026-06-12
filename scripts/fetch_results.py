@@ -148,6 +148,9 @@ def find_session_key(race_date_str, session_name, year=2026):
     Find OpenF1 session_key by matching the session closest to race_date_str.
     Date matching is more reliable than name matching across all GP names.
     """
+    if not race_date_str:
+        return None
+
     sessions = fetch("sessions", year=year, session_name=session_name)
     target = datetime.fromisoformat(race_date_str.replace("Z", "+00:00"))
     best_key  = None
@@ -499,7 +502,10 @@ def main():
         # that are still in the future or (b) refetch archival sessions just
         # because a sibling sprint/quali session was recently due.
         race_results, fastest_name, best_secs = None, None, None
-        if is_forced or is_session_due(race_time_str, existing.get("race_results"), now, refresh_window=refresh_window):
+        if race_time_str and (
+            is_forced or
+            is_session_due(race_time_str, existing.get("race_results"), now, refresh_window=refresh_window)
+        ):
             try:
                 race_session_key = find_session_key(race_time_str, "Race")
                 if not race_session_key:
@@ -532,7 +538,10 @@ def main():
 
         # --- Sprint (if applicable) ------------------------------------------
         sprint_results = None
-        if is_forced or is_session_due(sprint_time_str, existing.get("sprint_results"), now, refresh_window=refresh_window):
+        if sprint_time_str and (
+            is_forced or
+            is_session_due(sprint_time_str, existing.get("sprint_results"), now, refresh_window=refresh_window)
+        ):
             try:
                 sprint_session_key = find_session_key(sprint_time_str, "Sprint")
                 if not sprint_session_key:
@@ -547,7 +556,10 @@ def main():
 
         # --- Qualifying (if applicable) --------------------------------------
         quali_results = None
-        if is_forced or is_session_due(quali_time_str, existing.get("qualifying_results"), now, refresh_window=refresh_window):
+        if quali_time_str and (
+            is_forced or
+            is_session_due(quali_time_str, existing.get("qualifying_results"), now, refresh_window=refresh_window)
+        ):
             try:
                 quali_session_key = find_session_key(quali_time_str, "Qualifying")
                 if not quali_session_key:
@@ -562,7 +574,15 @@ def main():
 
         # --- Sprint Qualifying (if applicable) -------------------------------
         sprint_quali_results = None
-        if is_forced or is_session_due(sprint_quali_time_str, existing.get("sprint_qualifying_results"), now, refresh_window=refresh_window):
+        if sprint_quali_time_str and (
+            is_forced or
+            is_session_due(
+                sprint_quali_time_str,
+                existing.get("sprint_qualifying_results"),
+                now,
+                refresh_window=refresh_window,
+            )
+        ):
             try:
                 sq_session_key = find_session_key(sprint_quali_time_str, "Sprint Qualifying")
                 if not sq_session_key:

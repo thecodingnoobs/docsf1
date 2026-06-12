@@ -21,6 +21,7 @@ from fetch_results import (
     PRE_FETCH_BUFFER,
     REFRESH_WINDOW,
     build_results,
+    find_session_key,
     is_session_due,
     find_pending_rounds,
 )
@@ -69,6 +70,15 @@ class IsSessionDueFirstFetch(unittest.TestCase):
     def test_missing_time_str_not_due(self):
         self.assertFalse(is_session_due(None, None, at(timedelta(hours=24))))
         self.assertFalse(is_session_due("", None, at(timedelta(hours=24))))
+
+
+class FindSessionKey(unittest.TestCase):
+
+    @patch("fetch_results.fetch")
+    def test_missing_session_date_returns_none_without_api_call(self, mock_fetch):
+        self.assertIsNone(find_session_key(None, "Sprint"))
+        self.assertIsNone(find_session_key("", "Sprint Qualifying"))
+        mock_fetch.assert_not_called()
 
 
 class IsSessionDueRefresh(unittest.TestCase):
