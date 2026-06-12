@@ -59,6 +59,21 @@ TEAM_ID_MAP = {
     "Aston Martin":      "aston_martin",
 }
 
+# OpenF1 can lag FIA right-of-review decisions. Keep narrowly-scoped,
+# documented corrections here so a later refresh cannot overwrite the
+# official classification with stale API data.
+SESSION_RESULT_OVERRIDES = {
+    # 2026 Monaco GP: Gasly's two post-race 5s pit-lane penalties were
+    # rescinded on 2026-06-12, restoring him to P3.
+    11299: {
+        10: {"position": 3, "points": 15.0, "gap_to_leader": 20.369},
+        6:  {"position": 4, "points": 12.0},
+        81: {"position": 5, "points": 10.0},
+        30: {"position": 6, "points": 8.0},
+        41: {"position": 7, "points": 6.0},
+    },
+}
+
 
 class TransientFetchError(Exception):
     """OpenF1 returned a transient error (429 / 5xx). Caller should skip
@@ -271,14 +286,12 @@ def build_results(session_key):
     /session_result endpoint, joined with /drivers (names, teams) and
     /laps (fastest-lap detection only).
 
-    /session_result is the canonical FIA classification: post-race time
-    penalties are already baked into gap_to_leader and position; points
-    already account for the post-2025 no-fastest-lap-bonus rule. Earlier
-    versions of this function reconstructed the result from /position +
-    /intervals + a 90%-of-winner's-laps DNF heuristic, which produced
-    on-track running order rather than official classification — that
-    silently lost stewards' time penalties (e.g. Miami 2026: VER's 5s
-    penalty and LEC's 20s penalty + 2-place drop never made it in).
+    /session_result normally provides the post-race classification:
+    penalties are baked into gap_to_leader and position, and points account
+    for the post-2025 no-fastest-lap-bonus rule. OpenF1 can lag later FIA
+    reviews, so SESSION_RESULT_OVERRIDES applies narrowly-scoped official
+    corrections before rows are assembled. Earlier versions reconstructed
+    results from /position + /intervals and silently lost stewards' changes.
 
     Returns (results, fastest_driver_name, best_lap_seconds). All three
     are None when /session_result returns empty (session not finished or
@@ -287,6 +300,13 @@ def build_results(session_key):
     rows = fetch("session_result", session_key=session_key)
     if not rows:
         return None, None, None
+
+    overrides = SESSION_RESULT_OVERRIDES.get(session_key, {})
+    if overrides:
+        rows = [
+            {**row, **overrides.get(row.get("driver_number"), {})}
+            for row in rows
+        ]
 
     drivers                   = get_drivers(session_key)
     _, fastest_num, best_secs = get_laps_data(session_key)

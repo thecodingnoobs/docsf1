@@ -356,6 +356,32 @@ class BuildResultsClassified(unittest.TestCase):
             results, _, _ = build_results(11280)
         self.assertEqual(results[0]["points"], 22)
 
+    def test_fia_review_override_replaces_stale_openf1_classification(self):
+        drivers = [
+            {"driver_number": 6, "name_acronym": "HAD", "first_name": "Isack",
+             "last_name": "Hadjar", "team_name": "Red Bull Racing"},
+            {"driver_number": 10, "name_acronym": "GAS", "first_name": "Pierre",
+             "last_name": "Gasly", "team_name": "Alpine"},
+        ]
+        with _patch_fetch(
+            session_result=[
+                {"position": 3, "driver_number": 6, "number_of_laps": 78,
+                 "points": 15.0, "dnf": False, "dns": False, "dsq": False,
+                 "duration": None, "gap_to_leader": 23.394},
+                {"position": 7, "driver_number": 10, "number_of_laps": 78,
+                 "points": 6.0, "dnf": False, "dns": False, "dsq": False,
+                 "duration": None, "gap_to_leader": 30.369},
+            ],
+            drivers=drivers,
+        ):
+            results, _, _ = build_results(11299)
+
+        self.assertEqual(
+            [(row["position"], row["driver_id"], row["points"]) for row in results],
+            [(3, "gasly", 15), (4, "hadjar", 12)],
+        )
+        self.assertEqual(results[0]["time"], "+20.369s")
+
 
 class BuildResultsRetirements(unittest.TestCase):
 
