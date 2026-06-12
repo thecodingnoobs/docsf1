@@ -4126,18 +4126,6 @@
         },
         {
           "position": 3,
-          "driver_id": "gasly",
-          "driver_code": "GAS",
-          "driver_name": "Pierre Gasly",
-          "team_id": "alpine",
-          "team_name": "Alpine",
-          "time": "+20.369s",
-          "fastest_lap": false,
-          "points": 15,
-          "status": "Finished"
-        },
-        {
-          "position": 4,
           "driver_id": "hadjar",
           "driver_code": "HAD",
           "driver_name": "Isack Hadjar",
@@ -4145,11 +4133,11 @@
           "team_name": "Red Bull Racing",
           "time": "+23.394s",
           "fastest_lap": false,
-          "points": 12,
+          "points": 15,
           "status": "Finished"
         },
         {
-          "position": 5,
+          "position": 4,
           "driver_id": "piastri",
           "driver_code": "PIA",
           "driver_name": "Oscar Piastri",
@@ -4157,11 +4145,11 @@
           "team_name": "McLaren",
           "time": "+24.261s",
           "fastest_lap": false,
-          "points": 10,
+          "points": 12,
           "status": "Finished"
         },
         {
-          "position": 6,
+          "position": 5,
           "driver_id": "lawson",
           "driver_code": "LAW",
           "driver_name": "Liam Lawson",
@@ -4169,17 +4157,29 @@
           "team_name": "Racing Bulls",
           "time": "+26.553s",
           "fastest_lap": false,
-          "points": 8,
+          "points": 10,
           "status": "Finished"
         },
         {
-          "position": 7,
+          "position": 6,
           "driver_id": "lindblad",
           "driver_code": "LIN",
           "driver_name": "Arvid Lindblad",
           "team_id": "racing_bulls",
           "team_name": "Racing Bulls",
           "time": "+29.010s",
+          "fastest_lap": false,
+          "points": 8,
+          "status": "Finished"
+        },
+        {
+          "position": 7,
+          "driver_id": "gasly",
+          "driver_code": "GAS",
+          "driver_name": "Pierre Gasly",
+          "team_id": "alpine",
+          "team_name": "Alpine",
+          "time": "+30.369s",
           "fastest_lap": false,
           "points": 6,
           "status": "Finished"
