@@ -18,13 +18,17 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).parent))
 from fetch_results import (
+    MIN_OPENF1_REQUEST_INTERVAL,
     PRE_FETCH_BUFFER,
     REFRESH_WINDOW,
+    SESSION_CACHE,
+    _throttle_openf1_request,
     build_results,
     find_session_key,
     is_session_due,
     find_pending_rounds,
 )
+import fetch_results
 
 
 SESSION_START = datetime(2026, 5, 3, 17, 0, tzinfo=timezone.utc)
@@ -34,6 +38,28 @@ SESSION_START_STR = "2026-05-03T17:00:00Z"
 def at(offset):
     """Helper: return a `now` value at SESSION_START + offset."""
     return SESSION_START + offset
+
+
+class OpenF1RateLimit(unittest.TestCase):
+
+    def tearDown(self):
+        fetch_results._last_openf1_request_at = None
+
+    def test_throttle_waits_between_back_to_back_requests(self):
+        fetch_results._last_openf1_request_at = None
+        now_values = iter([100.0, 100.25, 101.0])
+        sleeps = []
+
+        _throttle_openf1_request(
+            now_fn=lambda: next(now_values),
+            sleep_fn=sleeps.append,
+        )
+        _throttle_openf1_request(
+            now_fn=lambda: next(now_values),
+            sleep_fn=sleeps.append,
+        )
+
+        self.assertEqual(sleeps, [MIN_OPENF1_REQUEST_INTERVAL - 0.25])
 
 
 class IsSessionDueFirstFetch(unittest.TestCase):
@@ -74,11 +100,25 @@ class IsSessionDueFirstFetch(unittest.TestCase):
 
 class FindSessionKey(unittest.TestCase):
 
+    def setUp(self):
+        SESSION_CACHE.clear()
+
     @patch("fetch_results.fetch")
     def test_missing_session_date_returns_none_without_api_call(self, mock_fetch):
         self.assertIsNone(find_session_key(None, "Sprint"))
         self.assertIsNone(find_session_key("", "Sprint Qualifying"))
         mock_fetch.assert_not_called()
+
+    @patch("fetch_results.fetch")
+    def test_sessions_lookup_is_cached_per_session_type(self, mock_fetch):
+        mock_fetch.return_value = [
+            {"date_start": "2026-05-03T17:00:00+00:00", "session_key": 123},
+        ]
+
+        self.assertEqual(find_session_key("2026-05-03T17:00:00Z", "Race"), 123)
+        self.assertEqual(find_session_key("2026-05-03T17:00:00Z", "Race"), 123)
+
+        mock_fetch.assert_called_once_with("sessions", year=2026, session_name="Race")
 
 
 class IsSessionDueRefresh(unittest.TestCase):

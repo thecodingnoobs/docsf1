@@ -13,6 +13,8 @@ on:
     - cron: '0 22 * * 0'
     # Monday 22:00 UTC — catches late Sunday night races (Americas) + data availability buffer
     - cron: '0 22 * * 1'
+    # Tuesday 22:00 UTC — catch-up for OpenF1 lag / rate limits after race weekend
+    - cron: '0 22 * * 2'
   workflow_dispatch:
     inputs:
       force_rounds:

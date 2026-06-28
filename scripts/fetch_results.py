@@ -11,6 +11,7 @@ Usage:
 import argparse
 import json
 import sys
+import time
 import requests
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -22,15 +23,26 @@ SCHEDULE_FILE = ROOT / "f1_2026_schedule.json"
 CIRCUITS_FILE = ROOT / "circuits.json"
 
 # Wait this long after a session's scheduled start before the very first
-# fetch. Long enough for the session to finish and for OpenF1 to settle,
-# short enough that Sunday-evening races are ingested the same day.
-PRE_FETCH_BUFFER = timedelta(hours=4)
+# fetch. The schedule stores start times, not end times; three hours after
+# start is roughly one hour after a typical race finishes. OpenF1 can still
+# lag behind the chequered flag, so transient misses are retried on later
+# scheduled runs.
+PRE_FETCH_BUFFER = timedelta(hours=3)
 
 # Re-fetch a session whose data is already populated if its scheduled start
 # was within this window. Catches FIA stewards' decisions and OpenF1
 # finalisation lag (penalties, classification fixes) for ~2 days, then
 # treats the round as locked so we don't pointlessly re-pull old archives.
 REFRESH_WINDOW   = timedelta(hours=48)
+
+# OpenF1's free tier is 3 requests/second and 30 requests/minute. Staying at
+# one request per second gives us margin for retries and shared CI egress.
+MIN_OPENF1_REQUEST_INTERVAL = 1.0
+_last_openf1_request_at = None
+
+# Keep one workflow run from repeating the same /sessions lookup for every
+# round/session guard that needs to resolve a key.
+SESSION_CACHE = {}
 
 # OpenF1 name_acronym → our driver_id
 DRIVER_ID_MAP = {
@@ -66,20 +78,52 @@ class TransientFetchError(Exception):
     empty data as authoritative."""
 
 
+def _retry_after_seconds(resp, attempt):
+    raw = resp.headers.get("Retry-After")
+    if raw:
+        try:
+            return max(1, min(int(raw), 60))
+        except ValueError:
+            pass
+    return min(2 ** attempt, 30)
+
+
+def _throttle_openf1_request(now_fn=time.monotonic, sleep_fn=time.sleep):
+    global _last_openf1_request_at
+
+    now = now_fn()
+    if _last_openf1_request_at is not None:
+        wait = MIN_OPENF1_REQUEST_INTERVAL - (now - _last_openf1_request_at)
+        if wait > 0:
+            sleep_fn(wait)
+            now = now_fn()
+
+    _last_openf1_request_at = now
+
+
 def fetch(endpoint, **params):
     url = f"{OPENF1_BASE}/{endpoint}"
-    resp = requests.get(url, params=params, timeout=30)
-    # 404 = session not yet active / no data — return empty so build_results
-    # cleanly returns None (we check sprint while race is still in the future).
-    if resp.status_code == 404:
-        return []
-    # 429 + 5xx = transient. Returning [] would silently produce malformed
-    # results (e.g. drivers missing names). Raise a marker so the caller can
-    # skip the session entirely without crashing the whole run.
-    if resp.status_code == 429 or resp.status_code >= 500:
-        raise TransientFetchError(f"{resp.status_code} on {endpoint}")
-    resp.raise_for_status()
-    return resp.json()
+    max_attempts = 3
+    for attempt in range(max_attempts):
+        _throttle_openf1_request()
+        resp = requests.get(url, params=params, timeout=30)
+        # 404 = session not yet active / no data — return empty so build_results
+        # cleanly returns None (we check sprint while race is still in the future).
+        if resp.status_code == 404:
+            return []
+        # 429 + 5xx = transient. Retry politely inside this run, then let the
+        # caller skip the session so a later workflow can try again.
+        if resp.status_code == 429 or resp.status_code >= 500:
+            if attempt < max_attempts - 1:
+                delay = _retry_after_seconds(resp, attempt)
+                print(f"  OpenF1 {resp.status_code} on {endpoint}; retrying in {delay}s.")
+                time.sleep(delay)
+                continue
+            raise TransientFetchError(f"{resp.status_code} on {endpoint}")
+        resp.raise_for_status()
+        return resp.json()
+
+    raise TransientFetchError(f"retry budget exhausted on {endpoint}")
 
 
 def get_final_positions(session_key):
@@ -151,7 +195,10 @@ def find_session_key(race_date_str, session_name, year=2026):
     if not race_date_str:
         return None
 
-    sessions = fetch("sessions", year=year, session_name=session_name)
+    cache_key = (year, session_name)
+    if cache_key not in SESSION_CACHE:
+        SESSION_CACHE[cache_key] = fetch("sessions", year=year, session_name=session_name)
+    sessions = SESSION_CACHE[cache_key]
     target = datetime.fromisoformat(race_date_str.replace("Z", "+00:00"))
     best_key  = None
     best_diff = None
