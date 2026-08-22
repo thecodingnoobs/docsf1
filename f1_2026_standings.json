@@ -12,7 +12,7 @@
       "team_id": "mercedes",
       "team_name": "Mercedes",
       "nationality": "Italian",
-      "points": 219,
+      "points": 224,
       "wins": 6,
       "debut_year": 2025,
       "career_wins": 6,
@@ -24,7 +24,7 @@
       "h2h_teammate_ahead": 4,
       "career_races": 35,
       "career_podiums": 14,
-      "career_top10s": 27,
+      "career_top10s": 28,
       "headshot": "drivers/antonelli.avif"
     },
     {
@@ -35,7 +35,7 @@
       "team_id": "ferrari",
       "team_name": "Ferrari",
       "nationality": "British",
-      "points": 169,
+      "points": 171,
       "wins": 1,
       "debut_year": 2007,
       "career_wins": 106,
@@ -47,7 +47,7 @@
       "h2h_teammate_ahead": 5,
       "career_races": 391,
       "career_podiums": 209,
-      "career_top10s": 346,
+      "career_top10s": 347,
       "headshot": "drivers/hamilton.avif"
     },
     {
@@ -58,7 +58,7 @@
       "team_id": "mercedes",
       "team_name": "Mercedes",
       "nationality": "British",
-      "points": 160,
+      "points": 168,
       "wins": 2,
       "debut_year": 2019,
       "career_wins": 7,
@@ -69,8 +69,8 @@
       "h2h_driver_ahead": 4,
       "h2h_teammate_ahead": 7,
       "career_races": 163,
-      "career_podiums": 31,
-      "career_top10s": 98,
+      "career_podiums": 32,
+      "career_top10s": 99,
       "headshot": "drivers/russell.avif"
     },
     {
@@ -81,7 +81,7 @@
       "team_id": "ferrari",
       "team_name": "Ferrari",
       "nationality": "Monégasque",
-      "points": 138,
+      "points": 145,
       "wins": 1,
       "debut_year": 2018,
       "career_wins": 9,
@@ -92,8 +92,8 @@
       "h2h_driver_ahead": 5,
       "h2h_teammate_ahead": 6,
       "career_races": 184,
-      "career_podiums": 56,
-      "career_top10s": 145,
+      "career_podiums": 57,
+      "career_top10s": 146,
       "headshot": "drivers/leclerc.avif"
     },
     {
@@ -104,7 +104,7 @@
       "team_id": "mclaren",
       "team_name": "McLaren",
       "nationality": "British",
-      "points": 128,
+      "points": 134,
       "wins": 1,
       "debut_year": 2019,
       "career_wins": 12,
@@ -115,8 +115,8 @@
       "h2h_driver_ahead": 5,
       "h2h_teammate_ahead": 6,
       "career_races": 163,
-      "career_podiums": 50,
-      "career_top10s": 133,
+      "career_podiums": 51,
+      "career_top10s": 134,
       "headshot": "drivers/norris.avif"
     },
     {
@@ -127,7 +127,7 @@
       "team_id": "red_bull",
       "team_name": "Red Bull",
       "nationality": "Dutch",
-      "points": 109,
+      "points": 112,
       "wins": 0,
       "debut_year": 2015,
       "career_wins": 71,
@@ -139,7 +139,7 @@
       "h2h_teammate_ahead": 3,
       "career_races": 244,
       "career_podiums": 131,
-      "career_top10s": 207,
+      "career_top10s": 208,
       "headshot": "drivers/verstappen.avif"
     },
     {
@@ -150,7 +150,7 @@
       "team_id": "mclaren",
       "team_name": "McLaren",
       "nationality": "Australian",
-      "points": 92,
+      "points": 96,
       "wins": 0,
       "debut_year": 2023,
       "career_wins": 9,
@@ -162,7 +162,7 @@
       "h2h_teammate_ahead": 5,
       "career_races": 81,
       "career_podiums": 29,
-      "career_top10s": 66,
+      "career_top10s": 67,
       "headshot": "drivers/piastri.avif"
     },
     {
@@ -190,6 +190,29 @@
     },
     {
       "position": 9,
+      "driver_id": "gasly",
+      "driver_code": "GAS",
+      "driver_name": "Pierre Gasly",
+      "team_id": "alpine",
+      "team_name": "Alpine",
+      "nationality": "French",
+      "points": 43,
+      "wins": 0,
+      "debut_year": 2017,
+      "career_wins": 1,
+      "career_championships": 0,
+      "career_seasons": 10,
+      "h2h_teammate_id": "colapinto",
+      "h2h_teammate_code": "COL",
+      "h2h_driver_ahead": 7,
+      "h2h_teammate_ahead": 4,
+      "career_races": 189,
+      "career_podiums": 6,
+      "career_top10s": 84,
+      "headshot": "drivers/gasly.avif"
+    },
+    {
+      "position": 10,
       "driver_id": "lawson",
       "driver_code": "LAW",
       "driver_name": "Liam Lawson",
@@ -212,29 +235,6 @@
       "headshot": "drivers/lawson.avif"
     },
     {
-      "position": 10,
-      "driver_id": "gasly",
-      "driver_code": "GAS",
-      "driver_name": "Pierre Gasly",
-      "team_id": "alpine",
-      "team_name": "Alpine",
-      "nationality": "French",
-      "points": 42,
-      "wins": 0,
-      "debut_year": 2017,
-      "career_wins": 1,
-      "career_championships": 0,
-      "career_seasons": 10,
-      "h2h_teammate_id": "colapinto",
-      "h2h_teammate_code": "COL",
-      "h2h_driver_ahead": 7,
-      "h2h_teammate_ahead": 4,
-      "career_races": 189,
-      "career_podiums": 6,
-      "career_top10s": 83,
-      "headshot": "drivers/gasly.avif"
-    },
-    {
       "position": 11,
       "driver_id": "lindblad",
       "driver_code": "LIN",
@@ -254,7 +254,7 @@
       "h2h_teammate_ahead": 8,
       "career_races": 11,
       "career_podiums": 0,
-      "career_top10s": 9,
+      "career_top10s": 10,
       "headshot": "drivers/lindblad.avif"
     },
     {
@@ -323,7 +323,7 @@
       "h2h_teammate_ahead": 4,
       "career_races": 35,
       "career_podiums": 0,
-      "career_top10s": 8,
+      "career_top10s": 9,
       "headshot": "drivers/bortoleto.avif"
     },
     {
@@ -516,28 +516,28 @@
       "position": 1,
       "team_id": "mercedes",
       "team_name": "Mercedes",
-      "points": 379,
+      "points": 392,
       "wins": 8
     },
     {
       "position": 2,
       "team_id": "ferrari",
       "team_name": "Ferrari",
-      "points": 307,
+      "points": 316,
       "wins": 2
     },
     {
       "position": 3,
       "team_id": "mclaren",
       "team_name": "McLaren",
-      "points": 220,
+      "points": 230,
       "wins": 1
     },
     {
       "position": 4,
       "team_id": "red_bull",
       "team_name": "Red Bull",
-      "points": 177,
+      "points": 180,
       "wins": 0
     },
     {
@@ -551,7 +551,7 @@
       "position": 6,
       "team_id": "alpine",
       "team_name": "Alpine",
-      "points": 61,
+      "points": 62,
       "wins": 0
     },
     {
