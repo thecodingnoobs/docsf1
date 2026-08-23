@@ -8738,42 +8738,50 @@
     },
     {
       "round": 18,
+      "grand_prix": "Bahrain Grand Prix in Malaysia",
+      "sprint_results": null,
+      "race_results": null,
+      "qualifying_results": null,
+      "sprint_qualifying_results": null
+    },
+    {
+      "round": 19,
       "grand_prix": "Singapore Grand Prix",
       "sprint_results": null,
       "race_results": null
     },
     {
-      "round": 19,
+      "round": 20,
       "grand_prix": "United States Grand Prix",
       "sprint_results": null,
       "race_results": null
     },
     {
-      "round": 20,
+      "round": 21,
       "grand_prix": "Mexico City Grand Prix",
       "sprint_results": null,
       "race_results": null
     },
     {
-      "round": 21,
+      "round": 22,
       "grand_prix": "São Paulo Grand Prix",
       "sprint_results": null,
       "race_results": null
     },
     {
-      "round": 22,
+      "round": 23,
       "grand_prix": "Las Vegas Grand Prix",
       "sprint_results": null,
       "race_results": null
     },
     {
-      "round": 23,
+      "round": 24,
       "grand_prix": "Qatar Grand Prix",
       "sprint_results": null,
       "race_results": null
     },
     {
-      "round": 24,
+      "round": 25,
       "grand_prix": "Abu Dhabi Grand Prix",
       "sprint_results": null,
       "race_results": null

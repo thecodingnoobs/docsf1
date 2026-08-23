@@ -312,6 +312,24 @@
     },
     {
       "round": 18,
+      "grand_prix": "Bahrain Grand Prix in Malaysia",
+      "circuit_id": "sepang",
+      "date_start": "2026-10-02",
+      "date_end": "2026-10-04",
+      "sprint_weekend": false,
+      "cancelled": false,
+      "sessions": {
+        "practice_1": "2026-10-02T04:30:00Z",
+        "practice_2": "2026-10-02T08:00:00Z",
+        "practice_3": "2026-10-03T04:30:00Z",
+        "qualifying": "2026-10-03T08:00:00Z",
+        "sprint_qualifying": null,
+        "sprint_race": null,
+        "race": "2026-10-04T07:00:00Z"
+      }
+    },
+    {
+      "round": 19,
       "grand_prix": "Singapore Grand Prix",
       "circuit_id": "singapore",
       "date_start": "2026-10-09",
@@ -329,7 +347,7 @@
       }
     },
     {
-      "round": 19,
+      "round": 20,
       "grand_prix": "United States Grand Prix",
       "circuit_id": "cota",
       "date_start": "2026-10-23",
@@ -347,7 +365,7 @@
       }
     },
     {
-      "round": 20,
+      "round": 21,
       "grand_prix": "Mexico City Grand Prix",
       "circuit_id": "mexico",
       "date_start": "2026-10-30",
@@ -365,7 +383,7 @@
       }
     },
     {
-      "round": 21,
+      "round": 22,
       "grand_prix": "São Paulo Grand Prix",
       "circuit_id": "interlagos",
       "date_start": "2026-11-06",
@@ -383,7 +401,7 @@
       }
     },
     {
-      "round": 22,
+      "round": 23,
       "grand_prix": "Las Vegas Grand Prix",
       "circuit_id": "las_vegas",
       "date_start": "2026-11-20",
@@ -401,7 +419,7 @@
       }
     },
     {
-      "round": 23,
+      "round": 24,
       "grand_prix": "Qatar Grand Prix",
       "circuit_id": "losail",
       "date_start": "2026-11-27",
@@ -419,7 +437,7 @@
       }
     },
     {
-      "round": 24,
+      "round": 25,
       "grand_prix": "Abu Dhabi Grand Prix",
       "circuit_id": "yas_marina",
       "date_start": "2026-12-04",
