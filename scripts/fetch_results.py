@@ -23,11 +23,11 @@ SCHEDULE_FILE = ROOT / "f1_2026_schedule.json"
 CIRCUITS_FILE = ROOT / "circuits.json"
 
 # Wait this long after a session's scheduled start before the very first
-# fetch. The schedule stores start times, not end times; three hours after
-# start is roughly one hour after a typical race finishes. OpenF1 can still
+# fetch. The schedule stores start times, not end times; four hours after
+# start is roughly two hours after a typical race finishes. OpenF1 can still
 # lag behind the chequered flag, so transient misses are retried on later
 # scheduled runs.
-PRE_FETCH_BUFFER = timedelta(hours=3)
+PRE_FETCH_BUFFER = timedelta(hours=4)
 
 # Re-fetch a session whose data is already populated if its scheduled start
 # was within this window. Catches FIA stewards' decisions and OpenF1
