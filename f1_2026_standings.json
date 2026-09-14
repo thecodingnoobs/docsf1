@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-03-26",
+  "last_updated": "2026-09-14",
   "after_round": 16,
   "after_race": "Spanish Grand Prix",
   "driver_standings": [
@@ -150,7 +150,7 @@
       "team_id": "mclaren",
       "team_name": "McLaren",
       "nationality": "Australian",
-      "points": 118,
+      "points": 120,
       "wins": 0,
       "debut_year": 2023,
       "career_wins": 9,
@@ -173,7 +173,7 @@
       "team_id": "red_bull",
       "team_name": "Red Bull",
       "nationality": "French",
-      "points": 68,
+      "points": 71,
       "wins": 0,
       "debut_year": 2025,
       "career_wins": 0,
@@ -184,7 +184,7 @@
       "h2h_driver_ahead": 3,
       "h2h_teammate_ahead": 8,
       "career_races": 35,
-      "career_podiums": 1,
+      "career_podiums": 2,
       "career_top10s": 20,
       "headshot": "drivers/hadjar.avif"
     },
@@ -196,7 +196,7 @@
       "team_id": "racing_bulls",
       "team_name": "Racing Bulls",
       "nationality": "New Zealander",
-      "points": 57,
+      "points": 59,
       "wins": 0,
       "debut_year": 2023,
       "career_wins": 0,
@@ -219,7 +219,7 @@
       "team_id": "alpine",
       "team_name": "Alpine",
       "nationality": "French",
-      "points": 50,
+      "points": 41,
       "wins": 0,
       "debut_year": 2017,
       "career_wins": 1,
@@ -230,7 +230,7 @@
       "h2h_driver_ahead": 9,
       "h2h_teammate_ahead": 5,
       "career_races": 192,
-      "career_podiums": 6,
+      "career_podiums": 5,
       "career_top10s": 86,
       "headshot": "drivers/gasly.avif"
     },
@@ -242,7 +242,7 @@
       "team_id": "racing_bulls",
       "team_name": "Racing Bulls",
       "nationality": "British",
-      "points": 29,
+      "points": 31,
       "wins": 0,
       "debut_year": 2026,
       "career_wins": 0,
@@ -530,28 +530,28 @@
       "position": 3,
       "team_id": "mclaren",
       "team_name": "McLaren",
-      "points": 304,
+      "points": 306,
       "wins": 2
     },
     {
       "position": 4,
       "team_id": "red_bull",
       "team_name": "Red Bull",
-      "points": 227,
+      "points": 230,
       "wins": 0
     },
     {
       "position": 5,
-      "team_id": "alpine",
-      "team_name": "Alpine",
+      "team_id": "racing_bulls",
+      "team_name": "Racing Bulls",
       "points": 77,
       "wins": 0
     },
     {
       "position": 6,
-      "team_id": "racing_bulls",
-      "team_name": "Racing Bulls",
-      "points": 73,
+      "team_id": "alpine",
+      "team_name": "Alpine",
+      "points": 68,
       "wins": 0
     },
     {
