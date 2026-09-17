@@ -301,10 +301,10 @@
       "sprint_weekend": false,
       "cancelled": false,
       "sessions": {
-        "practice_1": "2026-09-24T09:30:00Z",
-        "practice_2": "2026-09-24T13:00:00Z",
-        "practice_3": "2026-09-25T09:30:00Z",
-        "qualifying": "2026-09-25T13:00:00Z",
+        "practice_1": "2026-09-24T08:30:00Z",
+        "practice_2": "2026-09-24T12:00:00Z",
+        "practice_3": "2026-09-25T08:30:00Z",
+        "qualifying": "2026-09-25T12:00:00Z",
         "sprint_qualifying": null,
         "sprint_race": null,
         "race": "2026-09-26T11:00:00Z"
