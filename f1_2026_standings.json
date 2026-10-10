@@ -12,7 +12,7 @@
       "team_id": "mercedes",
       "team_name": "Mercedes",
       "nationality": "Italian",
-      "points": 320,
+      "points": 325,
       "wins": 8,
       "debut_year": 2025,
       "career_wins": 8,
@@ -24,7 +24,7 @@
       "h2h_teammate_ahead": 5,
       "career_races": 40,
       "career_podiums": 18,
-      "career_top10s": 33,
+      "career_top10s": 34,
       "headshot": "drivers/antonelli.avif"
     },
     {
@@ -58,7 +58,7 @@
       "team_id": "ferrari",
       "team_name": "Ferrari",
       "nationality": "British",
-      "points": 214,
+      "points": 221,
       "wins": 1,
       "debut_year": 2007,
       "career_wins": 106,
@@ -69,8 +69,8 @@
       "h2h_driver_ahead": 9,
       "h2h_teammate_ahead": 7,
       "career_races": 396,
-      "career_podiums": 210,
-      "career_top10s": 351,
+      "career_podiums": 211,
+      "career_top10s": 352,
       "headshot": "drivers/hamilton.avif"
     },
     {
@@ -81,7 +81,7 @@
       "team_id": "ferrari",
       "team_name": "Ferrari",
       "nationality": "Monégasque",
-      "points": 191,
+      "points": 197,
       "wins": 1,
       "debut_year": 2018,
       "career_wins": 9,
@@ -92,19 +92,42 @@
       "h2h_driver_ahead": 7,
       "h2h_teammate_ahead": 9,
       "career_races": 189,
-      "career_podiums": 57,
-      "career_top10s": 150,
+      "career_podiums": 58,
+      "career_top10s": 151,
       "headshot": "drivers/leclerc.avif"
     },
     {
       "position": 5,
+      "driver_id": "verstappen",
+      "driver_code": "VER",
+      "driver_name": "Max Verstappen",
+      "team_id": "red_bull",
+      "team_name": "Red Bull",
+      "nationality": "Dutch",
+      "points": 196,
+      "wins": 1,
+      "debut_year": 2015,
+      "career_wins": 72,
+      "career_championships": 4,
+      "career_seasons": 12,
+      "h2h_teammate_id": "hadjar",
+      "h2h_teammate_code": "HAD",
+      "h2h_driver_ahead": 10,
+      "h2h_teammate_ahead": 3,
+      "career_races": 249,
+      "career_podiums": 136,
+      "career_top10s": 213,
+      "headshot": "drivers/verstappen.avif"
+    },
+    {
+      "position": 6,
       "driver_id": "norris",
       "driver_code": "NOR",
       "driver_name": "Lando Norris",
       "team_id": "mclaren",
       "team_name": "McLaren",
       "nationality": "British",
-      "points": 188,
+      "points": 189,
       "wins": 2,
       "debut_year": 2019,
       "career_wins": 13,
@@ -116,31 +139,8 @@
       "h2h_teammate_ahead": 8,
       "career_races": 168,
       "career_podiums": 53,
-      "career_top10s": 138,
+      "career_top10s": 139,
       "headshot": "drivers/norris.avif"
-    },
-    {
-      "position": 6,
-      "driver_id": "verstappen",
-      "driver_code": "VER",
-      "driver_name": "Max Verstappen",
-      "team_id": "red_bull",
-      "team_name": "Red Bull",
-      "nationality": "Dutch",
-      "points": 188,
-      "wins": 1,
-      "debut_year": 2015,
-      "career_wins": 72,
-      "career_championships": 4,
-      "career_seasons": 12,
-      "h2h_teammate_id": "hadjar",
-      "h2h_teammate_code": "HAD",
-      "h2h_driver_ahead": 10,
-      "h2h_teammate_ahead": 3,
-      "career_races": 249,
-      "career_podiums": 135,
-      "career_top10s": 212,
-      "headshot": "drivers/verstappen.avif"
     },
     {
       "position": 7,
@@ -196,7 +196,7 @@
       "team_id": "racing_bulls",
       "team_name": "Racing Bulls",
       "nationality": "New Zealander",
-      "points": 65,
+      "points": 69,
       "wins": 0,
       "debut_year": 2023,
       "career_wins": 0,
@@ -208,7 +208,7 @@
       "h2h_teammate_ahead": 5,
       "career_races": 51,
       "career_podiums": 0,
-      "career_top10s": 23,
+      "career_top10s": 24,
       "headshot": "drivers/lawson.avif"
     },
     {
@@ -231,7 +231,7 @@
       "h2h_teammate_ahead": 7,
       "career_races": 194,
       "career_podiums": 5,
-      "career_top10s": 86,
+      "career_top10s": 87,
       "headshot": "drivers/gasly.avif"
     },
     {
@@ -288,7 +288,7 @@
       "team_id": "haas",
       "team_name": "Haas F1 Team",
       "nationality": "British",
-      "points": 20,
+      "points": 23,
       "wins": 0,
       "debut_year": 2025,
       "career_wins": 0,
@@ -300,7 +300,7 @@
       "h2h_teammate_ahead": 7,
       "career_races": 43,
       "career_podiums": 0,
-      "career_top10s": 16,
+      "career_top10s": 17,
       "headshot": "drivers/bearman.avif"
     },
     {
@@ -334,7 +334,7 @@
       "team_id": "audi",
       "team_name": "Audi",
       "nationality": "German",
-      "points": 7,
+      "points": 9,
       "wins": 0,
       "debut_year": 2010,
       "career_wins": 0,
@@ -346,7 +346,7 @@
       "h2h_teammate_ahead": 8,
       "career_races": 270,
       "career_podiums": 1,
-      "career_top10s": 120,
+      "career_top10s": 121,
       "headshot": "drivers/hulkenberg.avif"
     },
     {
@@ -369,7 +369,7 @@
       "h2h_teammate_ahead": 9,
       "career_races": 196,
       "career_podiums": 4,
-      "career_top10s": 98,
+      "career_top10s": 99,
       "headshot": "drivers/ocon.avif"
     },
     {
@@ -516,35 +516,35 @@
       "position": 1,
       "team_id": "mercedes",
       "team_name": "Mercedes",
-      "points": 556,
+      "points": 561,
       "wins": 11
     },
     {
       "position": 2,
       "team_id": "ferrari",
       "team_name": "Ferrari",
-      "points": 405,
+      "points": 418,
       "wins": 2
     },
     {
       "position": 3,
       "team_id": "mclaren",
       "team_name": "McLaren",
-      "points": 316,
+      "points": 317,
       "wins": 2
     },
     {
       "position": 4,
       "team_id": "red_bull",
       "team_name": "Red Bull",
-      "points": 298,
+      "points": 306,
       "wins": 1
     },
     {
       "position": 5,
       "team_id": "racing_bulls",
       "team_name": "Racing Bulls",
-      "points": 90,
+      "points": 94,
       "wins": 0
     },
     {
@@ -558,14 +558,14 @@
       "position": 7,
       "team_id": "haas",
       "team_name": "Haas F1 Team",
-      "points": 27,
+      "points": 30,
       "wins": 0
     },
     {
       "position": 8,
       "team_id": "audi",
       "team_name": "Audi",
-      "points": 17,
+      "points": 19,
       "wins": 0
     },
     {
