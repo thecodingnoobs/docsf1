@@ -281,7 +281,7 @@ def build_qualifying_results(session_key):
     for driver_number, position in sorted_entries:
         driver    = drivers.get(driver_number, {})
         acronym   = driver.get("name_acronym", "???")
-        team_name = driver.get("team_name", "Unknown")
+        team_name = driver.get("team_name") or "Unknown"
         full_name = f"{driver.get('first_name', '')} {driver.get('last_name', '')}".strip()
 
         bucket = best_per_segment.get(driver_number, {1: None, 2: None, 3: None})
@@ -361,7 +361,7 @@ def build_results(session_key):
         dn        = r["driver_number"]
         d         = drivers.get(dn, {})
         acronym   = d.get("name_acronym", "???")
-        team_name = d.get("team_name", "Unknown")
+        team_name = d.get("team_name") or "Unknown"
         full_name = f"{d.get('first_name', '')} {d.get('last_name', '')}".strip()
 
         if r.get("dns"):

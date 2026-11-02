@@ -23,6 +23,7 @@ from fetch_results import (
     REFRESH_WINDOW,
     SESSION_CACHE,
     _throttle_openf1_request,
+    build_qualifying_results,
     build_results,
     find_session_key,
     is_session_due,
@@ -337,6 +338,34 @@ def _patch_fetch(session_result, drivers=None, laps=None):
             return laps
         raise AssertionError(f"build_results should not call /{endpoint}")
     return patch("fetch_results.fetch", side_effect=fake_fetch)
+
+
+class BuildResultsTeamName(unittest.TestCase):
+
+    def test_null_or_missing_team_name_uses_unknown(self):
+        for metadata in ({"team_name": None}, {}, {"team_name": ""}):
+            driver = {**DRIVERS_FIXTURE[0], **metadata}
+            if not metadata:
+                driver.pop("team_name")
+            with self.subTest(metadata=metadata), _patch_fetch(
+                session_result=[{"position": 1, "driver_number": 12}],
+                drivers=[driver],
+            ):
+                results, _, _ = build_results(11404)
+            self.assertEqual(results[0]["team_name"], "Unknown")
+            self.assertEqual(results[0]["team_id"], "unknown")
+
+    def test_qualifying_null_team_name_uses_unknown(self):
+        responses = {
+            "position": [{"driver_number": 12, "position": 1}],
+            "drivers": [{**DRIVERS_FIXTURE[0], "team_name": None}],
+            "laps": [{"driver_number": 12, "lap_duration": 91.234,
+                      "date_start": "2026-11-01T17:00:00+00:00"}],
+        }
+        with patch("fetch_results.fetch", side_effect=lambda endpoint, **params: responses[endpoint]):
+            results = build_qualifying_results(11404)
+        self.assertEqual(results[0]["team_name"], "Unknown")
+        self.assertEqual(results[0]["team_id"], "unknown")
 
 
 class BuildResultsClassified(unittest.TestCase):
