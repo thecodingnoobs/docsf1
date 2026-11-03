@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-11-02",
+  "last_updated": "2026-11-03",
   "notes": "race_results and sprint_results are null for upcoming or cancelled races. fastest_lap is tracked for display only — no bonus point awarded (abolished from 2025 season). points reflect points scored in that specific session only.",
   "races": [
     {
@@ -12435,9 +12435,9 @@
           "position": 10,
           "driver_id": "hir",
           "driver_code": "HIR",
-          "driver_name": "None None",
-          "team_id": "unknown",
-          "team_name": "Unknown",
+          "driver_name": "Ryo Hirakawa",
+          "team_id": "haas",
+          "team_name": "Haas F1 Team",
           "time": "+25.373s",
           "fastest_lap": false,
           "points": 1,
