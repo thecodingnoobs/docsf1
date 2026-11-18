@@ -409,13 +409,13 @@
       "sprint_weekend": false,
       "cancelled": false,
       "sessions": {
-        "practice_1": "2026-11-20T04:30:00Z",
-        "practice_2": "2026-11-20T08:00:00Z",
-        "practice_3": "2026-11-21T04:00:00Z",
-        "qualifying": "2026-11-21T08:00:00Z",
+        "practice_1": "2026-11-20T00:30:00Z",
+        "practice_2": "2026-11-20T04:00:00Z",
+        "practice_3": "2026-11-21T00:30:00Z",
+        "qualifying": "2026-11-21T04:00:00Z",
         "sprint_qualifying": null,
         "sprint_race": null,
-        "race": "2026-11-22T06:00:00Z"
+        "race": "2026-11-22T04:00:00Z"
       }
     },
     {
