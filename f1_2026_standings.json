@@ -16,15 +16,15 @@
       "wins": 9,
       "debut_year": 2025,
       "career_wins": 9,
-      "career_championships": 0,
+      "career_championships": 1,
       "career_seasons": 2,
       "h2h_teammate_id": "russell",
       "h2h_teammate_code": "RUS",
       "h2h_driver_ahead": 14,
       "h2h_teammate_ahead": 6,
       "career_races": 44,
-      "career_podiums": 21,
-      "career_top10s": 38,
+      "career_podiums": 19,
+      "career_top10s": 32,
       "headshot": "drivers/antonelli.avif"
     },
     {
@@ -46,8 +46,8 @@
       "h2h_driver_ahead": 14,
       "h2h_teammate_ahead": 3,
       "career_races": 253,
-      "career_podiums": 140,
-      "career_top10s": 217,
+      "career_podiums": 139,
+      "career_top10s": 211,
       "headshot": "drivers/verstappen.avif"
     },
     {
@@ -69,8 +69,8 @@
       "h2h_driver_ahead": 6,
       "h2h_teammate_ahead": 14,
       "career_races": 172,
-      "career_podiums": 35,
-      "career_top10s": 107,
+      "career_podiums": 32,
+      "career_top10s": 102,
       "headshot": "drivers/russell.avif"
     },
     {
@@ -92,8 +92,8 @@
       "h2h_driver_ahead": 10,
       "h2h_teammate_ahead": 10,
       "career_races": 400,
-      "career_podiums": 212,
-      "career_top10s": 356,
+      "career_podiums": 209,
+      "career_top10s": 350,
       "headshot": "drivers/hamilton.avif"
     },
     {
@@ -115,8 +115,8 @@
       "h2h_driver_ahead": 10,
       "h2h_teammate_ahead": 10,
       "career_races": 193,
-      "career_podiums": 60,
-      "career_top10s": 155,
+      "career_podiums": 56,
+      "career_top10s": 149,
       "headshot": "drivers/leclerc.avif"
     },
     {
@@ -131,15 +131,15 @@
       "wins": 3,
       "debut_year": 2019,
       "career_wins": 14,
-      "career_championships": 0,
+      "career_championships": 1,
       "career_seasons": 8,
       "h2h_teammate_id": "piastri",
       "h2h_teammate_code": "PIA",
       "h2h_driver_ahead": 12,
       "h2h_teammate_ahead": 8,
       "career_races": 172,
-      "career_podiums": 54,
-      "career_top10s": 143,
+      "career_podiums": 50,
+      "career_top10s": 137,
       "headshot": "drivers/norris.avif"
     },
     {
@@ -161,8 +161,8 @@
       "h2h_driver_ahead": 8,
       "h2h_teammate_ahead": 12,
       "career_races": 90,
-      "career_podiums": 29,
-      "career_top10s": 74,
+      "career_podiums": 28,
+      "career_top10s": 69,
       "headshot": "drivers/piastri.avif"
     },
     {
@@ -185,7 +185,7 @@
       "h2h_teammate_ahead": 14,
       "career_races": 41,
       "career_podiums": 4,
-      "career_top10s": 26,
+      "career_top10s": 24,
       "headshot": "drivers/hadjar.avif"
     },
     {
@@ -208,7 +208,7 @@
       "h2h_teammate_ahead": 5,
       "career_races": 55,
       "career_podiums": 0,
-      "career_top10s": 28,
+      "career_top10s": 25,
       "headshot": "drivers/lawson.avif"
     },
     {
@@ -231,7 +231,7 @@
       "h2h_teammate_ahead": 9,
       "career_races": 198,
       "career_podiums": 5,
-      "career_top10s": 88,
+      "career_top10s": 85,
       "headshot": "drivers/gasly.avif"
     },
     {
@@ -254,7 +254,7 @@
       "h2h_teammate_ahead": 15,
       "career_races": 20,
       "career_podiums": 0,
-      "career_top10s": 14,
+      "career_top10s": 11,
       "headshot": "drivers/lindblad.avif"
     },
     {
@@ -277,7 +277,7 @@
       "h2h_teammate_ahead": 11,
       "career_races": 47,
       "career_podiums": 0,
-      "career_top10s": 12,
+      "career_top10s": 10,
       "headshot": "drivers/colapinto.avif"
     },
     {
@@ -300,7 +300,7 @@
       "h2h_teammate_ahead": 8,
       "career_races": 47,
       "career_podiums": 0,
-      "career_top10s": 17,
+      "career_top10s": 15,
       "headshot": "drivers/bearman.avif"
     },
     {
@@ -323,7 +323,7 @@
       "h2h_teammate_ahead": 11,
       "career_races": 44,
       "career_podiums": 0,
-      "career_top10s": 10,
+      "career_top10s": 9,
       "headshot": "drivers/bortoleto.avif"
     },
     {
@@ -346,7 +346,7 @@
       "h2h_teammate_ahead": 9,
       "career_races": 274,
       "career_podiums": 1,
-      "career_top10s": 123,
+      "career_top10s": 122,
       "headshot": "drivers/hulkenberg.avif"
     },
     {
@@ -369,7 +369,7 @@
       "h2h_teammate_ahead": 10,
       "career_races": 198,
       "career_podiums": 4,
-      "career_top10s": 99,
+      "career_top10s": 97,
       "headshot": "drivers/ocon.avif"
     },
     {
@@ -415,7 +415,7 @@
       "h2h_teammate_ahead": 9,
       "career_races": 252,
       "career_podiums": 29,
-      "career_top10s": 154,
+      "career_top10s": 153,
       "headshot": "drivers/sainz.avif"
     },
     {

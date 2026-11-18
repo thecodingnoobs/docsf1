@@ -21,7 +21,7 @@ PRE_2026 = {
     "leclerc":    {"wins": 8,   "races": 173, "podiums": 50,  "top10": 132, "championships": 0, "seasons": 8},
     "hamilton":   {"wins": 105, "races": 380, "podiums": 202, "top10": 331, "championships": 7, "seasons": 19},
     "bearman":    {"wins": 0,   "races": 27,  "podiums": 0,   "top10": 11,  "championships": 0, "seasons": 1},
-    "norris":     {"wins": 11,  "races": 152, "podiums": 44,  "top10": 121, "championships": 0, "seasons": 7},
+    "norris":     {"wins": 11,  "races": 152, "podiums": 44,  "top10": 121, "championships": 1, "seasons": 7},
     "gasly":      {"wins": 1,   "races": 178, "podiums": 5,   "top10": 75,  "championships": 0, "seasons": 9},
     "verstappen": {"wins": 71,  "races": 233, "podiums": 127, "top10": 195, "championships": 4, "seasons": 11},
     "lawson":     {"wins": 0,   "races": 35,  "podiums": 0,   "top10": 10,  "championships": 0, "seasons": 3},
@@ -40,14 +40,17 @@ PRE_2026 = {
     "stroll":     {"wins": 0,   "races": 191, "podiums": 3,   "top10": 66,  "championships": 0, "seasons": 9},
 }
 
+# Confirmed 2026 Drivers' World Championship winners. Add a driver once the
+# FIA/F1 has awarded the title; these are added to the career baseline below.
+SEASON_CHAMPIONS = {"antonelli"}
+
 
 def compute_season_stats(results_data: dict) -> dict:
-    """Count races/podiums/top10s per driver from 2026 results. Race starts from main race only."""
+    """Count Grand Prix starts, podiums, and top-10s from 2026 race results."""
     stats: dict[str, dict] = {}
 
     for race in results_data["races"]:
         race_results   = race.get("race_results")   or []
-        sprint_results = race.get("sprint_results") or []
 
         for entry in race_results:
             did = entry["driver_id"]
@@ -55,10 +58,8 @@ def compute_season_stats(results_data: dict) -> dict:
                 stats[did] = {"races": 0, "podiums": 0, "top10": 0}
             stats[did]["races"] += 1
 
-        for entry in race_results + sprint_results:
-            did = entry["driver_id"]
-            if did not in stats:
-                stats[did] = {"races": 0, "podiums": 0, "top10": 0}
+            # Driver career details use Grand Prix results. Sprint statistics
+            # contribute to season points but remain separate from these fields.
             pos = entry.get("position", 99)
             if entry.get("status") == "Finished":
                 if pos <= 3:
@@ -211,7 +212,7 @@ def main():
             "career_races":   pre["races"]   + s["races"],
             "career_podiums": pre["podiums"] + s["podiums"],
             "career_top10s":  pre["top10"]   + s["top10"],
-            "career_championships": pre["championships"],
+            "career_championships": pre["championships"] + (1 if did in SEASON_CHAMPIONS else 0),
             "career_seasons": pre["seasons"] + (1 if s["races"] else 0),
         }
         for key, val in updates.items():
