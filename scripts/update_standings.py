@@ -16,28 +16,28 @@ RESULTS_FILE   = ROOT / "f1_2026_results.json"
 # Verified from Jolpica (paginated), includes through end of 2025.
 # Only update these at the start of a new season.
 PRE_2026 = {
-    "russell":    {"wins": 5,   "races": 152, "podiums": 24,  "top10": 86},
-    "antonelli":  {"wins": 0,   "races": 24,  "podiums": 3,   "top10": 14},
-    "leclerc":    {"wins": 8,   "races": 173, "podiums": 50,  "top10": 132},
-    "hamilton":   {"wins": 105, "races": 380, "podiums": 202, "top10": 331},
-    "bearman":    {"wins": 0,   "races": 27,  "podiums": 0,   "top10": 11},
-    "norris":     {"wins": 11,  "races": 152, "podiums": 44,  "top10": 121},
-    "gasly":      {"wins": 1,   "races": 178, "podiums": 5,   "top10": 75},
-    "verstappen": {"wins": 71,  "races": 233, "podiums": 127, "top10": 195},
-    "lawson":     {"wins": 0,   "races": 35,  "podiums": 0,   "top10": 10},
-    "lindblad":   {"wins": 0,   "races": 0,   "podiums": 0,   "top10": 0},
-    "hadjar":     {"wins": 0,   "races": 24,  "podiums": 1,   "top10": 10},
-    "piastri":    {"wins": 9,   "races": 70,  "podiums": 26,  "top10": 56},
-    "sainz":      {"wins": 4,   "races": 232, "podiums": 29,  "top10": 149},
-    "bortoleto":  {"wins": 0,   "races": 24,  "podiums": 0,   "top10": 5},
-    "colapinto":  {"wins": 0,   "races": 27,  "podiums": 0,   "top10": 2},
-    "ocon":       {"wins": 1,   "races": 180, "podiums": 4,   "top10": 94},
-    "hulkenberg": {"wins": 0,   "races": 254, "podiums": 1,   "top10": 117},
-    "albon":      {"wins": 0,   "races": 129, "podiums": 2,   "top10": 50},
-    "bottas":     {"wins": 10,  "races": 247, "podiums": 67,  "top10": 145},
-    "perez":      {"wins": 6,   "races": 283, "podiums": 39,  "top10": 186},
-    "alonso":     {"wins": 32,  "races": 428, "podiums": 106, "top10": 281},
-    "stroll":     {"wins": 0,   "races": 191, "podiums": 3,   "top10": 66},
+    "russell":    {"wins": 5,   "races": 152, "podiums": 24,  "top10": 86,  "championships": 0, "seasons": 7},
+    "antonelli":  {"wins": 0,   "races": 24,  "podiums": 3,   "top10": 14,  "championships": 0, "seasons": 1},
+    "leclerc":    {"wins": 8,   "races": 173, "podiums": 50,  "top10": 132, "championships": 0, "seasons": 8},
+    "hamilton":   {"wins": 105, "races": 380, "podiums": 202, "top10": 331, "championships": 7, "seasons": 19},
+    "bearman":    {"wins": 0,   "races": 27,  "podiums": 0,   "top10": 11,  "championships": 0, "seasons": 1},
+    "norris":     {"wins": 11,  "races": 152, "podiums": 44,  "top10": 121, "championships": 0, "seasons": 7},
+    "gasly":      {"wins": 1,   "races": 178, "podiums": 5,   "top10": 75,  "championships": 0, "seasons": 9},
+    "verstappen": {"wins": 71,  "races": 233, "podiums": 127, "top10": 195, "championships": 4, "seasons": 11},
+    "lawson":     {"wins": 0,   "races": 35,  "podiums": 0,   "top10": 10,  "championships": 0, "seasons": 3},
+    "lindblad":   {"wins": 0,   "races": 0,   "podiums": 0,   "top10": 0,   "championships": 0, "seasons": 0},
+    "hadjar":     {"wins": 0,   "races": 24,  "podiums": 1,   "top10": 10,  "championships": 0, "seasons": 1},
+    "piastri":    {"wins": 9,   "races": 70,  "podiums": 26,  "top10": 56,  "championships": 0, "seasons": 3},
+    "sainz":      {"wins": 4,   "races": 232, "podiums": 29,  "top10": 149, "championships": 0, "seasons": 11},
+    "bortoleto":  {"wins": 0,   "races": 24,  "podiums": 0,   "top10": 5,   "championships": 0, "seasons": 1},
+    "colapinto":  {"wins": 0,   "races": 27,  "podiums": 0,   "top10": 2,   "championships": 0, "seasons": 2},
+    "ocon":       {"wins": 1,   "races": 180, "podiums": 4,   "top10": 94,  "championships": 0, "seasons": 10},
+    "hulkenberg": {"wins": 0,   "races": 254, "podiums": 1,   "top10": 117, "championships": 0, "seasons": 13},
+    "albon":      {"wins": 0,   "races": 129, "podiums": 2,   "top10": 50,  "championships": 0, "seasons": 6},
+    "bottas":     {"wins": 10,  "races": 247, "podiums": 67,  "top10": 145, "championships": 0, "seasons": 13},
+    "perez":      {"wins": 6,   "races": 283, "podiums": 39,  "top10": 186, "championships": 0, "seasons": 15},
+    "alonso":     {"wins": 32,  "races": 428, "podiums": 106, "top10": 281, "championships": 2, "seasons": 21},
+    "stroll":     {"wins": 0,   "races": 191, "podiums": 3,   "top10": 66,  "championships": 0, "seasons": 9},
 }
 
 
@@ -180,6 +180,13 @@ def main():
     pos_counts    = compute_position_counts(results)
     changed       = False
 
+    # Keep the visible standings timestamp aligned with the result feed that
+    # supplied its driver and constructor statistics.
+    results_updated = results.get("last_updated")
+    if results_updated and standings.get("last_updated") != results_updated:
+        standings["last_updated"] = results_updated
+        changed = True
+
     # --- after_round / after_race ---
     completed = [r for r in results["races"] if r.get("race_results") is not None]
     if completed:
@@ -194,7 +201,7 @@ def main():
     # --- Driver standings ---
     for drv in standings["driver_standings"]:
         did = drv["driver_id"]
-        pre = PRE_2026.get(did, {"wins": 0, "races": 0, "podiums": 0, "top10": 0})
+        pre = PRE_2026.get(did, {"wins": 0, "races": 0, "podiums": 0, "top10": 0, "championships": 0, "seasons": 0})
         s   = season.get(did, {"races": 0, "podiums": 0, "top10": 0})
 
         updates = {
@@ -204,6 +211,8 @@ def main():
             "career_races":   pre["races"]   + s["races"],
             "career_podiums": pre["podiums"] + s["podiums"],
             "career_top10s":  pre["top10"]   + s["top10"],
+            "career_championships": pre["championships"],
+            "career_seasons": pre["seasons"] + (1 if s["races"] else 0),
         }
         for key, val in updates.items():
             if drv.get(key) != val:
