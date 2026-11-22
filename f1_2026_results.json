@@ -13362,7 +13362,7 @@
           "team_name": "Red Bull Racing",
           "time": "",
           "fastest_lap": false,
-          "points": 0,
+          "points": 25,
           "status": "Finished"
         },
         {
@@ -13374,7 +13374,7 @@
           "team_name": "McLaren",
           "time": "+0.639s",
           "fastest_lap": false,
-          "points": 0,
+          "points": 18,
           "status": "Finished"
         },
         {
@@ -13386,7 +13386,7 @@
           "team_name": "McLaren",
           "time": "+1.529s",
           "fastest_lap": false,
-          "points": 0,
+          "points": 15,
           "status": "Finished"
         },
         {
@@ -13398,7 +13398,7 @@
           "team_name": "Mercedes",
           "time": "+2.574s",
           "fastest_lap": false,
-          "points": 0,
+          "points": 12,
           "status": "Finished"
         },
         {
@@ -13410,7 +13410,7 @@
           "team_name": "Alpine",
           "time": "+2.927s",
           "fastest_lap": false,
-          "points": 0,
+          "points": 10,
           "status": "Finished"
         },
         {
@@ -13422,7 +13422,7 @@
           "team_name": "Alpine",
           "time": "+7.955s",
           "fastest_lap": false,
-          "points": 0,
+          "points": 8,
           "status": "Finished"
         },
         {
@@ -13434,7 +13434,7 @@
           "team_name": "Ferrari",
           "time": "+12.795s",
           "fastest_lap": false,
-          "points": 0,
+          "points": 6,
           "status": "Finished"
         },
         {
@@ -13446,7 +13446,7 @@
           "team_name": "Williams",
           "time": "+12.938s",
           "fastest_lap": false,
-          "points": 0,
+          "points": 4,
           "status": "Finished"
         },
         {
@@ -13458,7 +13458,7 @@
           "team_name": "Mercedes",
           "time": "+13.192s",
           "fastest_lap": false,
-          "points": 0,
+          "points": 2,
           "status": "Finished"
         },
         {
@@ -13470,7 +13470,7 @@
           "team_name": "Ferrari",
           "time": "+17.554s",
           "fastest_lap": false,
-          "points": 0,
+          "points": 1,
           "status": "Finished"
         },
         {
@@ -13511,18 +13511,6 @@
         },
         {
           "position": 14,
-          "driver_id": "hadjar",
-          "driver_code": "HAD",
-          "driver_name": "Isack Hadjar",
-          "team_id": "red_bull",
-          "team_name": "Red Bull Racing",
-          "time": "+36.488s",
-          "fastest_lap": false,
-          "points": 0,
-          "status": "Finished"
-        },
-        {
-          "position": 15,
           "driver_id": "lawson",
           "driver_code": "LAW",
           "driver_name": "Liam Lawson",
@@ -13530,6 +13518,18 @@
           "team_name": "Racing Bulls",
           "time": "+36.588s",
           "fastest_lap": true,
+          "points": 0,
+          "status": "Finished"
+        },
+        {
+          "position": 15,
+          "driver_id": "hadjar",
+          "driver_code": "HAD",
+          "driver_name": "Isack Hadjar",
+          "team_id": "red_bull",
+          "team_name": "Red Bull Racing",
+          "time": "+46.488s",
+          "fastest_lap": false,
           "points": 0,
           "status": "Finished"
         },
